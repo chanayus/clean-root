@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,900&family=Prompt:wght@500;600;700&family=Sarabun:ital,wght@0,400;0,500;0,600;0,700;1,500&display=swap");
+@import "./tailwind/output.css";
+
+/* Design tokens — อ้างอิง prototype/CleanRoots Design System.dc.html
+   input.css map ชื่อพวกนี้เข้า Tailwind ด้วย @theme inline (เช่น --cr-green → bg-cr-green)
+   เพิ่ม token ใหม่ที่นี่ แล้วไปประกาศชื่อ Tailwind ใน input.css
+
+   กฎ: ถ้า Tailwind มีสเกลที่ค่าใกล้พออยู่แล้ว (radius, font-weight, spacing,
+   duration, z-index) ให้ใช้ของ Tailwind — อย่าตั้ง token ซ้ำ */
+:root {
+  /* สีหลัก + บทบาท */
+  --cr-green: #3e6250; /* CTA หลัก */
+  --cr-green-dark: #33513f; /* เฉด hover ของปุ่มเขียว */
+  --cr-gold: #f2c230; /* โปรโมชั่น / CTA รอง */
+  --cr-cream: #fbf6ea; /* พื้นหลังหลัก */
+  --cr-rust: #b5533f; /* ลบ / แจ้งเตือน */
+
+  /* ข้อความ */
+  --text-primary: #2b2a25;
+  --text-secondary: #5b5a4f;
+  --text-muted: #7a7a6e;
+
+  /* พื้นหลังพาเนล — ใช้กับเนื้อหาเท่านั้น ไม่ใช่ CTA และไม่เกิน 1-2 สี/หน้า */
+  --panel-green-light: #edf0e4;
+  --panel-green-moss: #e4e9da;
+  --panel-cream: #f4efdc;
+  --panel-lilac: #e6dcf0;
+
+  /* ข้อความบนพื้นเหลือง (footer) — ไม่มีใน design system แต่ต้องมีเพื่อ contrast */
+  --text-on-gold: #6b5a1e;
+  --text-on-gold-strong: #4e4318;
+
+  /* สีแบรนด์ LINE — ของภายนอก ไม่ใช่สีของ CleanRoots */
+  --line-green: #06c755;
+  --line-green-dark: #05b34c;
+
+  --border: #eae3d2;
+  --shadow-card: 0 8px 28px rgba(43, 42, 37, 0.08);
+
+  /* Easing — Tailwind มีแค่ ease-in/out/linear จึงต้องตั้งเอง */
+  --spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --spring-soft: cubic-bezier(0.34, 1.4, 0.64, 1);
+
+  /* สเกลตัวอักษร — ค่าเป็น rem อิง 16px เพื่อให้ที่ desktop ตรงตัวเลข design system
+     แล้วย่อตาม html { font-size: clamp(14px, 0.84vw, 16px) } ด้านล่าง
+     hero ใช้ค่าของ prototype (72px) ซึ่งใหญ่กว่าที่ design system ระบุ (52px) */
+  --fs-hero: clamp(2.5rem, 6vw, 4.5rem);
+  --fs-h1: 2rem; /* 32px */
+  --fs-h2: 1.625rem; /* 26px */
+  --fs-h3: 1.375rem; /* 22px */
+  --fs-h4: 1.25rem; /* 20px */
+  --fs-h5: 1.0625rem; /* 17px */
+  --fs-h6: 0.9375rem; /* 15px */
+  --fs-body: 0.9375rem; /* 15px */
+  --fs-caption: 0.8125rem; /* 13px */
+
+  --page-pad: 3rem; /* 48px — design system กำหนดคงที่ */
+}
+
+html {
+  font-size: clamp(14px, 0.84vw, 16px);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Sarabun", sans-serif;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--cr-cream);
+  animation: fade-in 0.35s forwards;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow-x: hidden;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+* {
+  touch-action: manipulation;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  font-smooth: always;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* หัวข้อทั้งหมดใช้ Prompt ตาม design system */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Prompt", sans-serif;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+h4 {
+  font-size: var(--fs-h4);
+}
+
+h5 {
+  font-size: var(--fs-h5);
+}
+
+h6 {
+  font-size: var(--fs-h6);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+ul li {
+  list-style: disc;
+  margin-left: 2rem;
+}
+
+ol li {
+  list-style: decimal;
+  margin-left: 2rem;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+/* ไอคอน SVG แบบ mask — scripts/main.js อ่าน data-src แล้วเซ็ต --src ให้
+   <span class="svg-icon" data-src="./icons/arrow.svg"></span>
+   หน้า index ใช้ inline SVG ตาม design system — กลไกนี้เผื่อหน้าอื่น */
+
+.svg-icon {
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask: var(--src) no-repeat center;
+  mask: var(--src) no-repeat center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+/* Mobile navigation — scripts/modules/navbar.js สลับ class .active ให้, CSS คุม transition เอง */
+
+#mobile-nav {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s,
+    visibility 0.35s;
+}
+
+#mobile-nav.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Scroll bar */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

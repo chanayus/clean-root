@@ -1,0 +1,372 @@
+/* Styles เฉพาะหน้า index
+   ใส่ที่นี่เฉพาะของที่เข้าเกณฑ์ใน
+   .claude/skills/static-site-from-prototype/references/css-conventions.md
+   ของที่ใช้ซ้ำข้ามหน้าให้ไป styles/tailwind/input.css แทน
+
+   ทุกอย่างที่เป็น layout ล้วน (grid, flex, gap, padding) อยู่ใน markup เป็น utility
+   ที่เหลืออยู่ตรงนี้เพราะต้องใช้ ::before/::after, clip-path, 3D transform,
+   @keyframes หรือ state ซ้อนสองชั้น */
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+/* สถานะเริ่มต้นของ hero — ม่านปิดอยู่ รูปซูมเข้าไว้ก่อน
+   การเคลื่อนไหวทั้งหมดคุมจาก timeline เดียวใน scripts/pages/index.js
+   ที่ประกาศไว้ตรงนี้มีแค่จุดตั้งต้น กัน FOUC ช่วงก่อน JS ทำงาน */
+.hero-curtain {
+  clip-path: inset(0 0 100% 0);
+}
+
+.hero-media img {
+  object-position: center 40%;
+  transform: scale(1.12);
+}
+
+/* ไล่เฉดสองชั้น — บนลงล่างให้ตัวหนังสืออ่านออก + ซ้ายไปขวาเน้นฝั่งข้อความ */
+.hero-overlay {
+  background:
+    linear-gradient(180deg, rgb(28 36 28 / 0.5) 0%, rgb(28 36 28 / 0.12) 30%, rgb(28 36 28 / 0.15) 62%, rgb(28 36 28 / 0.78) 100%),
+    linear-gradient(90deg, rgb(28 36 28 / 0.42) 0%, rgb(28 36 28 / 0) 55%);
+}
+
+/* จุดเริ่มต้นของ hero entrance — กัน FOUC ก่อน JS ทำงาน
+   ส่วนการเคลื่อนไหวจริง scripts/pages/index.js คุมด้วย timeline ของ Motion */
+
+.hero-title {
+  font-size: var(--fs-hero);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--cr-cream);
+  text-shadow: 0 2px 30px rgb(20 28 20 / 0.4);
+}
+
+/* ห้ามใส่ overflow:hidden ที่นี่ — วรรณยุกต์ไทย (ไม้โท ไม้เอก) ลอยสูงเกินกล่องบรรทัด
+   ที่ line-height 1.1 จะโดนตัดหัวทันที ตอนนี้คำเลื่อนขึ้นแค่ 20px ไม่ต้องมีหน้าต่างบังอยู่แล้ว */
+.hero-line {
+  display: block;
+}
+
+.hero-line--sm {
+  font-size: 0.6em;
+  opacity: 0.92;
+}
+
+.hero-line--lg {
+  font-size: 1.14em;
+}
+
+.hero-word {
+  display: inline-block;
+  opacity: 0;
+}
+
+/* คำว่า "ราก" เน้นเหลือง */
+.hero-accent {
+  color: var(--cr-gold);
+  white-space: nowrap;
+}
+
+.hero-shadow-text {
+  text-shadow: 0 1px 16px rgb(20 28 20 / 0.4);
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(rgb(251 246 234 / 0.7), transparent);
+  transform-origin: top;
+  animation: hero-scroll-pulse 1.8s var(--spring) infinite;
+}
+
+@keyframes hero-scroll-pulse {
+  0% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   FEATURE STRIP
+   ========================================================================== */
+
+/* ยกไอคอนตอน hover ที่ตัวการ์ด — state ซ้อนสองชั้นจึงเขียน CSS */
+.feature-icon {
+  transition:
+    transform 0.35s var(--spring),
+    box-shadow 0.3s;
+}
+
+.feature:hover .feature-icon {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgb(62 98 80 / 0.2);
+}
+
+/* ==========================================================================
+   PRODUCT GRID
+   ========================================================================== */
+/* จุดตั้งต้นกัน FOUC — การเผยตัวตอนเข้าจอคุมด้วย Motion ใน scripts/pages/index.js */
+.harvest-card {
+  opacity: 0;
+  transform: translateY(26px) scale(0.97);
+  transition:
+    translate 0.4s var(--spring),
+    box-shadow 0.4s var(--spring);
+}
+
+/* hover ยกการ์ดใช้ `translate` ไม่ใช่ `transform`
+   เพราะ Motion เขียน transform เป็น inline style ตอน reveal ซึ่งชนะ CSS เสมอ
+   ส่วน translate เป็นคนละ property เบราว์เซอร์ประกอบให้เอง จึงไม่ชนกัน */
+.harvest-card:hover {
+  translate: 0 -8px;
+  box-shadow: 0 22px 44px -16px rgb(43 42 37 / 0.4);
+}
+
+.harvest-card-photo img {
+  transition: transform 0.7s var(--spring);
+}
+
+.harvest-card:hover .harvest-card-photo img {
+  transform: scale(1.06);
+}
+
+/* เฉดพื้นหลังรออยู่ใต้รูป — ถ้ารูปโหลดไม่ทันการ์ดยังดูจบ */
+.harvest-card-photo--rice {
+  background: linear-gradient(160deg, #dccba3, #b79b63);
+}
+
+.harvest-card-photo--garlic {
+  background: linear-gradient(160deg, #ede7d6, #c7bc9b);
+}
+
+.harvest-card-photo--shallot {
+  background: linear-gradient(160deg, #d2a08a, #b5533f);
+}
+
+.harvest-card-photo--bamboo {
+  background: linear-gradient(160deg, #c4c79a, #8a9760);
+}
+
+/* ไล่เฉดดำจากล่างขึ้น ให้ชื่อ/ราคาอ่านออกไม่ว่ารูปจะสว่างแค่ไหน */
+.harvest-card-face {
+  background: linear-gradient(180deg, rgb(20 28 20 / 0) 45%, rgb(20 28 20 / 0.72) 100%);
+}
+
+/* ปุ่มที่ทับรูปโดยตรง — เพิ่มขอบสว่าง + เงาลึกเฉพาะบริบทนี้ ไม่เปลี่ยนสีของระบบ */
+.harvest-card-body .btn {
+  border: 1.5px solid rgb(255 255 255 / 0.22);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.35);
+}
+
+.harvest-card-name-link:hover {
+  color: var(--cr-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   STORY DOT-NAV
+   ========================================================================== */
+.story-dots {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.story-dots.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.story-dots-label {
+  writing-mode: vertical-rl;
+}
+
+.story-dot {
+  background: rgb(251 246 234 / 0.4);
+  transition:
+    background 0.3s ease,
+    transform 0.35s var(--spring-soft);
+}
+
+.story-dot:hover {
+  background: rgb(251 246 234 / 0.7);
+}
+
+.story-dot.is-active {
+  background: var(--cr-gold);
+  transform: scale(1.6);
+}
+
+/* ==========================================================================
+   STORY / NARRATIVE — horizontal scroll-pin
+
+   .narrative        = ตัวถ่วงความสูง (ความสูงตัดสินว่า pin นานแค่ไหน)
+   .narrative-sticky = viewport ที่ค้างเต็มจอ
+   .narrative-track  = แถบแนวนอนกว้าง 300% เลื่อนซ้ายตาม scroll progress
+                       (scripts/pages/index.js คุมด้วย scroll() ของ Motion)
+   ที่ ≤1024px ยกเลิก pin ทั้งหมด เรียงแนวตั้งอ่านง่ายบนจอเล็ก
+   ========================================================================== */
+.narrative-track {
+  will-change: transform;
+}
+
+/* เลเยอร์ [data-depth] ขยับใน 3D ตอน tilt จึงต้องคง perspective ของลูกไว้ */
+.narrative-card {
+  transform-style: preserve-3d;
+}
+
+/* รูปเปิดจากล่างขึ้นบนตอนการ์ด active — เหมือนขุดดินขึ้นมา */
+.narrative-photo {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.1s var(--spring);
+}
+
+.narrative-card.is-active .narrative-photo {
+  clip-path: inset(0 0 0 0);
+}
+
+.narrative-photo img {
+  transform: scale(1.06);
+}
+
+.narrative-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgb(28 36 28 / 0.85) 0%, rgb(28 36 28 / 0.58) 42%, rgb(28 36 28 / 0.15) 74%, rgb(28 36 28 / 0) 100%);
+}
+
+.narrative-watermark {
+  writing-mode: vertical-rl;
+  font-size: clamp(64px, 9vw, 128px);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: rgb(251 246 234 / 0.05);
+  transition: opacity 0.5s var(--spring);
+}
+
+.narrative-body {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s var(--spring) 0.2s,
+    transform 0.8s var(--spring) 0.2s;
+}
+
+.narrative-card.is-active .narrative-body {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.narrative-card h3 {
+  font-size: clamp(30px, 4.2vw, 48px);
+  font-weight: 700;
+  line-height: 1.12;
+  text-shadow: 0 2px 24px rgb(20 28 20 / 0.4);
+}
+
+.narrative-card p {
+  text-shadow: 0 1px 14px rgb(20 28 20 / 0.35);
+}
+
+/* badge วงกลม — เส้น ring วาดรอบตัวเองตอนการ์ด active */
+.narrative-badge {
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity 0.6s var(--spring) 0.4s,
+    transform 0.6s var(--spring-soft) 0.4s;
+}
+
+.narrative-card.is-active .narrative-badge {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.narrative-badge-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.narrative-badge-ring circle {
+  fill: none;
+  stroke: var(--cr-gold);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 1.2s var(--spring) 0.5s;
+}
+
+.narrative-card.is-active .narrative-badge-ring circle {
+  stroke-dashoffset: 0;
+}
+
+.narrative-progress-fill {
+  transition: width 0.1s linear;
+}
+
+.narrative-hint {
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.5s var(--spring);
+}
+
+.narrative-hint.is-shown {
+  opacity: 1;
+}
+
+.narrative-hint-arrow {
+  animation: hint-nudge 1.4s var(--spring) infinite;
+}
+
+@keyframes hint-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+/* เฉดเชื่อมจากการ์ดสุดท้ายเข้า footer เหลือง ให้จบนุ่มไม่สะดุด */
+.narrative-outro {
+  background: linear-gradient(90deg, rgb(242 194 48 / 0) 0%, rgb(242 194 48 / 0.18) 70%, rgb(242 194 48 / 0.42) 100%);
+  opacity: 0;
+  transition: opacity 0.8s var(--spring);
+}
+
+.narrative-card--recipe.is-active .narrative-outro {
+  opacity: 1;
+}
+
+@media (width <= 1024px) {
+  .narrative-photo {
+    clip-path: none;
+  }
+
+  .narrative-body {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* จอแคบ ข้อความกินเต็มความกว้าง เลยต้องมืดสม่ำเสมอกว่าตอน desktop */
+  .narrative-card::after {
+    background: linear-gradient(90deg, rgb(28 36 28 / 0.85) 0%, rgb(28 36 28 / 0.6) 100%);
+  }
+}

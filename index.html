@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CleanRoots — อาหารที่เริ่มดีตั้งแต่ราก</title>
+    <meta name="description" content="วัตถุดิบอาหารที่เราดูแลปลอดภัย สะอาด ตั้งแต่ราก — ไม่ใช้สารเคมี ไม่เผา ดูแลดินด้วยปุ๋ยหมักธรรมชาติ จากสวนป่าดีบุญ" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/index.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/index.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+  <body>
+    <navbar-component></navbar-component>
+
+    <main class="flex-1">
+      <!-- ================= HERO ================= -->
+      <header class="relative flex h-screen min-h-150 flex-col overflow-hidden bg-panel-moss">
+        <figure class="hero-curtain absolute inset-0 z-0" data-parallax="0.12">
+          <div class="hero-media absolute inset-0 overflow-hidden">
+            <img src="./images/pages/index/hero-field.webp" alt="แปลงผักและนาข้าวที่สวนป่าดีบุญ" width="1600" height="1065" class="size-full object-cover" />
+          </div>
+          <div class="hero-overlay absolute inset-0 z-1"></div>
+        </figure>
+
+        <hgroup class="relative z-2 mx-auto flex flex-col w-full max-w-7xl flex-1 justify-center px-12 max-lg:px-8 max-md:px-6">
+          <h1 class="hero-title mb-5">
+            <span class="hero-line hero-line--sm"><span class="hero-word" data-hero-word>วัตถุดิบอาหารที่เราดูแล</span></span>
+            <span class="hero-line"><span class="hero-word" data-hero-word>ปลอดภัย สะอาด</span></span>
+            <span class="hero-line hero-line--lg">
+              <span class="hero-word" data-hero-word>ตั้งแต่<span class="hero-accent">ราก</span></span>
+            </span>
+          </h1>
+
+          <p class="hero-shadow-text mb-7 max-w-110 text-base text-cr-cream/90" data-hero-line="1">
+            เราดูแลสวนตั้งแต่ผืนดิน ไม่เผา ไม่ใช้สารเคมีอย่างเด็ดขาด รักษาสิ่งมีชีวิตที่อยู่ในสวน ให้อยู่ตามธรรมชาติ
+          </p>
+
+          <div class="mb-6 flex flex-wrap gap-3" data-hero-line="2">
+            <a href="#products" class="btn btn-primary btn-arrow">ช้อปสินค้าประจำฤดู <span class="btn-arrow-icon"></span></a>
+            <a href="#about" class="btn btn-ghost">อ่านเรื่องราวของเรา</a>
+          </div>
+
+          <p class="hero-shadow-text text-sm text-cr-cream/90" data-hero-line="3">★★★★★ 4.9/5 จากรีวิวกว่า 1,200 รายการ</p>
+        </hgroup>
+
+        <div class="relative z-2 mx-auto flex w-full max-w-7xl items-center justify-center px-12 pb-9 max-lg:px-8 max-md:hidden" data-hero-line="4">
+          <div class="flex flex-col items-center gap-2 font-heading text-[11px] tracking-widest text-cr-cream/70" aria-hidden="true">
+            <span>เลื่อนลง</span>
+            <span class="hero-scroll-line"></span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ================= FEATURE STRIP ================= -->
+      <section class="mx-auto grid max-w-300 grid-cols-4 gap-5 px-12 py-18 max-lg:grid-cols-2 max-lg:gap-x-4 max-lg:gap-y-8 max-lg:px-8 max-md:px-6" aria-label="วิธีที่เราดูแลสวน">
+        <div class="feature flex flex-col items-center gap-3 border-r border-border-soft px-4.5 text-center last:border-r-0 max-lg:even:border-r-0" data-reveal>
+          <div class="feature-icon flex size-16 items-center justify-center rounded-full bg-panel-light text-cr-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="font-heading text-h6 font-bold">ไม่ใช้สารเคมี 100%</h3>
+          <p class="max-w-48 text-caption leading-snug text-text-muted">ไม่มียาฆ่าหญ้า แมลง หรือปุ๋ยเคมีทุกชนิด ในทุกขั้นตอน</p>
+        </div>
+
+        <div class="feature flex flex-col items-center gap-3 border-r border-border-soft px-4.5 text-center last:border-r-0 max-lg:even:border-r-0" data-reveal data-delay="0.1">
+          <div class="feature-icon flex size-16 items-center justify-center rounded-full bg-panel-light text-cr-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="font-heading text-h6 font-bold">ไม่เผา</h3>
+          <p class="max-w-48 text-caption leading-snug text-text-muted">ไม่เผาตอ ไม่เผาหญ้า ดูแลสิ่งแวดล้อมให้ดีที่สุด</p>
+        </div>
+
+        <div class="feature flex flex-col items-center gap-3 border-r border-border-soft px-4.5 text-center last:border-r-0 max-lg:even:border-r-0" data-reveal data-delay="0.2">
+          <div class="feature-icon flex size-16 items-center justify-center rounded-full bg-panel-light text-cr-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+              <path d="M7 2v20"></path>
+              <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+            </svg>
+          </div>
+          <h3 class="font-heading text-h6 font-bold">ปุ๋ยหมักจากธรรมชาติ</h3>
+          <p class="max-w-48 text-caption leading-snug text-text-muted">เศษพืชทับถมคืนสู่ดินทุกอย่าง</p>
+        </div>
+
+        <div class="feature flex flex-col items-center gap-3 border-r border-border-soft px-4.5 text-center last:border-r-0 max-lg:even:border-r-0" data-reveal data-delay="0.3">
+          <div class="feature-icon flex size-16 items-center justify-center rounded-full bg-panel-light text-cr-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+            </svg>
+          </div>
+          <h3 class="font-heading text-h6 font-bold">ดูแลดิน</h3>
+          <p class="max-w-48 text-caption leading-snug text-text-muted">ดินดีมาก่อน แล้วผลผลิตดีจะตามมา</p>
+        </div>
+      </section>
+
+      <!-- ================= PRODUCT GRID ================= -->
+      <section id="products" class="mx-auto max-w-300 px-12 pt-6 pb-25 max-lg:px-8 max-md:px-6">
+        <div class="mb-7" data-reveal>
+          <h2 class="mb-1.5">ผลผลิตประจำฤดูนี้</h2>
+          <p class="max-w-130 text-sm text-text-muted">เราผลิตเท่าที่ดูแลได้ทั่วถึงจริง จนกว่าจะถึงรอบเก็บเกี่ยวหน้า</p>
+        </div>
+
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-5.5">
+          <!-- พร้อมขาย -->
+          <article class="harvest-card relative h-85 rounded-xl" data-card data-product-id="rice" data-product-name="ข้าวกล้องออร์แกนิก">
+            <div class="harvest-card-photo harvest-card-photo--rice absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิก" width="900" height="600" class="size-full object-cover" />
+            </div>
+
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">
+                    <a href="product.html" class="harvest-card-name-link">ข้าวกล้องออร์แกนิก</a>
+                  </h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿120<span class="text-[11px] font-medium opacity-80">/กก.</span></span>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" data-add-to-cart>เพิ่มลงตะกร้า</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- ตามฤดูกาล -->
+          <article class="harvest-card relative h-85 rounded-xl" data-card data-product-id="garlic" data-product-name="กระเทียม">
+            <span class="harvest-card-badge absolute top-3 left-3 z-3 rounded-full bg-white px-2.5 py-1.5 font-heading text-[10px] font-bold text-cr-green shadow-card">ตามฤดูกาล</span>
+            <div class="harvest-card-photo harvest-card-photo--garlic absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/garlic.webp" alt="กระเทียมจากสวนป่าดีบุญ" width="900" height="600" class="size-full object-cover" />
+            </div>
+
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">กระเทียม</h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿140<span class="text-[11px] font-medium opacity-80">/250ก.</span></span>
+                </div>
+                <button type="button" class="btn btn-line btn-sm" data-notify-seasonal>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+                    ></path>
+                  </svg>
+                  แจ้งเตือนผ่าน LINE
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="harvest-card relative h-85 rounded-xl" data-card data-product-id="shallot" data-product-name="หอมแดง">
+            <span class="harvest-card-badge absolute top-3 left-3 z-3 rounded-full bg-white px-2.5 py-1.5 font-heading text-[10px] font-bold text-cr-green shadow-card">ตามฤดูกาล</span>
+            <div class="harvest-card-photo harvest-card-photo--shallot absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/shallot.webp" alt="หอมแดงจากสวนป่าดีบุญ" width="900" height="600" class="size-full object-cover" />
+            </div>
+
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">หอมแดง</h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿90<span class="text-[11px] font-medium opacity-80">/250ก.</span></span>
+                </div>
+                <button type="button" class="btn btn-line btn-sm" data-notify-seasonal>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+                    ></path>
+                  </svg>
+                  แจ้งเตือนผ่าน LINE
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="harvest-card relative h-85 rounded-xl" data-card data-product-id="bamboo" data-product-name="หน่อไม้ดอง">
+            <span class="harvest-card-badge absolute top-3 left-3 z-3 rounded-full bg-white px-2.5 py-1.5 font-heading text-[10px] font-bold text-cr-green shadow-card">ตามฤดูกาล</span>
+            <div class="harvest-card-photo harvest-card-photo--bamboo absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/bamboo.webp" alt="หน่อไม้ดองจากสวนป่าดีบุญ" width="900" height="600" class="size-full object-cover" />
+            </div>
+
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">หน่อไม้ดอง</h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿95<span class="text-[11px] font-medium opacity-80">/300ก.</span></span>
+                </div>
+                <button type="button" class="btn btn-line btn-sm" data-notify-seasonal>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+                    ></path>
+                  </svg>
+                  แจ้งเตือนผ่าน LINE
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-9 text-center">
+          <a href="products.html" class="btn btn-outline btn-arrow inline-flex">ดูสินค้าทั้งหมด <span class="btn-arrow-icon"></span></a>
+        </div>
+      </section>
+
+      <!-- ================= STORY DOT-NAV ================= -->
+      <nav class="story-dots fixed top-1/2 left-6.5 z-40 hidden -translate-y-1/2 flex-col items-center gap-4 lg:flex" data-story-dots aria-hidden="true">
+        <span class="story-dots-label mb-1 font-heading text-[10px] font-semibold tracking-[0.18em] text-cr-cream/80 uppercase">Scroll</span>
+        <button type="button" class="story-dot size-2.5 rounded-full border-none p-0" data-story-dot data-story-target="0" aria-label="ตอนที่ 1"></button>
+        <button type="button" class="story-dot size-2.5 rounded-full border-none p-0" data-story-dot data-story-target="1" aria-label="ตอนที่ 2"></button>
+        <button type="button" class="story-dot size-2.5 rounded-full border-none p-0" data-story-dot data-story-target="2" aria-label="ตอนที่ 3"></button>
+      </nav>
+
+      <!-- ================= STORY (horizontal scroll-pin) ================= -->
+      <section id="about" class="narrative relative h-[300vh] bg-cr-green-dark max-lg:h-auto max-lg:bg-none" data-narrative>
+        <div class="narrative-sticky sticky top-0 h-screen overflow-hidden max-lg:static max-lg:h-auto max-lg:overflow-visible">
+          <!-- <span class="narrative-watermark pointer-events-none absolute top-1/2 right-16 z-3 -translate-y-1/2 font-heading font-bold whitespace-nowrap select-none max-lg:hidden" data-narrative-watermark aria-hidden="true">SOIL</span> -->
+
+          <div class="narrative-track flex h-full w-[300%] max-lg:w-full max-lg:flex-col" data-narrative-track>
+            <article
+              class="narrative-card relative flex h-full flex-[0_0_33.3333%] items-center overflow-hidden bg-cr-green px-12 py-24 text-cr-cream max-lg:h-auto max-lg:min-h-[88vh] max-lg:flex-none max-lg:px-6 max-lg:py-20"
+              data-narrative-index="0"
+              data-tilt
+            >
+              <div class="narrative-photo absolute inset-0 z-0" data-depth="0.04">
+                <img src="./images/pages/index/story-soil.webp" alt="การดูแลดินที่สวนป่าดีบุญ" width="1200" height="675" class="size-full object-cover" />
+              </div>
+
+              <div class="narrative-body relative z-2 max-w-120" data-depth="0.1">
+                <div class="mb-4.5 flex items-center gap-3">
+                  <span class="font-heading font-bold tracking-[0.15em] text-cr-gold">01</span>
+                  <span class="font-heading text-xs font-semibold tracking-[0.28em] text-cr-cream/75">SOIL</span>
+                </div>
+                <h3 class="mb-4.5">ดูแลดินให้ดี<br />ดินจะดูแลพืชเอง</h3>
+                <p class="mb-7 max-w-105 text-base leading-loose text-cr-cream/90">เราไม่ใช้สารเคมีและไม่เผาแบบ 100% ใช้ปุ๋ยหมักธรรมชาติ เพราะเราดูแลดิน เพื่อให้ดินดูแลพืช</p>
+                <a href="about.html" class="btn btn-cream btn-arrow">อ่านเรื่องราวของเรา <span class="btn-arrow-icon"></span></a>
+              </div>
+
+              <div class="narrative-badge absolute right-12 bottom-12 z-2 flex size-32.5 flex-col items-center justify-center gap-1 rounded-full text-center max-lg:hidden" data-depth="0.16">
+                <svg class="narrative-badge-ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="58" pathLength="1" /></svg>
+                <span class="relative z-1 font-heading text-xs leading-snug font-bold tracking-wider text-cr-gold">ดินดี</span>
+                <span class="relative z-1 font-heading text-xs leading-snug font-bold tracking-wider text-cr-gold">พืชดี</span>
+                <span class="relative z-1 font-heading text-xs leading-snug font-bold tracking-wider text-cr-gold">ชีวิตดี</span>
+              </div>
+            </article>
+
+            <article
+              class="narrative-card relative flex h-full flex-[0_0_33.3333%] items-center overflow-hidden bg-[#5A6E3E] px-12 py-24 text-cr-cream max-lg:h-auto max-lg:min-h-[88vh] max-lg:flex-none max-lg:px-6 max-lg:py-20"
+              data-narrative-index="1"
+              data-tilt
+            >
+              <div class="narrative-photo absolute inset-0 z-0" data-depth="0.04">
+                <img src="./images/pages/index/story-harvest.webp" alt="การเก็บเกี่ยวด้วยมือที่สวนป่าดีบุญ" width="1200" height="675" class="size-full object-cover" />
+              </div>
+
+              <div class="narrative-body relative z-2 max-w-120" data-depth="0.1">
+                <div class="mb-4.5 flex items-center gap-3">
+                  <span class="font-heading font-bold tracking-[0.15em] text-cr-gold">02</span>
+                  <span class="font-heading text-xs font-semibold tracking-[0.28em] text-cr-cream/75">HARVEST</span>
+                </div>
+                <h3 class="mb-4.5">ทำไมของเรา<br />ถึงมีจำกัด</h3>
+                <p class="mb-7 max-w-105 text-base leading-loose text-cr-cream/90">เราผลิตเท่าที่ดูแลได้จริง จนกว่าจะถึงรอบเก็บเกี่ยวหน้า ความจำกัดที่จริงคือคุณค่าที่เราตั้งใจรักษา</p>
+                <a href="#products" class="btn btn-cream btn-arrow">ดูผลผลิตประจำฤดูกาล <span class="btn-arrow-icon"></span></a>
+              </div>
+
+              <div class="narrative-badge absolute right-12 bottom-12 z-2 flex size-32.5 flex-col items-center justify-center gap-1 rounded-full text-center max-lg:hidden" data-depth="0.16">
+                <svg class="narrative-badge-ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="58" pathLength="1" /></svg>
+                <span class="relative z-1 font-heading text-[11px] leading-snug font-bold tracking-wider text-cr-gold">มีจำกัด</span>
+                <span class="relative z-1 font-heading text-[11px] leading-snug font-bold tracking-wider text-cr-gold">แต่</span>
+                <span class="relative z-1 font-heading text-[11px] leading-snug font-bold tracking-wider text-cr-gold">มีความหมาย</span>
+              </div>
+            </article>
+
+            <article
+              class="narrative-card narrative-card--recipe relative flex h-full flex-[0_0_33.3333%] items-center overflow-hidden bg-[#7A5B3A] px-12 py-24 text-cr-cream max-lg:h-auto max-lg:min-h-[88vh] max-lg:flex-none max-lg:px-6 max-lg:py-20"
+              data-narrative-index="2"
+              data-tilt
+            >
+              <div class="narrative-photo absolute inset-0 z-0" data-depth="0.04">
+                <img src="./images/pages/index/story-recipe.webp" alt="เมนูที่ทำจากผลผลิตของสวนป่าดีบุญ" width="1200" height="675" class="size-full object-cover" />
+              </div>
+
+              <div class="narrative-body relative z-2 max-w-120" data-depth="0.1">
+                <div class="mb-4.5 flex items-center gap-3">
+                  <span class="font-heading font-bold tracking-[0.15em] text-cr-gold">03</span>
+                  <span class="font-heading text-xs font-semibold tracking-[0.28em] text-cr-cream/75">RECIPE</span>
+                </div>
+                <h3 class="mb-4.5">จากสวน<br />สู่จานคุณ</h3>
+                <p class="mb-7 max-w-105 text-base leading-loose text-cr-cream/90">วัตถุดิบอาหารต้นทางที่สะอาด ปลอดภัย ดูแลโดยปราศจากสารเคมี 100%</p>
+                <a href="about.html" class="btn btn-cream btn-arrow">ดูวิธีที่เราดูแล <span class="btn-arrow-icon"></span></a>
+              </div>
+
+              <div class="narrative-badge absolute right-12 bottom-12 z-2 flex size-32.5 flex-col items-center justify-center gap-1 rounded-full text-center max-lg:hidden" data-depth="0.16">
+                <svg class="narrative-badge-ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="58" pathLength="1" /></svg>
+                <span class="relative z-1 font-heading text-[11px] leading-snug font-bold tracking-wider text-cr-gold">จากสวน</span>
+                <span class="relative z-1 font-heading text-[11px] leading-snug font-bold tracking-wider text-cr-gold">สู่</span>
+                <span class="relative z-1 font-heading text-[11px] leading-snug font-bold tracking-wider text-cr-gold">จานคุณ</span>
+              </div>
+
+              <div class="narrative-outro absolute inset-y-0 right-0 z-1 w-[38%] max-lg:hidden" aria-hidden="true"></div>
+            </article>
+          </div>
+
+          <div class="absolute top-24 right-12 z-5 flex items-baseline gap-1.5 font-heading font-bold text-cr-cream max-lg:hidden" aria-hidden="true">
+            <span class="inline-block min-w-8.5 text-right text-2xl text-cr-gold" data-narrative-current>01</span>
+            <span class="opacity-50">/</span>
+            <span class="opacity-65">03</span>
+          </div>
+
+          <div
+            class="narrative-hint absolute bottom-12 left-1/2 z-5 flex -translate-x-1/2 items-center gap-2 rounded-full border border-cr-cream/25 bg-[#141C14]/40 px-4 py-2.5 font-heading text-xs font-semibold tracking-wide text-cr-cream max-lg:hidden"
+            data-narrative-hint
+            aria-hidden="true"
+          >
+            <span>เลื่อนเพื่อสำรวจ</span><span class="narrative-hint-arrow">→</span>
+          </div>
+
+          <div class="absolute right-12 bottom-6.5 left-12 z-5 h-0.5 rounded-full bg-cr-cream/20 max-lg:hidden" aria-hidden="true">
+            <span class="narrative-progress-fill block h-full w-0 rounded-full bg-cr-gold" data-narrative-progress></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer-component></footer-component>
+  </body>
+</html>

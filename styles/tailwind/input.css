@@ -1,0 +1,667 @@
+@import "tailwindcss";
+
+/* ไฟล์นี้แค่ "ตั้งชื่อ" ให้ token — ค่าจริงอยู่ใน styles/base.css
+   ไม่ประกาศ token ของ radius / font-weight / spacing / duration ที่นี่
+   เพราะสเกลของ Tailwind ครอบคลุมค่าของ design system อยู่แล้ว */
+@theme inline {
+  --color-cr-green: var(--cr-green);
+  --color-cr-green-dark: var(--cr-green-dark);
+  --color-cr-gold: var(--cr-gold);
+  --color-cr-cream: var(--cr-cream);
+  --color-cr-rust: var(--cr-rust);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-on-gold: var(--text-on-gold);
+  --color-text-on-gold-strong: var(--text-on-gold-strong);
+  --color-line-green: var(--line-green);
+
+  --color-panel-light: var(--panel-green-light);
+  --color-panel-moss: var(--panel-green-moss);
+  --color-panel-cream: var(--panel-cream);
+  --color-panel-lilac: var(--panel-lilac);
+  --color-border-soft: var(--border);
+
+  --font-heading: "Prompt", sans-serif;
+  --font-body: "Sarabun", sans-serif;
+  --font-display: "Fraunces", serif;
+
+  /* สเกลหัวข้อเปิดเป็น utility ด้วย เผื่อกรณีที่ระดับ heading ตามความหมาย
+     ไม่ตรงกับขนาดที่ต้องการ (เช่น <h3> ในการ์ดที่ต้องเล็กเท่า h6) */
+  --text-hero: var(--fs-hero);
+  --text-h1: var(--fs-h1);
+  --text-h2: var(--fs-h2);
+  --text-h3: var(--fs-h3);
+  --text-h4: var(--fs-h4);
+  --text-h5: var(--fs-h5);
+  --text-h6: var(--fs-h6);
+  --text-body: var(--fs-body);
+  --text-caption: var(--fs-caption);
+
+  --ease-spring: var(--spring);
+  --ease-spring-soft: var(--spring-soft);
+
+  --shadow-card: var(--shadow-card);
+
+  --breakpoint-sm: 641px;
+  --breakpoint-md: 769px;
+  --breakpoint-lg: 1025px;
+  --breakpoint-xl: 1281px;
+  --breakpoint-2xl: 1537px;
+}
+
+@utility prose {
+  /* Typography */
+  del {
+    @apply line-through opacity-60;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mt-8 mb-4 font-bold empty:hidden;
+  }
+
+  p {
+    @apply mb-4 empty:hidden;
+  }
+
+  h1 {
+    @apply text-3xl;
+  }
+  h2 {
+    @apply text-2xl;
+  }
+  h3 {
+    @apply text-xl;
+  }
+  h4 {
+    @apply text-lg;
+  }
+  h5 {
+    @apply text-base;
+  }
+  h6 {
+    @apply text-sm;
+  }
+
+  img {
+    @apply w-full rounded-xl bg-black/20 object-cover;
+  }
+
+  /* Lists */
+
+  ol,
+  ul {
+    @apply mb-4 ml-8;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  /* Tables */
+
+  table {
+    @apply my-4 w-full table-auto border-collapse text-left text-sm/6;
+
+    caption {
+      @apply mt-2 caption-bottom text-left text-sm/6;
+    }
+
+    thead {
+      @apply border-b border-neutral-200;
+    }
+
+    tfoot {
+      @apply border-t border-neutral-200;
+    }
+
+    tr {
+      @apply border-y border-neutral-200 first:border-t-0 last:border-b-0;
+    }
+
+    th {
+      @apply align-bottom font-semibold;
+    }
+
+    td,
+    th {
+      @apply p-2 first:pl-0 last:pr-0;
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        @apply my-2 first:mt-0 last:mb-0;
+      }
+    }
+  }
+}
+
+@utility container {
+  padding-inline: var(--page-pad);
+  margin-inline: auto;
+  max-width: 1200px;
+
+  @variant max-lg {
+    padding-inline: 2rem;
+  }
+
+  @variant max-md {
+    padding-inline: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   ปุ่ม — ใช้ทุกหน้า จึงอยู่ที่นี่ ไม่ใช่ styles/pages/*.css
+   ภาษาเดียวกันทั้งเว็บ: (1) fill-sweep เฉดเข้มซึมจากซ้าย (2) ลูกศร → เลื่อนวน
+   design system: ปุ่มใช้ Prompt 700 เสมอ, radius 8px (= rounded-lg)
+   ========================================================================== */
+@layer components {
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-lg px-6 py-3.5 font-heading text-sm font-bold whitespace-nowrap;
+    isolation: isolate;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    border: none;
+    transition:
+      transform 0.3s var(--spring),
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .btn:active {
+    transform: scale(0.96);
+  }
+
+  /* fill-sweep — เฉดเข้มซึมจากซ้ายไปขวาตอน hover (เหมือนน้ำซึมผ่านดิน) */
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--spring);
+  }
+
+  .btn:hover::before {
+    transform: scaleX(1);
+  }
+
+  .btn-primary {
+    background: var(--cr-green);
+    color: #fff;
+
+    &::before {
+      background: var(--cr-green-dark);
+    }
+  }
+
+  .btn-ghost {
+    background: var(--cr-gold);
+    color: var(--text-primary);
+
+    &::before {
+      background: #e0ae1c;
+    }
+  }
+
+  .btn-cream {
+    background: var(--cr-cream);
+    color: var(--text-primary);
+
+    &::before {
+      background: #efe7d0;
+    }
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--text-primary);
+    color: var(--text-primary);
+
+    &::before {
+      background: var(--text-primary);
+    }
+
+    &:hover {
+      color: var(--cr-cream);
+    }
+  }
+
+  /* ปุ่มโปร่งบนพื้นรูป */
+  .btn-outline-light {
+    background: rgb(255 255 255 / 0.16);
+    border: 1px solid rgb(255 255 255 / 0.5);
+    color: #fff;
+    backdrop-filter: blur(4px);
+
+    &::before {
+      background: rgb(255 255 255 / 0.3);
+    }
+  }
+
+  /* ปุ่ม LINE — ใช้สีแบรนด์ภายนอก แต่รูปทรงและ fill-sweep เหมือนปุ่มอื่นทั้งหมด */
+  .btn-line {
+    background: var(--line-green);
+    color: #fff;
+
+    &::before {
+      background: var(--line-green-dark);
+    }
+
+    & svg {
+      flex: none;
+    }
+  }
+
+  .btn-sm {
+    @apply w-full px-4 py-2.5 text-caption;
+  }
+
+  .btn-full {
+    @apply w-full;
+  }
+
+  /* arrow-slide — ลูกศรตัวเดิมเลื่อนออกขวา แล้วตัวใหม่ตามเข้ามาจากซ้าย
+     ใช้คู่กัน: <a class="btn btn-arrow">ข้อความ <span class="btn-arrow-icon"></span></a> */
+  .btn-arrow-icon {
+    @apply relative inline-block h-[1em] w-[1em] overflow-hidden leading-none;
+  }
+
+  .btn-arrow-icon::before,
+  .btn-arrow-icon::after {
+    content: "→";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.4s var(--spring);
+  }
+
+  .btn-arrow-icon::after {
+    transform: translateX(-140%);
+  }
+
+  .btn-arrow:hover .btn-arrow-icon::before {
+    transform: translateX(140%);
+  }
+
+  .btn-arrow:hover .btn-arrow-icon::after {
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+   NAVBAR + chrome — อยู่ใน components/navbar.js ที่ทุกหน้าโหลด จึงต้องอยู่ที่นี่
+   ไม่ใช่ styles/pages/index.css (ไม่งั้นหน้าถัดไปจะต้อง copy ไปทั้งก้อน)
+   ========================================================================== */
+@layer components {
+  .nav {
+    transition:
+      background 0.3s ease,
+      padding 0.3s ease,
+      color 0.3s ease;
+  }
+
+  .nav.is-scrolled {
+    background: rgb(251 246 234 / 0.92);
+    backdrop-filter: blur(10px);
+    color: var(--text-primary) !important;
+    padding-block: 0.875rem;
+    box-shadow: 0 2px 16px rgb(43 42 37 / 0.06);
+  }
+
+  /* โลโก้ CleanRoots — SVG ไฟล์เดียวใช้เป็น mask สีมาจาก `color` ของ element
+     จึงเปลี่ยนสีตามพื้นหลังได้โดยไม่ต้องมีไฟล์รูปหลายเวอร์ชัน และคมทุกขนาด
+     (เดิมเป็นรูปสองใบ crossfade กัน แต่สัดส่วนไม่เท่ากันเลยเห็นขนาดกระโดด)
+     กำหนดแค่ความสูง — ความกว้างมาจาก aspect-ratio ของอาร์ตเวิร์กจริง */
+  .brand-logo {
+    display: block;
+    aspect-ratio: 1068 / 312;
+    background-color: currentColor;
+    -webkit-mask: url("../../images/logo-cleanroots.svg") no-repeat center / contain;
+    mask: url("../../images/logo-cleanroots.svg") no-repeat center / contain;
+  }
+
+  .nav-logo {
+    height: 2.5rem;
+    color: var(--cr-cream);
+    transition:
+      color 0.3s ease,
+      transform 0.4s var(--spring-soft);
+  }
+
+  .nav.is-scrolled .nav-logo {
+    color: var(--cr-green);
+  }
+
+  .nav-mark:hover .nav-logo {
+    transform: scale(1.04);
+  }
+
+  .nav-link {
+    @apply relative pb-1 text-inherit no-underline opacity-90;
+    transition: opacity 0.2s;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 100%;
+      background: currentColor;
+      border-radius: 999px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition:
+        transform 0.35s var(--spring),
+        background 0.2s;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+
+  .nav-link.is-active {
+    opacity: 1;
+
+    &::after {
+      transform: scaleX(1);
+      background: var(--cr-gold);
+    }
+  }
+
+  .nav-icon {
+    @apply relative flex size-10 items-center justify-center rounded-full border-none bg-transparent text-inherit;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgb(255 255 255 / 0.15);
+    }
+  }
+
+  .nav.is-scrolled .nav-icon:hover {
+    background: rgb(62 98 80 / 0.1);
+  }
+
+  .nav-cart-count {
+    @apply absolute top-0.5 right-0.5 flex h-4.5 min-w-4.5 items-center justify-center rounded-full px-1 font-heading text-[10px] font-bold text-white;
+    background: var(--cr-green);
+    transition: transform 0.3s var(--spring-soft);
+  }
+
+  /* ---------- Account dropdown ---------- */
+  .account-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 70;
+    box-shadow: 0 18px 50px -12px rgb(43 42 37 / 0.28);
+    opacity: 0;
+    transform: translateY(-10px) scale(0.97);
+    transform-origin: top right;
+    pointer-events: none;
+    transition:
+      opacity 0.3s var(--spring),
+      transform 0.3s var(--spring);
+  }
+
+  .account-menu.is-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .account-menu-link {
+    @apply flex items-center gap-2.5 rounded-lg px-2 py-2.5 text-sm text-text-primary no-underline;
+    transition:
+      background 0.2s,
+      gap 0.25s var(--spring);
+
+    &:hover {
+      background: var(--panel-green-light);
+      gap: 0.8125rem;
+      color: var(--cr-green);
+    }
+
+    & svg {
+      color: var(--cr-green);
+      flex: none;
+    }
+  }
+
+  /* ---------- Search panel ---------- */
+  .search-panel {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 80;
+    background: rgb(251 246 234 / 0.98);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px rgb(43 42 37 / 0.12);
+    transform: translateY(-100%);
+    transition: transform 0.5s var(--spring);
+  }
+
+  .search-panel.is-open {
+    transform: translateY(0);
+  }
+
+  .search-suggest {
+    @apply rounded-full border-none px-4 py-2 text-caption text-cr-green;
+    background: var(--panel-green-light);
+    transition:
+      background 0.2s,
+      transform 0.2s var(--spring);
+
+    &:hover {
+      background: var(--cr-green);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/* ==========================================================================
+   OVERLAYS — cart drawer, notify modal, toast
+   ทุกหน้าเรียกใช้ผ่าน components/navbar.js + scripts/modules/overlays.js
+   ========================================================================== */
+@layer components {
+  .overlay-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgb(20 28 20 / 0.45);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlay-scrim.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 61;
+    width: 380px;
+    max-width: 90vw;
+    transform: translateX(100%);
+    transition: transform 0.5s var(--spring);
+    box-shadow: -24px 0 56px rgb(0 0 0 / 0.18);
+  }
+
+  .cart-drawer.is-open {
+    transform: translateX(0);
+  }
+
+  .cart-item {
+    @apply flex items-start justify-between gap-3 border-b border-border-soft py-4 last:border-b-0;
+  }
+
+  .notify-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 81;
+    width: 360px;
+    max-width: calc(100vw - 40px);
+    border-radius: 20px;
+    box-shadow: 0 24px 60px -16px rgb(43 42 37 / 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -46%) scale(0.94);
+    transition:
+      opacity 0.3s ease,
+      transform 0.4s var(--spring);
+  }
+
+  .notify-modal.is-open {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+  }
+
+  .toast {
+    @apply fixed bottom-7 left-1/2 z-70 rounded-lg px-5.5 py-3.5 text-caption font-semibold text-white;
+    background: var(--text-primary);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 20px);
+    transition:
+      transform 0.45s var(--spring-soft),
+      opacity 0.3s ease;
+  }
+
+  .toast.is-shown {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+  }
+}
+
+/* ==========================================================================
+   FOOTER — components/footer.js
+   ========================================================================== */
+@layer components {
+  .footer-col {
+    @apply relative flex flex-col gap-3.5 sm:pl-8;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 4px;
+      bottom: 4px;
+      width: 1px;
+      @media (width >= 641px) {
+        background: linear-gradient(rgb(43 42 37 / 0.28), rgb(43 42 37 / 0.05));
+      }
+    }
+  }
+
+  .footer-col-head {
+    @apply relative mb-2.5 pb-3 font-heading text-caption font-bold tracking-wide;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 24px;
+      height: 2px;
+      background: var(--cr-green);
+      border-radius: 999px;
+    }
+  }
+
+  /* ลูกศรโผล่จากซ้ายตอน hover — ต้องใช้ ::before จึงอยู่ที่นี่ */
+  .footer-col a {
+    @apply inline-flex w-fit items-center gap-1.5 text-sm no-underline;
+    color: var(--text-on-gold-strong);
+    transition:
+      color 0.2s,
+      gap 0.25s var(--spring);
+
+    &::before {
+      content: "→";
+      color: var(--cr-green);
+      font-size: 0.75rem;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition:
+        opacity 0.2s,
+        transform 0.25s var(--spring);
+    }
+
+    &:hover {
+      color: var(--cr-green);
+      gap: 0.625rem;
+    }
+
+    &:hover::before {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .footer-social {
+    @apply flex size-8 items-center justify-center rounded-full border border-text-primary/30 text-text-primary;
+    transition:
+      background 0.2s,
+      color 0.2s;
+
+    &:hover {
+      background: var(--text-primary);
+      color: var(--cr-gold);
+    }
+  }
+
+  /* ROOTS wordmark — overflow:hidden เป็นหน้าต่าง ส่วนตัวอักษรเลื่อนขึ้นตอนเข้าจอ
+     การเคลื่อนไหวคุมด้วย Motion ใน scripts/pages/*.js ที่นี่มีแค่จุดตั้งต้น */
+  .footer-word {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(120px, 26vw, 420px);
+    line-height: 0.82;
+    letter-spacing: -0.02em;
+    color: var(--cr-green);
+    user-select: none;
+    pointer-events: none;
+    margin: 2.5rem 0 0.5rem;
+    overflow: hidden;
+    display: flex;
+  }
+
+  /* ตัวอักษรแยกเป็น span ละตัวเพื่อให้ไล่ขึ้นทีละตัว (stagger)
+     ตัวแม่เป็น flex จึงเรียงต่อกันเองโดยไม่ต้องกังวลช่องว่างใน markup
+     letter-spacing ของตัวแม่ยังทำงานอยู่ เพราะมันเติมระยะหลังอักษรในแต่ละ span */
+  .footer-word span {
+    transform: translateY(110%);
+  }
+}
