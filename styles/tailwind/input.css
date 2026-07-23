@@ -647,7 +647,7 @@
     font-weight: 900;
     font-optical-sizing: auto;
     font-variation-settings: "opsz" 144;
-    font-size: clamp(120px, 26vw, 420px);
+    font-size: clamp(80px, 26vw, 420px);
     line-height: 0.82;
     letter-spacing: -0.02em;
     color: var(--cr-green);
