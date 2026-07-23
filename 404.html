@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ไม่พบหน้านี้ — CleanRoots</title>
+    <meta name="description" content="หน้าที่คุณตามหาไม่พบ ลิงก์อาจพิมพ์ผิดหรือหน้านี้ถูกย้ายไปแล้ว" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ -->
+  <body data-nav-solid>
+    <navbar-component></navbar-component>
+
+    <main class="flex min-h-[60vh] flex-1 flex-col items-center justify-center px-12 pt-26 pb-24 text-center max-lg:px-8 max-lg:pb-16 max-md:px-6 max-md:pt-22">
+      <span class="font-display text-[clamp(5rem,16vw,9rem)] leading-none font-black text-cr-gold" data-reveal>404</span>
+      <h1 class="mt-4 mb-3 text-[clamp(24px,3.4vw,36px)] leading-snug" data-reveal data-delay="0.05">ไม่พบหน้านี้</h1>
+      <p class="mb-8 max-w-125 leading-relaxed text-text-secondary" data-reveal data-delay="0.1">
+        ลิงก์อาจพิมพ์ผิด หรือหน้านี้ถูกย้ายที่ปลูกไปแล้ว ลองกลับไปเริ่มต้นใหม่จากหน้าแรก หรือดูผลผลิตที่มีตอนนี้แทนได้เลย
+      </p>
+      <div class="flex flex-wrap justify-center gap-3.5" data-reveal data-delay="0.15">
+        <a href="index.html" class="btn btn-primary btn-arrow">กลับหน้าแรก <span class="btn-arrow-icon"></span></a>
+        <a href="products.html" class="btn btn-outline">ดูผลผลิตประจำฤดู</a>
+      </div>
+    </main>
+
+    <footer-component></footer-component>
+  </body>
+</html>

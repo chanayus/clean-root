@@ -48,6 +48,7 @@ repo ต้นทางคือ `boilerplate-static-web` — เจอของ
 ## สถานะ
 
 ครบทั้ง 8 หน้าตาม `prototype/` แล้ว — `index` `cart` `products` `product` `faq` `about` `account` `articles`
+บวก `404.html` (ไม่มีใน prototype ทำเพิ่มเอง — ใช้ธีมเดียวกับหน้าอื่น เลขใหญ่ Fraunces ตามแบบตัวเลขหน้า about)
 
 **หน้าใหม่ต้องมีอะไรบ้าง** (เผื่อมีหน้าเพิ่มในอนาคต)
 
