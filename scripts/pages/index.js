@@ -1,4 +1,4 @@
-import { animate, animateBreakpoint, revealOnce, scroll, springSoft, stagger } from "../modules/animation.js";
+import { animate, animateBreakpoint, revealOnce, scroll, spring, springSoft, stagger } from "../modules/animation.js";
 
 /* ===================== Hero entrance ===================== */
 function initHeroEntrance() {
@@ -114,11 +114,10 @@ function initStoryHorizontal() {
 }
 
 /* ===================== การ์ดสินค้า ===================== */
+// ไม่ใช้ [data-reveal] กลางเพราะการ์ดมี scale ประกอบด้วย ไม่ใช่แค่ fade-up
 function initHarvestCards() {
   revealOnce(".harvest-card", { opacity: 0, y: 26, scale: 0.97 }, { opacity: 1, y: 0, scale: 1 }, { amount: 0.18, duration: 0.6, ease: springSoft });
 }
-
-// ROOTS wordmark ย้ายไป scripts/modules/footer.js แล้ว เพราะ footer อยู่ทุกหน้า ไม่ใช่แค่หน้านี้
 
 initHeroEntrance();
 initParallax();

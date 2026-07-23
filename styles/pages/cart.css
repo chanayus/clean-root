@@ -1,0 +1,165 @@
+/* Styles เฉพาะหน้า cart
+   ใส่ที่นี่เฉพาะของที่เข้าเกณฑ์ใน
+   .claude/skills/static-site-from-prototype/references/css-conventions.md
+   ของที่ใช้ซ้ำข้ามหน้าให้ไป styles/tailwind/input.css แทน
+
+   layout ทั้งหมด (grid, flex, gap, padding) อยู่ใน markup เป็น utility
+   ที่เหลืออยู่ตรงนี้เพราะต้องใช้ ::before, @keyframes, state ซ้อนสองชั้น
+   หรือ transition ที่แต่ละ property คนละจังหวะ */
+
+/* ลูกศรถอยห่างตอน hover — ต้องใช้ spring กับ gap ซึ่ง Tailwind ไม่มี token ให้ */
+.cart-continue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cr-green);
+  text-decoration: none;
+  transition:
+    gap 0.25s var(--spring),
+    opacity 0.2s;
+}
+
+.cart-continue:hover {
+  gap: 0.625rem;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   รายการในตะกร้า
+   ========================================================================== */
+
+/* แถวไล่ขึ้นตอนถูก render ใหม่ — ใช้ CSS animation เพราะ JS สร้าง element ใหม่ทุกครั้ง
+   ที่แก้จำนวน ถ้าไปสั่งผ่าน Motion ต้องผูกใหม่ทุกรอบโดยไม่ได้อะไรเพิ่ม */
+.cart-row {
+  opacity: 0;
+  margin: 0;
+  transform: translateY(12px);
+  animation: cart-row-in 0.5s var(--spring-soft) forwards;
+}
+
+@keyframes cart-row-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ปุ่ม −/+ ปรับจำนวน — state ซ้อนสองชั้น (:hover:not(:disabled)) จึงเขียน CSS
+   ยกไป input.css เมื่อไหร่ที่ cart drawer ใน navbar ได้ stepper ชุดเดียวกัน */
+.cart-stepper {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.cart-stepper button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: background 0.2s;
+}
+
+.cart-stepper button:hover:not(:disabled) {
+  background: var(--panel-green-light);
+}
+
+.cart-stepper button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.cart-stepper span {
+  min-width: 28px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   สรุปคำสั่งซื้อ
+   ========================================================================== */
+.cart-ship-fill {
+  transition: width 0.5s var(--spring);
+}
+
+/* ครบยอดส่งฟรีแล้วเปลี่ยนแถบเป็นเหลือง */
+.cart-ship.is-complete .cart-ship-fill {
+  background: var(--cr-gold);
+}
+
+.cart-discount-btn {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0.625rem 1rem;
+  background: var(--panel-green-light);
+  font-family: var(--font-heading);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--cr-green);
+  white-space: nowrap;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.cart-discount-btn:hover {
+  background: var(--cr-green);
+  color: #fff;
+}
+
+/* ✓ หน้าแต่ละข้อ — ต้องใช้ ::before */
+.cart-assure li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-left: 0;
+  list-style: none;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.cart-assure li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--cr-green);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   ยืนยันคำสั่งซื้อ
+   ========================================================================== */
+.order-confirm {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgb(20 28 20 / 0.5);
+  opacity: 0;
+  transition: opacity 0.4s var(--spring);
+}
+
+.order-confirm.is-shown {
+  opacity: 1;
+}
+
+.order-confirm-card {
+  transform: scale(0.9) translateY(20px);
+  transition: transform 0.5s var(--spring);
+}
+
+.order-confirm.is-shown .order-confirm-card {
+  transform: scale(1) translateY(0);
+}

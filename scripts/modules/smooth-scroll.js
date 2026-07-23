@@ -7,8 +7,12 @@
 //
 // ถ้าโปรเจกต์ไม่ใช้ smooth scroll ปล่อยไฟล์นี้ไว้เฉยๆ ไม่ต้องลบ
 
+// export ไว้ให้หน้าอื่น scrollTo() แบบ smooth ตาม physics เดียวกับ Lenis
+// (native scrollIntoView/window.scrollTo จะสู้กับ virtual scroll ของ Lenis แล้วกระตุก)
+export let lenis;
+
 if (typeof Lenis === "undefined") {
   console.warn("[smooth-scroll] ไม่พบ Lenis — ยังไม่ได้เติม <script> CDN ใน <head>");
 } else {
-  new Lenis({ autoRaf: true });
+  lenis = new Lenis({ autoRaf: true });
 }

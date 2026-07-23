@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>บัญชีของฉัน — CleanRoots</title>
+    <meta name="description" content="ประวัติคำสั่งซื้อและข้อมูลส่วนตัวของคุณที่ CleanRoots" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/account.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/account.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ -->
+  <body data-nav-solid>
+    <navbar-component></navbar-component>
+
+    <main class="flex-1 pt-26 max-md:pt-22">
+      <nav class="container flex items-center gap-2 py-4 text-caption text-text-muted" aria-label="เส้นทางหน้า">
+        <a href="index.html" class="hover:text-cr-green">หน้าแรก</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-text-primary" aria-current="page">บัญชีของฉัน</span>
+      </nav>
+
+      <section class="container max-w-5xl pb-25 max-lg:pb-16">
+        <!-- ================= User header ================= -->
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-panel-light px-6 py-5.5" data-reveal>
+          <div class="flex items-center gap-3.5">
+            <div class="flex size-12 flex-none items-center justify-center rounded-full bg-cr-green font-heading text-xl font-bold text-white" aria-hidden="true">น</div>
+            <div class="flex flex-col">
+              <span class="font-heading font-bold">คุณนภา</span>
+              <span class="text-xs text-text-muted">สมาชิกตั้งแต่ พ.ค. 2568</span>
+            </div>
+          </div>
+          <a href="index.html" class="inline-flex items-center gap-2 rounded-[10px] px-3.5 py-2.5 font-heading text-sm font-semibold text-cr-rust transition-colors hover:bg-cr-rust/10">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" x2="9" y1="12" y2="12"></line>
+            </svg>
+            ออกจากระบบ
+          </a>
+        </div>
+
+        <!-- ================= แถบแท็บ ================= -->
+        <nav class="mb-7 flex gap-1 border-b border-border-soft" aria-label="เมนูบัญชี">
+          <button type="button" class="acc-tab is-active relative inline-flex items-center gap-2.5 px-4.5 py-3.5 font-heading text-sm font-semibold" data-acc-tab="orders" role="tab" aria-selected="true" aria-controls="acc-panel-orders">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+              <path d="M3 6h18"></path>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            คำสั่งซื้อของฉัน
+          </button>
+          <button type="button" class="acc-tab relative inline-flex items-center gap-2.5 px-4.5 py-3.5 font-heading text-sm font-semibold" data-acc-tab="profile" role="tab" aria-selected="false" aria-controls="acc-panel-profile">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+            ข้อมูลส่วนตัว
+          </button>
+        </nav>
+
+        <!-- ================= คำสั่งซื้อ ================= -->
+        <div class="acc-panel is-active" data-acc-panel="orders" id="acc-panel-orders" role="tabpanel">
+          <h1 class="mb-6 font-heading text-h3 font-bold">คำสั่งซื้อของฉัน</h1>
+
+          <article class="mb-4 rounded-2xl border border-border-soft bg-white p-5" data-reveal>
+            <div class="mb-4 flex items-start justify-between border-b border-border-soft pb-4">
+              <div>
+                <span class="mr-2.5 font-heading text-sm font-bold">#CR-48210</span>
+                <span class="text-xs text-text-muted">15 ก.ค. 2569</span>
+              </div>
+              <span class="rounded-full bg-cr-gold/20 px-3 py-1.5 font-heading text-xs font-bold text-text-on-gold-strong">กำลังจัดส่ง</span>
+            </div>
+            <div class="mb-4 flex flex-col gap-3">
+              <div class="flex items-center gap-3.5">
+                <div class="size-13 flex-none overflow-hidden rounded-[10px] bg-panel-cream">
+                  <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิก" width="52" height="52" loading="lazy" class="size-full object-cover" />
+                </div>
+                <div class="flex flex-1 flex-col gap-0.5 text-sm">
+                  <span>ข้าวกล้องออร์แกนิก × 2</span>
+                  <span class="text-xs text-text-muted">สวนป่าดีบุญ</span>
+                </div>
+                <span class="font-heading text-sm font-bold">฿240</span>
+              </div>
+              <div class="flex items-center gap-3.5">
+                <div class="harvest-card-photo--honey size-13 flex-none overflow-hidden rounded-[10px]"></div>
+                <div class="flex flex-1 flex-col gap-0.5 text-sm">
+                  <span>น้ำผึ้งป่าเดือนห้า × 1</span>
+                  <span class="text-xs text-text-muted">สวนป่าดีบุญ</span>
+                </div>
+                <span class="font-heading text-sm font-bold">฿280</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between border-t border-border-soft pt-4">
+              <span class="font-heading text-sm font-bold">ยอดรวม ฿520</span>
+              <button type="button" class="btn btn-outline btn-sm">ติดตามพัสดุ</button>
+            </div>
+          </article>
+
+          <article class="rounded-2xl border border-border-soft bg-white p-5" data-reveal data-delay="0.1">
+            <div class="mb-4 flex items-start justify-between border-b border-border-soft pb-4">
+              <div>
+                <span class="mr-2.5 font-heading text-sm font-bold">#CR-47588</span>
+                <span class="text-xs text-text-muted">28 มิ.ย. 2569</span>
+              </div>
+              <span class="rounded-full bg-panel-light px-3 py-1.5 font-heading text-xs font-bold text-cr-green">ส่งถึงแล้ว</span>
+            </div>
+            <div class="mb-4 flex flex-col gap-3">
+              <div class="flex items-center gap-3.5">
+                <div class="harvest-card-photo--egg size-13 flex-none overflow-hidden rounded-[10px]"></div>
+                <div class="flex flex-1 flex-col gap-0.5 text-sm">
+                  <span>ไข่ไก่อารมณ์ดี × 3</span>
+                  <span class="text-xs text-text-muted">สวนป่าดีบุญ</span>
+                </div>
+                <span class="font-heading text-sm font-bold">฿285</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between border-t border-border-soft pt-4">
+              <span class="font-heading text-sm font-bold">ยอดรวม ฿285</span>
+              <button type="button" class="btn btn-primary btn-sm" data-add-to-cart>สั่งซ้ำ</button>
+            </div>
+          </article>
+        </div>
+
+        <!-- ================= ข้อมูลส่วนตัว ================= -->
+        <div class="acc-panel" data-acc-panel="profile" id="acc-panel-profile" role="tabpanel">
+          <h1 class="mb-6 font-heading text-h3 font-bold">ข้อมูลส่วนตัว</h1>
+          <div class="mb-6 grid grid-cols-2 gap-5 max-lg:grid-cols-1">
+            <div class="flex flex-col gap-1.5">
+              <label class="font-heading text-xs font-semibold text-text-secondary" for="acc-name">ชื่อ-นามสกุล</label>
+              <input id="acc-name" type="text" value="นภา ใจดี" class="rounded-[10px] border border-border-soft px-3.5 py-3 text-sm text-text-primary outline-none transition-colors focus:border-cr-green" />
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label class="font-heading text-xs font-semibold text-text-secondary" for="acc-email">อีเมล</label>
+              <input id="acc-email" type="email" value="napa@example.com" class="rounded-[10px] border border-border-soft px-3.5 py-3 text-sm text-text-primary outline-none transition-colors focus:border-cr-green" />
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label class="font-heading text-xs font-semibold text-text-secondary" for="acc-phone">เบอร์โทรศัพท์</label>
+              <input id="acc-phone" type="tel" value="081-234-5678" class="rounded-[10px] border border-border-soft px-3.5 py-3 text-sm text-text-primary outline-none transition-colors focus:border-cr-green" />
+            </div>
+            <div class="col-span-2 flex flex-col gap-1.5 max-lg:col-span-1">
+              <label class="font-heading text-xs font-semibold text-text-secondary" for="acc-address">ที่อยู่จัดส่ง</label>
+              <textarea id="acc-address" rows="3" class="resize-y rounded-[10px] border border-border-soft px-3.5 py-3 text-sm text-text-primary outline-none transition-colors focus:border-cr-green">
+123/45 หมู่บ้านสวนสุข ถ.สุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110</textarea
+              >
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" data-acc-save>บันทึกข้อมูล</button>
+        </div>
+      </section>
+    </main>
+
+    <footer-component></footer-component>
+  </body>
+</html>

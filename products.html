@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ผลผลิตทั้งหมด — CleanRoots</title>
+    <meta name="description" content="ผลผลิตทั้งหมดจากสวนป่าดีบุญ — ของที่มีตอนนี้ และของที่ต้องรอรอบเก็บเกี่ยวถัดไป" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/products.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/products.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ -->
+  <body data-nav-solid>
+    <navbar-component></navbar-component>
+
+    <main class="flex-1 pt-26 max-md:pt-22">
+      <nav class="container flex items-center gap-2 py-4 text-caption text-text-muted" aria-label="เส้นทางหน้า">
+        <a href="index.html" class="hover:text-cr-green">หน้าแรก</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-text-primary" aria-current="page">ผลผลิตทั้งหมด</span>
+      </nav>
+
+      <section class="container pt-2 pb-2">
+        <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">ผลผลิตประจำฤดู</span>
+        <h1 class="mb-3 text-[clamp(28px,4vw,40px)] leading-tight">ทุกอย่างจากสวนป่าดีบุญ</h1>
+        <p class="max-w-140 leading-relaxed text-text-secondary">เราปลูกเท่าที่ดูแลได้จริง เก็บเกี่ยวตามรอบธรรมชาติ — บางอย่างมีให้ตอนนี้ บางอย่างต้องรอฤดูของมัน</p>
+      </section>
+
+      <!-- ================= มีสินค้าตอนนี้ ================= -->
+      <section class="container pt-12 max-lg:pt-9" aria-labelledby="group-available">
+        <div class="mb-2 flex items-baseline justify-between gap-4" data-reveal>
+          <h2 id="group-available" class="flex items-center gap-2.5 text-h5"><span class="pl-dot pl-dot--live" aria-hidden="true"></span>มีสินค้าตอนนี้</h2>
+          <span class="font-heading text-caption font-semibold text-text-muted">4 รายการ</span>
+        </div>
+
+        <div class="mt-6 grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-5.5">
+          <div class="harvest-card relative h-85 rounded-xl" data-card data-product-id="rice" data-product-name="ข้าวกล้องออร์แกนิก">
+            <div class="harvest-card-photo harvest-card-photo--rice absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิก" width="900" height="600" loading="lazy" class="size-full object-cover" />
+            </div>
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">
+                    <a href="product.html" class="harvest-card-name-link">ข้าวกล้องออร์แกนิก</a>
+                  </h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿120<span class="text-[11px] font-medium opacity-80">/กก.</span></span>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" data-add-to-cart>เพิ่มลงตะกร้า</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 สินค้าด้านล่างยังไม่มีไฟล์รูปจริง — เห็นเป็นเฉดพื้นหลังไปก่อน
+               วางไฟล์ที่ images/products/<ชื่อ>.webp แล้วใส่ <img> เหมือนการ์ดข้างบนได้เลย -->
+          <div class="harvest-card relative h-85 rounded-xl" data-card data-product-id="honey" data-product-name="น้ำผึ้งป่าเดือนห้า">
+            <div class="harvest-card-photo harvest-card-photo--honey absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิก" width="900" height="600" loading="lazy" class="size-full object-cover" />
+            </div>
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">
+                    <a href="product.html" class="harvest-card-name-link">น้ำผึ้งป่าเดือนห้า</a>
+                  </h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿280<span class="text-[11px] font-medium opacity-80">/ขวด</span></span>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" data-add-to-cart>เพิ่มลงตะกร้า</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="harvest-card relative h-85 rounded-xl" data-card data-product-id="egg" data-product-name="ไข่ไก่อารมณ์ดี">
+            <div class="harvest-card-photo harvest-card-photo--egg absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิก" width="900" height="600" loading="lazy" class="size-full object-cover" />
+            </div>
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">
+                    <a href="product.html" class="harvest-card-name-link">ไข่ไก่อารมณ์ดี</a>
+                  </h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿95<span class="text-[11px] font-medium opacity-80">/10ฟอง</span></span>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" data-add-to-cart>เพิ่มลงตะกร้า</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="harvest-card relative h-85 rounded-xl" data-card data-product-id="banana" data-product-name="กล้วยน้ำว้าตากแห้ง">
+            <div class="harvest-card-photo harvest-card-photo--banana absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิก" width="900" height="600" loading="lazy" class="size-full object-cover" />
+            </div>
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">
+                    <a href="product.html" class="harvest-card-name-link">กล้วยน้ำว้าตากแห้ง</a>
+                  </h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿75<span class="text-[11px] font-medium opacity-80">/ถุง</span></span>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" data-add-to-cart>เพิ่มลงตะกร้า</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= รอฤดูกาลถัดไป ================= -->
+      <section class="container pt-12 pb-25 max-lg:pt-9" aria-labelledby="group-seasonal">
+        <div class="mb-2 flex items-baseline justify-between gap-4" data-reveal>
+          <h2 id="group-seasonal" class="flex items-center gap-2.5 text-h5"><span class="pl-dot pl-dot--season" aria-hidden="true"></span>รอฤดูกาลถัดไป</h2>
+          <span class="font-heading text-caption font-semibold text-text-muted">4 รายการ</span>
+        </div>
+        <p class="max-w-130 text-caption leading-relaxed text-text-muted">ผลผลิตเหล่านี้ยังไม่ถึงรอบเก็บเกี่ยว กดแจ้งเตือนไว้ เราจะบอกคุณทันทีที่พร้อมส่ง</p>
+
+        <div class="mt-6 grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-5.5">
+          <article class="harvest-card relative h-85 rounded-xl" data-card data-product-id="garlic" data-product-name="กระเทียม">
+            <span class="harvest-card-badge absolute top-3 left-3 z-3 rounded-full bg-white px-2.5 py-1.5 font-heading text-[10px] font-bold text-cr-green shadow-card">ตามฤดูกาล</span>
+            <div class="harvest-card-photo harvest-card-photo--garlic absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/garlic.webp" alt="กระเทียมจากสวนป่าดีบุญ" width="900" height="600" loading="lazy" class="size-full object-cover" />
+            </div>
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">กระเทียม</h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿140<span class="text-[11px] font-medium opacity-80">/250ก.</span></span>
+                </div>
+                <button type="button" class="btn btn-line btn-sm" data-notify-seasonal>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+                    ></path>
+                  </svg>
+                  แจ้งเตือนผ่าน LINE
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="harvest-card relative h-85 rounded-xl" data-card data-product-id="shallot" data-product-name="หอมแดง">
+            <span class="harvest-card-badge absolute top-3 left-3 z-3 rounded-full bg-white px-2.5 py-1.5 font-heading text-[10px] font-bold text-cr-green shadow-card">ตามฤดูกาล</span>
+            <div class="harvest-card-photo harvest-card-photo--shallot absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/shallot.webp" alt="หอมแดงจากสวนป่าดีบุญ" width="900" height="600" loading="lazy" class="size-full object-cover" />
+            </div>
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">หอมแดง</h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿90<span class="text-[11px] font-medium opacity-80">/250ก.</span></span>
+                </div>
+                <button type="button" class="btn btn-line btn-sm" data-notify-seasonal>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+                    ></path>
+                  </svg>
+                  แจ้งเตือนผ่าน LINE
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="harvest-card relative h-85 rounded-xl" data-card data-product-id="bamboo" data-product-name="หน่อไม้ดอง">
+            <span class="harvest-card-badge absolute top-3 left-3 z-3 rounded-full bg-white px-2.5 py-1.5 font-heading text-[10px] font-bold text-cr-green shadow-card">ตามฤดูกาล</span>
+            <div class="harvest-card-photo harvest-card-photo--bamboo absolute inset-0 overflow-hidden rounded-xl">
+              <img src="./images/products/bamboo.webp" alt="หน่อไม้ดองจากสวนป่าดีบุญ" width="900" height="600" loading="lazy" class="size-full object-cover" />
+            </div>
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">หน่อไม้ดอง</h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿95<span class="text-[11px] font-medium opacity-80">/300ก.</span></span>
+                </div>
+                <button type="button" class="btn btn-line btn-sm" data-notify-seasonal>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+                    ></path>
+                  </svg>
+                  แจ้งเตือนผ่าน LINE
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="harvest-card relative h-85 rounded-xl" data-card data-product-id="chili" data-product-name="พริกแห้งจินดา">
+            <span class="harvest-card-badge absolute top-3 left-3 z-3 rounded-full bg-white px-2.5 py-1.5 font-heading text-[10px] font-bold text-cr-green shadow-card">ตามฤดูกาล</span>
+            <div class="harvest-card-photo harvest-card-photo--chili absolute inset-0 overflow-hidden rounded-xl"></div>
+            <div class="harvest-card-face absolute inset-0 flex flex-col justify-end rounded-xl p-4.5">
+              <div class="harvest-card-body flex flex-col">
+                <div class="mb-3.5 flex items-end justify-between gap-2">
+                  <h3 class="font-heading text-base leading-tight font-bold text-white">พริกแห้งจินดา</h3>
+                  <span class="font-bold whitespace-nowrap text-white">฿110<span class="text-[11px] font-medium opacity-80">/250ก.</span></span>
+                </div>
+                <button type="button" class="btn btn-line btn-sm" data-notify-seasonal>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+                    ></path>
+                  </svg>
+                  แจ้งเตือนผ่าน LINE
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer-component></footer-component>
+  </body>
+</html>

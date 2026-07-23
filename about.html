@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>เรื่องราวของเรา — CleanRoots</title>
+    <meta name="description" content="เรื่องราวของสวนป่าดีบุญ — ทำไมเราปลูกแบบไม่ใช้สารเคมี ไม่เผา และผลิตเท่าที่ดูแลได้จริง" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/about.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/about.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ -->
+  <body data-nav-solid>
+    <navbar-component></navbar-component>
+
+    <main class="flex-1 pt-26 max-md:pt-22">
+      <nav class="container flex items-center gap-2 py-4 text-caption text-text-muted" aria-label="เส้นทางหน้า">
+        <a href="index.html" class="hover:text-cr-green">หน้าแรก</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-text-primary" aria-current="page">เรื่องราวของเรา</span>
+      </nav>
+
+      <!-- ================= HERO — คำประกาศ ================= -->
+      <section class="container pt-8 pb-16 max-lg:pt-4 max-lg:pb-12">
+        <p class="mb-5 font-heading text-xs font-bold tracking-tight text-cr-green uppercase opacity-0" data-ab-eyebrow>สวนป่าดีบุญ · เชียงคาน · เลย</p>
+        <h1 class="mb-7 text-hero leading-tight font-bold">
+          <span class="block" data-ab-word>ปลูกพืชไม่ใช้สารเคมีเลย</span>
+
+          <span class="block" data-ab-word
+            >ไม่เผา ดูแล<span class="relative inline-block whitespace-nowrap text-cr-green"
+              >สิ่งแวดล้อม<i class="absolute inset-x-0 -bottom-0.5 h-1 origin-left scale-x-0 rounded-full bg-cr-gold" aria-hidden="true" data-ab-accent-line></i></span
+          ></span>
+        </h1>
+        <p class="max-w-135 text-lg leading-relaxed text-text-secondary overflow-hidden" data-ab-hero-sub>
+          ดูแลดินให้สะอาดบริสุทธิ์ตามวิถีธรรมชาติ ไม่ใช้สารเคมี ไม่เผา เพื่อให้ดินที่แข็งแรงส่งต่อความปลอดภัยไปถึงรากของพืช
+        </p>
+      </section>
+
+      <!-- ================= จุดเริ่มต้น ================= -->
+      <section class="container grid grid-cols-2 items-center gap-14 py-16 max-lg:grid-cols-1 max-lg:gap-8 max-lg:py-10">
+        <div data-reveal>
+          <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">จุดเริ่มต้น</span>
+          <h2 class="mb-5 text-[clamp(24px,3vw,32px)] leading-snug">รักษาหน้าดินมามากกว่า 6 ปี</h2>
+          <p class="mb-4 leading-loose text-text-secondary">
+            สวนป่าดีบุญเริ่มต้นด้วยความตั้งใจปลูกไม้ป่า และสร้างวิถีชีวิตแห่งการพึ่งตนเอง ผลิตอาหารที่ปราศจากสารเคมีไว้กินเอง พึ่งพาระบบภายนอกให้น้อยที่สุด
+          </p>
+          <p class="leading-loose text-text-secondary">เราใช้วิถีปรับตัวเข้ากับธรรมชาติ ไม่พยายามปรับธรรมชาติเข้าหาคน ดังนั้นจึงปลูกตามฤดูกาล จำนวนไม่มาก แต่หลากหลาย</p>
+        </div>
+        <!-- ยังไม่มีรูปเฉพาะหน้านี้จริง — ยืม story-soil (ธีมฟื้นฟูดิน) มาใช้ไปก่อน วางไฟล์จริงที่ images/pages/about/origin.webp แล้วเปลี่ยน src ได้เลย -->
+        <div class="aspect-4/5 overflow-hidden rounded-2xl bg-panel-light" data-reveal>
+          <img src="./images/pages/index/story-soil.webp" alt="" width="600" height="750" loading="lazy" class="size-full object-cover" />
+        </div>
+      </section>
+
+      <!-- ================= หลักการ ================= -->
+      <section class="bg-panel-light py-16 max-lg:py-10">
+        <div class="container">
+          <div class="mx-auto mb-14 max-w-170 text-center" data-reveal>
+            <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">สิ่งที่เรายึดถือ</span>
+            <h2 class="mb-4 text-[clamp(26px,4vw,40px)] leading-snug">ดินสะอาด น้ำสะอาด พืชคุณภาพสูงตามมาเอง</h2>
+            <p class="text-text-secondary">ทำด้วยวิถีชีวิต ไม่ใช่โมเดลธุรกิจ</p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-8 max-lg:grid-cols-1 max-lg:gap-5">
+            <div class="rounded-2xl bg-cr-cream p-8" data-reveal>
+              <span class="mb-4 block font-display text-[40px] leading-none font-black text-cr-gold">01</span>
+              <h3 class="mb-2.5 font-heading text-h4 font-bold">ไม่ใช้สารเคมี</h3>
+              <p class="leading-relaxed text-text-secondary">ไม่มียาฆ่าหญ้า ยาฆ่าแมลง หรือปุ๋ยเคมีในทุกขั้นตอน</p>
+            </div>
+            <div class="rounded-2xl bg-cr-cream p-8" data-reveal data-delay="0.1">
+              <span class="mb-4 block font-display text-[40px] leading-none font-black text-cr-gold">02</span>
+              <h3 class="mb-2.5 font-heading text-h4 font-bold">ไม่เผา</h3>
+              <p class="leading-relaxed text-text-secondary">ไม่เผาตอ ไม่เผาฟาง เพราะไฟทำลายสิ่งมีชีวิตในดินที่เราใช้เวลาหลายปีฟื้นฟู และสร้างควันที่เป็นมลภาวะต่อโลก</p>
+            </div>
+            <div class="rounded-2xl bg-cr-cream p-8" data-reveal data-delay="0.2">
+              <span class="mb-4 block font-display text-[40px] leading-none font-black text-cr-gold">03</span>
+              <h3 class="mb-2.5 font-heading text-h4 font-bold">ปุ๋ยหมักจากธรรมชาติ</h3>
+              <p class="leading-relaxed text-text-secondary">เศษพืชทุกอย่างทับถมคืนสู่ดิน ไม่ขนออกไปทิ้ง เพราะดินต้องการมันกลับคืน</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ปรัชญา (pull quote) ================= -->
+      <section class="bg-cr-green py-20 max-lg:py-14">
+        <div class="container mx-auto max-w-165 text-center" data-reveal>
+          <span class="mb-1 block font-display text-[100px] leading-[0.5] font-black text-cr-gold" aria-hidden="true">"</span>
+          <p class="mb-6 text-[clamp(22px,3.2vw,32px)] leading-relaxed font-semibold text-cr-cream">
+            เราไม่ได้มุ่งเน้นที่จะขายสินค้า<br />
+            แต่เราเน้นการดูแลสุขภาพร่วมกัน<br />
+            เพราะการกินอาหารสะอาด ไม่มีสารพิษ<br />
+            คือจุดเริ่มต้นของทุกอย่าง
+          </p>
+          <span class="text-caption text-cr-cream/70">— สวนป่าดีบุญ</span>
+        </div>
+      </section>
+
+      <!-- ================= ทำไมมีจำกัด ================= -->
+      <section class="container grid grid-cols-2 items-center gap-14 py-16 max-lg:grid-cols-1 max-lg:gap-8 max-lg:py-10">
+        <!-- ยังไม่มีรูปเฉพาะหน้านี้จริง — ยืม story-harvest มาใช้ไปก่อน วางไฟล์จริงที่ images/pages/about/harvest.webp แล้วเปลี่ยน src ได้เลย -->
+        <div class="aspect-4/5 overflow-hidden rounded-2xl bg-panel-cream" data-reveal>
+          <img src="./images/pages/index/story-harvest.webp" alt="" width="600" height="750" loading="lazy" class="size-full object-cover" />
+        </div>
+        <div data-reveal>
+          <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">ทำไมของเรามีจำกัด</span>
+          <h2 class="mb-5 text-[clamp(24px,3vw,32px)] leading-snug">เราผลิตเท่าที่ดูแลได้จริง</h2>
+          <p class="mb-4 leading-loose text-text-secondary">
+            เราไม่ขยายการผลิตเกินกว่าที่จะดูแลได้ทั่วถึง ไม่เร่งปลูกนอกฤดู ไม่ใช้เทคนิคเร่งโต เพราะเราเชื่อว่าของดีต้องใช้เวลา และเป็นไปตามที่ธรรมชาติกำหนด
+          </p>
+          <p class="leading-loose text-text-secondary">เพราะฉะนั้นบางอย่างจึงมีตามฤดูกาล จนกว่าจะถึงรอบเก็บเกี่ยวหน้า — ความจำกัดนี้ไม่ใช่กลยุทธ์การตลาด แต่คือคุณค่าที่เราตั้งใจรักษา</p>
+        </div>
+      </section>
+
+      <!-- ================= คำเชิญชวน ================= -->
+      <section class="bg-panel-cream py-20 text-center max-lg:py-14">
+        <div class="container mx-auto max-w-125" data-reveal>
+          <h2 class="mb-4 text-[clamp(26px,3.4vw,38px)] leading-snug">มาเป็นส่วนหนึ่งของการดูแลสุขภาพ ด้วยการกิน</h2>
+          <p class="mb-8 leading-relaxed text-text-secondary">เราไม่ได้อยากขายให้คุณครั้งเดียวจบ แต่อยากดูแลสุขภาพไปด้วยกันในระยะยาว ตั้งแต่ผืนดินที่เราปลูก จนถึงจานอาหารของคุณ</p>
+          <div class="flex flex-wrap justify-center gap-3.5">
+            <a href="products.html" class="btn btn-primary btn-arrow">ดูผลผลิตประจำฤดู <span class="btn-arrow-icon"></span></a>
+            <a href="#" class="btn btn-line">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+                ></path>
+              </svg>
+              เพิ่มเพื่อนใน LINE
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer-component></footer-component>
+  </body>
+</html>

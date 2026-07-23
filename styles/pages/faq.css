@@ -1,0 +1,124 @@
+/* Styles เฉพาะหน้า faq
+   ใส่ที่นี่เฉพาะของที่เข้าเกณฑ์ใน
+   .claude/skills/static-site-from-prototype/references/css-conventions.md
+   ของที่ใช้ซ้ำข้ามหน้าให้ไป styles/tailwind/input.css แทน */
+
+.faq-group-title {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 2px solid var(--cr-green);
+  font-family: var(--font-heading);
+  font-size: var(--fs-h5);
+  font-weight: 700;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.faq-item {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: #fff;
+}
+
+/* ปุ่มคำถาม — เต็มความกว้าง ชิดซ้าย ไม่เหมือน .btn ของระบบ จึงเขียนเอง */
+.faq-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.125rem 1.25rem;
+  border: none;
+  background: none;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: background 0.2s;
+}
+
+.faq-q:hover {
+  background: var(--panel-cream);
+}
+
+/* + หมุนเป็น × ตอนเปิด — วาดจากเส้นแทนตัวอักษร "+"
+   เพราะกลิฟตัวอักษรไม่ได้อยู่กึ่งกลาง glyph box จริง (นั่งบน baseline)
+   flex จัดกึ่งกลางแค่ line box ทำให้จุดหมุนเพี้ยนตอน rotate ไปได้ 45° */
+.faq-icon {
+  position: relative;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--panel-green-light);
+  transition:
+    transform 0.35s var(--spring),
+    background 0.2s;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 1.6px;
+  background: var(--cr-green);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  transition: background 0.2s;
+}
+
+.faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-item.is-open .faq-icon {
+  transform: rotate(45deg);
+  background: var(--cr-green);
+}
+
+.faq-item.is-open .faq-icon::before,
+.faq-item.is-open .faq-icon::after {
+  background: #fff;
+}
+
+/* คำตอบ — CSS animate ไป height:auto ไม่ได้
+   scripts/pages/faq.js เลยเซ็ต max-height จาก scrollHeight จริงตอนเปิด */
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.4s var(--spring),
+    opacity 0.3s ease;
+}
+
+.faq-item.is-open .faq-a {
+  opacity: 1;
+}
+
+.faq-a p {
+  margin: 0;
+  padding: 0 1.25rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+@media (width <= 640px) {
+  .faq-q {
+    padding: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .faq-a p {
+    padding: 0 1rem 1rem;
+  }
+}

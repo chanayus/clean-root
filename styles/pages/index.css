@@ -112,64 +112,8 @@
 /* ==========================================================================
    PRODUCT GRID
    ========================================================================== */
-/* จุดตั้งต้นกัน FOUC — การเผยตัวตอนเข้าจอคุมด้วย Motion ใน scripts/pages/index.js */
-.harvest-card {
-  opacity: 0;
-  transform: translateY(26px) scale(0.97);
-  transition:
-    translate 0.4s var(--spring),
-    box-shadow 0.4s var(--spring);
-}
-
-/* hover ยกการ์ดใช้ `translate` ไม่ใช่ `transform`
-   เพราะ Motion เขียน transform เป็น inline style ตอน reveal ซึ่งชนะ CSS เสมอ
-   ส่วน translate เป็นคนละ property เบราว์เซอร์ประกอบให้เอง จึงไม่ชนกัน */
-.harvest-card:hover {
-  translate: 0 -8px;
-  box-shadow: 0 22px 44px -16px rgb(43 42 37 / 0.4);
-}
-
-.harvest-card-photo img {
-  transition: transform 0.7s var(--spring);
-}
-
-.harvest-card:hover .harvest-card-photo img {
-  transform: scale(1.06);
-}
-
-/* เฉดพื้นหลังรออยู่ใต้รูป — ถ้ารูปโหลดไม่ทันการ์ดยังดูจบ */
-.harvest-card-photo--rice {
-  background: linear-gradient(160deg, #dccba3, #b79b63);
-}
-
-.harvest-card-photo--garlic {
-  background: linear-gradient(160deg, #ede7d6, #c7bc9b);
-}
-
-.harvest-card-photo--shallot {
-  background: linear-gradient(160deg, #d2a08a, #b5533f);
-}
-
-.harvest-card-photo--bamboo {
-  background: linear-gradient(160deg, #c4c79a, #8a9760);
-}
-
-/* ไล่เฉดดำจากล่างขึ้น ให้ชื่อ/ราคาอ่านออกไม่ว่ารูปจะสว่างแค่ไหน */
-.harvest-card-face {
-  background: linear-gradient(180deg, rgb(20 28 20 / 0) 45%, rgb(20 28 20 / 0.72) 100%);
-}
-
-/* ปุ่มที่ทับรูปโดยตรง — เพิ่มขอบสว่าง + เงาลึกเฉพาะบริบทนี้ ไม่เปลี่ยนสีของระบบ */
-.harvest-card-body .btn {
-  border: 1.5px solid rgb(255 255 255 / 0.22);
-  box-shadow: 0 6px 18px rgb(0 0 0 / 0.35);
-}
-
-.harvest-card-name-link:hover {
-  color: var(--cr-gold);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+/* การ์ดสินค้าย้ายไป styles/tailwind/input.css แล้ว — ใช้ทั้งหน้า index และ products
+   (product.html ที่จะทำต่อก็จะใช้ในส่วน "สินค้าที่เกี่ยวข้อง") */
 
 /* ==========================================================================
    STORY DOT-NAV

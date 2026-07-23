@@ -51,6 +51,62 @@
   --breakpoint-2xl: 1537px;
 }
 
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Prompt", sans-serif;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--fs-h1);
+  }
+
+  h2 {
+    font-size: var(--fs-h2);
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+  }
+
+  h4 {
+    font-size: var(--fs-h4);
+  }
+
+  h5 {
+    font-size: var(--fs-h5);
+  }
+
+  h6 {
+    font-size: var(--fs-h6);
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  ul li {
+    list-style: disc;
+    margin-left: 2rem;
+  }
+
+  ol li {
+    list-style: decimal;
+    margin-left: 2rem;
+  }
+}
+
 @utility prose {
   /* Typography */
   del {
@@ -279,7 +335,7 @@
   /* arrow-slide — ลูกศรตัวเดิมเลื่อนออกขวา แล้วตัวใหม่ตามเข้ามาจากซ้าย
      ใช้คู่กัน: <a class="btn btn-arrow">ข้อความ <span class="btn-arrow-icon"></span></a> */
   .btn-arrow-icon {
-    @apply relative inline-block h-[1em] w-[1em] overflow-hidden leading-none;
+    @apply relative inline-block size-4 overflow-hidden leading-none;
   }
 
   .btn-arrow-icon::before,
@@ -301,6 +357,88 @@
 
   .btn-arrow:hover .btn-arrow-icon::after {
     transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+   การ์ดสินค้า — ใช้ที่หน้า index, products และส่วน "สินค้าที่เกี่ยวข้อง" ของ product
+   layout อยู่ใน markup ที่นี่มีเฉพาะ hover, เฉดทับรูป และจุดตั้งต้นของ reveal
+   ========================================================================== */
+@layer components {
+  /* จุดตั้งต้นกัน FOUC — การเผยตัวตอนเข้าจอคุมด้วย Motion (modules/harvest-card.js) */
+  .harvest-card {
+    opacity: 0;
+    transform: translateY(26px) scale(0.97);
+    transition:
+      translate 0.4s var(--spring),
+      box-shadow 0.4s var(--spring);
+  }
+
+  /* hover ยกการ์ดใช้ `translate` ไม่ใช่ `transform`
+     เพราะ Motion เขียน transform เป็น inline style ตอน reveal ซึ่งชนะ CSS เสมอ
+     ส่วน translate เป็นคนละ property เบราว์เซอร์ประกอบให้เอง จึงไม่ชนกัน */
+  .harvest-card:hover {
+    translate: 0 -8px;
+    box-shadow: 0 22px 44px -16px rgb(43 42 37 / 0.4);
+  }
+
+  .harvest-card-photo img {
+    transition: transform 0.7s var(--spring);
+  }
+
+  .harvest-card:hover .harvest-card-photo img {
+    transform: scale(1.06);
+  }
+
+  /* ไล่เฉดดำจากล่างขึ้น ให้ชื่อ/ราคาอ่านออกไม่ว่ารูปจะสว่างแค่ไหน */
+  .harvest-card-face {
+    background: linear-gradient(180deg, rgb(20 28 20 / 0) 45%, rgb(20 28 20 / 0.72) 100%);
+  }
+
+  /* ปุ่มที่ทับรูปโดยตรง — เพิ่มขอบสว่าง + เงาลึกเฉพาะบริบทนี้ ไม่เปลี่ยนสีของระบบ */
+  .harvest-card-body .btn {
+    border: 1.5px solid rgb(255 255 255 / 0.22);
+    box-shadow: 0 6px 18px rgb(0 0 0 / 0.35);
+  }
+
+  .harvest-card-name-link:hover {
+    color: var(--cr-gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* เฉดพื้นหลังรออยู่ใต้รูป — ถ้ารูปโหลดไม่ทันการ์ดยังดูจบ
+     สินค้าที่ยังไม่มีไฟล์รูปจริงจะเห็นเฉดนี้อย่างเดียวไปก่อน */
+  .harvest-card-photo--rice {
+    background: linear-gradient(160deg, #dccba3, #b79b63);
+  }
+
+  .harvest-card-photo--garlic {
+    background: linear-gradient(160deg, #ede7d6, #c7bc9b);
+  }
+
+  .harvest-card-photo--shallot {
+    background: linear-gradient(160deg, #d2a08a, #b5533f);
+  }
+
+  .harvest-card-photo--bamboo {
+    background: linear-gradient(160deg, #c4c79a, #8a9760);
+  }
+
+  .harvest-card-photo--honey {
+    background: linear-gradient(160deg, #e8c877, #b8862f);
+  }
+
+  .harvest-card-photo--egg {
+    background: linear-gradient(160deg, #f0e4cd, #cfae7e);
+  }
+
+  .harvest-card-photo--banana {
+    background: linear-gradient(160deg, #e6d49b, #a8874a);
+  }
+
+  .harvest-card-photo--chili {
+    background: linear-gradient(160deg, #d08b73, #a33f2c);
   }
 }
 
@@ -478,6 +616,12 @@
       color: #fff;
       transform: translateY(-2px);
     }
+  }
+
+  /* เอากากบาท/แว่นขยายที่เบราว์เซอร์แถมมากับ input[type=search] ออก — มีไอคอนของเราเองอยู่แล้ว */
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
+    appearance: none;
   }
 }
 

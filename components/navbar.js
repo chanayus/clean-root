@@ -19,8 +19,8 @@ const ICON = {
 };
 
 const NAV_LINKS = [
-  { href: "index.html#products", target: "products", label: "ผลผลิตประจำฤดู" },
-  { href: "index.html#about", target: "about", label: "เรื่องราวของเรา" },
+  { href: "products.html", target: "", label: "ผลผลิตประจำฤดู" },
+  { href: "about.html", target: "", label: "เรื่องราวของเรา" },
   { href: "articles.html", target: "", label: "บทความ" },
 ];
 
@@ -60,10 +60,10 @@ class Navbar extends HTMLElement {
             </div>
           </div>
 
-          <a href="cart.html" class="nav-icon" data-cart-toggle aria-label="ตะกร้า">
+          <button type="button" class="nav-icon" data-cart-toggle aria-label="เปิดตะกร้า">
             ${ICON.cart}
             <span class="nav-cart-count" data-cart-count>2</span>
-          </a>
+          </button>
 
           <button type="button" class="mobile-nav-toggle nav-icon lg:hidden" aria-label="เปิดเมนู">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -85,11 +85,11 @@ class Navbar extends HTMLElement {
       <div class="search-panel" data-search-panel>
         <div class="relative mx-auto max-w-190 px-12 pt-10 pb-9 max-lg:px-8 max-md:px-6">
           <button type="button" class="absolute top-4 right-12 text-text-primary max-lg:right-8 max-md:right-6" data-search-close aria-label="ปิดการค้นหา">${ICON.close}</button>
-          <div class="flex items-center gap-3.5 border-b-2 border-cr-green pb-3.5 text-cr-green">
+          <form class="flex items-center gap-3.5 border-b-2 border-cr-green pb-3.5 text-cr-green" data-search-form>
             ${ICON.search}
             <input type="search" placeholder="ค้นหาผลผลิต เช่น ข้าวกล้อง, กระเทียม..." data-search-input aria-label="ค้นหาผลผลิต"
               class="flex-1 border-none bg-transparent text-xl text-text-primary outline-none placeholder:text-text-muted" />
-          </div>
+          </form>
           <div class="mt-5 flex flex-wrap items-center gap-2.5">
             <span class="mr-1 font-heading text-xs font-semibold text-text-muted">ยอดนิยม</span>
             <button type="button" class="search-suggest">ข้าวกล้องออร์แกนิก</button>

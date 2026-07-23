@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>บทความ — CleanRoots</title>
+    <meta name="description" content="เรื่องราวการปลูก สูตรอาหาร และแนวคิดเบื้องหลังสวนป่าดีบุญ เขียนโดยคนที่ลงมือทำจริง" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/articles.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/articles.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ -->
+  <body data-nav-solid>
+    <navbar-component></navbar-component>
+
+    <main class="flex-1 pt-26 max-md:pt-22">
+      <nav class="container flex items-center gap-2 py-4 text-caption text-text-muted" aria-label="เส้นทางหน้า">
+        <a href="index.html" class="hover:text-cr-green">หน้าแรก</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-text-primary" aria-current="page">บทความ</span>
+      </nav>
+
+      <!-- ================= HEADER ================= -->
+      <section class="container pt-4 pb-4 max-lg:pt-2">
+        <span class="mb-2 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">เรื่องเล่าจากสวน</span>
+        <h1 class="mb-3 md:text-5xl text-4xl font-semibold leading-tight">บทความ</h1>
+        <p class="max-w-130 leading-relaxed text-text-secondary">เรื่องราวการปลูก สูตรอาหาร และแนวคิดเบื้องหลังสวนป่าดีบุญ เขียนโดยคนที่ลงมือทำจริง</p>
+      </section>
+
+      <!-- ================= FEATURED (หน้า 1 เท่านั้น) ================= -->
+      <!-- ยังไม่มีรูปเฉพาะบทความจริง — ยืมรูปที่มีอยู่แล้ว (story-harvest) มาใช้ไปก่อน เปลี่ยนเป็นรูปจริงทีหลังได้เลย -->
+      <section class="container pt-4 pb-2" data-art-featured>
+        <a href="#" class="art-featured-card grid grid-cols-[1.2fr_1fr] overflow-hidden rounded-2xl border border-border-soft bg-white no-underline max-lg:grid-cols-1" data-reveal>
+          <div class="art-featured-photo aspect-16/10 overflow-hidden bg-panel-cream">
+            <img src="./images/pages/index/story-harvest.webp" alt="" width="960" height="600" loading="lazy" class="size-full object-cover" />
+          </div>
+          <div class="flex flex-col justify-center p-9 max-lg:p-6">
+            <span class="inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">เรื่องราวสวน</span>
+            <h2 class="mt-3.5 mb-3 text-[clamp(20px,2.4vw,26px)] leading-snug">ทำไมเราถึงไม่เร่งเก็บเกี่ยว แม้ต้องรอนานกว่า</h2>
+            <p class="mb-4 leading-relaxed text-text-secondary">เบื้องหลังการตัดสินใจที่ดูเหมือนไม่คุ้มทางธุรกิจ แต่คือหัวใจของทุกอย่างที่สวนป่าดีบุญทำ</p>
+            <span class="text-xs text-text-muted">6 ก.ค. 2569 · อ่าน 5 นาที</span>
+          </div>
+        </a>
+      </section>
+
+      <!-- ================= GRID ================= -->
+      <!-- รูปการ์ดยืมจากรูปที่มีอยู่แล้ว (story-soil/harvest/recipe, hero-field, product rice/garlic/shallot/bamboo) วนใช้ตามธีมที่ใกล้เคียงที่สุด
+           ยังไม่ใช่รูปเฉพาะบทความจริง — มีรูปจริงเมื่อไหร่ค่อยเปลี่ยน src -->
+      <section class="container pt-10 pb-25 max-lg:pb-16">
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-7" data-art-grid>
+          <!-- หน้า 1 -->
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="1" data-reveal data-delay="0">
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/story-soil.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">วิธีปลูก</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ดินดีเริ่มจากอะไร ก่อนจะถึงเมล็ดแรก</h3>
+            <span class="text-xs text-text-muted">28 มิ.ย. 2569 · อ่าน 4 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="1" data-reveal data-delay="0.05">
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/products/rice.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">สูตรอาหาร</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ข้าวยำสมุนไพร จากข้าวกล้องสวนป่าดีบุญ</h3>
+            <span class="text-xs text-text-muted">20 มิ.ย. 2569 · อ่าน 3 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="1" data-reveal data-delay="0.1">
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/hero-field.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">แนวคิด</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ทำไมผลผลิตของเราถึงมีจำกัดเสมอ</h3>
+            <span class="text-xs text-text-muted">12 มิ.ย. 2569 · อ่าน 4 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="1" data-reveal data-delay="0.15">
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/story-harvest.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">คนของสวน</span>
+            <h3 class="font-heading text-base leading-snug font-bold">บันทึกจากแปลง 3 ฤดูนาปีที่ผ่านมา</h3>
+            <span class="text-xs text-text-muted">30 พ.ค. 2569 · อ่าน 6 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="1" data-reveal data-delay="0.2">
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/story-recipe.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">สูตรอาหาร</span>
+            <h3 class="font-heading text-base leading-snug font-bold">โจ๊กข้าวกล้องมื้อเช้า ทำง่ายใน 20 นาที</h3>
+            <span class="text-xs text-text-muted">18 พ.ค. 2569 · อ่าน 3 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="1" data-reveal data-delay="0.25">
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/hero-field.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">วิธีปลูก</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ไม่เผาฟาง แล้วจัดการเศษพืชยังไง</h3>
+            <span class="text-xs text-text-muted">2 พ.ค. 2569 · อ่าน 5 นาที</span>
+          </a>
+
+          <!-- หน้า 2 -->
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="2" data-reveal hidden>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/products/garlic.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">ความยั่งยืน</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ทำไมเราเลือกไม่ใช้พลาสติกหุ้มผลผลิต</h3>
+            <span class="text-xs text-text-muted">20 เม.ย. 2569 · อ่าน 4 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="2" data-reveal hidden>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/story-soil.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">เรื่องราวสวน</span>
+            <h3 class="font-heading text-base leading-snug font-bold">12 ปีที่สวนป่าดีบุญ เปลี่ยนดินตายให้กลับมามีชีวิต</h3>
+            <span class="text-xs text-text-muted">8 เม.ย. 2569 · อ่าน 7 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="2" data-reveal hidden>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/story-recipe.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">สูตรอาหาร</span>
+            <h3 class="font-heading text-base leading-snug font-bold">น้ำผึ้งป่ากับชาสมุนไพร เมนูคลายร้อนหน้าฝน</h3>
+            <span class="text-xs text-text-muted">25 มี.ค. 2569 · อ่าน 3 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="2" data-reveal hidden>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/products/shallot.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">คนของสวน</span>
+            <h3 class="font-heading text-base leading-snug font-bold">แม่จันทร์ กับตะกร้าหอมแดงใบสุดท้ายของฤดู</h3>
+            <span class="text-xs text-text-muted">14 มี.ค. 2569 · อ่าน 5 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="2" data-reveal hidden>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/products/bamboo.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">แนวคิด</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ส่วนเกิน ไม่ใช่ผลผลิตหลัก — ปรัชญาที่มาก่อนธุรกิจ</h3>
+            <span class="text-xs text-text-muted">2 มี.ค. 2569 · อ่าน 6 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="2" data-reveal hidden>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/story-soil.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">วิธีปลูก</span>
+            <h3 class="font-heading text-base leading-snug font-bold">กำจัดวัชพืชด้วยมือ ทำไมเรายังทำแบบเดิม</h3>
+            <span class="text-xs text-text-muted">19 ก.พ. 2569 · อ่าน 4 นาที</span>
+          </a>
+
+          <!-- หน้า 3 -->
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="3" data-reveal hidden>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/hero-field.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">ความยั่งยืน</span>
+            <h3 class="font-heading text-base leading-snug font-bold">น้ำในสวน หมุนเวียนกลับมาใช้ยังไงบ้าง</h3>
+            <span class="text-xs text-text-muted">5 ก.พ. 2569 · อ่าน 5 นาที</span>
+          </a>
+          <a href="#" class="art-card flex flex-col gap-2.5 no-underline" data-art-card="3" data-reveal hidden>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream">
+              <img src="./images/pages/index/story-recipe.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">สูตรอาหาร</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ไข่ไก่อารมณ์ดี ทำเมนูอะไรได้บ้างใน 1 สัปดาห์</h3>
+            <span class="text-xs text-text-muted">22 ม.ค. 2569 · อ่าน 4 นาที</span>
+          </a>
+        </div>
+
+        <!-- ================= Pagination ================= -->
+        <nav class="mt-12 flex items-center justify-center gap-2.5" data-art-pagination aria-label="เลขหน้าบทความ">
+          <button type="button" class="art-page-arrow flex size-9.5 items-center justify-center rounded-full border border-border-soft bg-white text-text-primary" data-art-prev aria-label="หน้าก่อนหน้า">←</button>
+          <div class="flex items-center gap-1">
+            <button type="button" class="art-page-num is-active size-9.5 rounded-full font-heading text-sm font-semibold" data-art-page-num="1">1</button>
+            <button type="button" class="art-page-num size-9.5 rounded-full font-heading text-sm font-semibold" data-art-page-num="2">2</button>
+            <button type="button" class="art-page-num size-9.5 rounded-full font-heading text-sm font-semibold" data-art-page-num="3">3</button>
+          </div>
+          <button type="button" class="art-page-arrow flex size-9.5 items-center justify-center rounded-full border border-border-soft bg-white text-text-primary" data-art-next aria-label="หน้าถัดไป">→</button>
+        </nav>
+      </section>
+    </main>
+
+    <footer-component></footer-component>
+  </body>
+</html>

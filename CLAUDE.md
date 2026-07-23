@@ -47,12 +47,32 @@ repo ต้นทางคือ `boilerplate-static-web` — เจอของ
 
 ## สถานะ
 
-| Phase | ขอบเขต | สถานะ |
-|---|---|---|
-| 1 | token + navbar/footer + `index.html` | เสร็จ |
-| 2+ | `products` `product` `cart` `about` `articles` `faq` `account` | ยังไม่เริ่ม |
+ครบทั้ง 8 หน้าตาม `prototype/` แล้ว — `index` `cart` `products` `product` `faq` `about` `account` `articles`
 
-ลิงก์ในหน้า index ชี้ไป 7 หน้าที่ยังไม่มีไฟล์ — จะ 404 จนกว่าจะทำ Phase ถัดไป
+**หน้าใหม่ต้องมีอะไรบ้าง** (เผื่อมีหน้าเพิ่มในอนาคต)
+
+- `<body data-nav-solid>` ถ้าหน้านั้นพื้นครีมตั้งแต่บนสุด (ไม่มี hero รูปเต็มจอ)
+  ไม่งั้น nav ขาวบนพื้นครีมจะมองไม่เห็น — `modules/navbar.js` อ่าน attribute นี้
+- `<body data-cart-page>` เฉพาะหน้า cart — กันไม่ให้ไอคอนตะกร้าบน nav เปิด drawer ทับรายการที่ดูอยู่
+- `main` เว้นบนด้วย `pt-26 max-md:pt-22` เพราะ nav เป็น `fixed`
+
+**รูปที่ยังไม่มีไฟล์จริง** — วางไฟล์แล้วเติม `<img class="size-full object-cover">` แทน div เปล่าได้เลย
+
+| หน้า | จุดที่รอรูป | ตอนนี้เห็นอะไร |
+|---|---|---|
+| `products` | น้ำผึ้ง, ไข่ไก่, กล้วยตากแห้ง, พริกแห้ง | เฉดพื้นหลัง `.harvest-card-photo--honey` ฯลฯ ใน `input.css` |
+
+วางไฟล์ที่ `images/products/<ชื่อ>.webp` แล้วเติม `<img>` ในการ์ดได้เลย
+
+**หน้าที่ใช้รูปยืมไปก่อน** (ไม่ใช่รูปเฉพาะจุดนั้นจริง) — วนใช้ `hero-field` / `story-soil` /
+`story-harvest` / `story-recipe` (จาก `images/pages/index/`) กับรูปสินค้า (rice, garlic, shallot, bamboo)
+ตามธีมที่ใกล้เคียงที่สุด มีรูปจริงเมื่อไหร่ค่อยเปลี่ยน `src` ตรงจุดนั้น
+
+| หน้า | จุดที่ยืมรูป |
+|---|---|
+| `about` | รูป "จุดเริ่มต้น" (story-soil) + "ทำไมมีจำกัด" (story-harvest) |
+| `product` | การ์ดเมนู 3 ใบใน "กินยังไงให้อร่อย" (rice, story-recipe ×2) |
+| `articles` | featured + การ์ดทั้ง 14 ใบ |
 
 ## Tailwind ก่อน ค่อยสร้าง token
 
@@ -118,6 +138,15 @@ Hero ใช้ `--fs-hero` = `clamp(2.5rem, 6vw, 4.5rem)` ตาม prototype (7
 - **ตะกร้าเป็น display-only ใน Phase 1** — drawer เปิด/ปิดได้ แต่รายการเป็นตัวอย่าง hardcode
   ไม่มี store ไม่นับจำนวน ไม่คำนวณยอด (ยกไปทำตอนหน้า cart)
 
+## animation เรียกจากไฟล์ของแต่ละหน้า
+
+`scripts/modules/` เก็บเฉพาะ**พฤติกรรม** (nav state, overlays, smooth scroll)
+ส่วน**การเคลื่อนไหว**เรียกจาก `scripts/pages/<name>.js` เสมอ แม้จะซ้ำกันหลายหน้า
+เช่น reveal ของ `.harvest-card` กับ ROOTS wordmark ที่ index/products/cart เรียกเหมือนกัน
+— ยอมซ้ำ 2 บรรทัดเพื่อให้เปิดไฟล์หน้าไหนก็เห็นครบว่าหน้านั้นขยับอะไรบ้าง
+
+ตัวช่วยกลางอยู่ที่ `modules/animation.js` (`revealOnce`, `spring`, `springSoft`, `animateBreakpoint`)
+
 ## CSS หรือ Motion
 
 | ทำอะไร | เขียนที่ไหน |
@@ -154,12 +183,12 @@ images/
 ทุกปุ่มอยู่ในระบบ `.btn` เดียวกัน — radius 8px, Prompt 700, fill-sweep ตอน hover
 `.btn-primary` (เขียว) · `.btn-ghost` (เหลือง) · `.btn-cream` · `.btn-outline` ·
 `.btn-outline-light` (โปร่งบนพื้นรูป) · `.btn-line` (สีแบรนด์ LINE)
-ตัวปรับ: `.btn-sm` · `.btn-full` · `.btn-arrow` (+ `<span class="btn-arrow-icon">`) · `.btn-magnetic`
+ตัวปรับ: `.btn-sm` · `.btn-full` · `.btn-arrow` (+ `<span class="btn-arrow-icon">`)
 
 ## สิ่งที่ตัดออกจาก prototype โดยตั้งใจ
 
 - **การ์ดสินค้าไม่พลิกแล้ว** — เอา `.harvest-card-back` + ปุ่ม (i) ออกทั้งหมด อย่าใส่กลับ
-- **magnetic ไม่ใช้กับ CTA ของ hero** — เหลือใช้ที่ปุ่มชำระเงินใน cart drawer ที่เดียว
+- **ไม่มีปุ่ม magnetic (ขยับตามเมาส์) เลยทั้งเว็บ** — ถอดออกจากทุกปุ่มรวมถึงปุ่มชำระเงินใน cart drawer
 - **tilt ของการ์ด story ถูกถอดออก** — `data-tilt` / `data-depth` ใน markup กับ
   `transform-style: preserve-3d` ใน `pages/index.css` ยังอยู่เฉยๆ เผื่ออยากใส่กลับ
 

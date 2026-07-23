@@ -13,11 +13,11 @@ const setCartOpen = (open) => {
   cartScrim?.classList.toggle("is-open", open);
 };
 
-// ปุ่มตะกร้าบน nav เป็นลิงก์ไปหน้า cart จริง — คลิกปกติให้ไปตามลิงก์
-// ส่วนปุ่ม "เพิ่มลงตะกร้า" ในหน้าเปิด drawer แทน
-document.querySelectorAll("[data-add-to-cart]").forEach((btn) =>
-  btn.addEventListener("click", () => setCartOpen(true)),
-);
+// เปิด drawer ได้สองทาง: ไอคอนตะกร้าบน nav กับปุ่ม "เพิ่มลงตะกร้า" ในหน้า
+// ยกเว้นหน้า cart เอง — เปิด drawer ทับรายการที่ดูอยู่ไม่ได้ช่วยอะไร
+const cartToggles = document.body.dataset.cartPage === undefined ? "[data-cart-toggle], [data-add-to-cart]" : "[data-add-to-cart]";
+
+document.querySelectorAll(cartToggles).forEach((btn) => btn.addEventListener("click", () => setCartOpen(true)));
 
 document.querySelector("[data-cart-close]")?.addEventListener("click", () => setCartOpen(false));
 cartScrim?.addEventListener("click", () => setCartOpen(false));

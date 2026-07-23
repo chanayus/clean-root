@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>คำถามที่พบบ่อย — CleanRoots</title>
+    <meta name="description" content="รวมคำถามที่ลูกค้าถามบ่อยเรื่องการสั่งซื้อ จัดส่ง ผลผลิต และการคืนสินค้า" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/faq.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/faq.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ -->
+  <body data-nav-solid>
+    <navbar-component></navbar-component>
+
+    <main class="flex-1 pt-26 max-md:pt-22">
+      <nav class="container flex items-center gap-2 py-4 text-caption text-text-muted" aria-label="เส้นทางหน้า">
+        <a href="index.html" class="hover:text-cr-green">หน้าแรก</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-text-primary" aria-current="page">คำถามที่พบบ่อย</span>
+      </nav>
+
+      <section class="mx-auto max-w-190 px-12 pt-2 text-center max-lg:px-8 max-md:px-6">
+        <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">ศูนย์ช่วยเหลือ</span>
+        <h1 class="mb-3 text-[clamp(28px,4vw,38px)]">คำถามที่พบบ่อย</h1>
+        <p class="leading-relaxed text-text-secondary">รวมคำถามที่ลูกค้าถามเข้ามาบ่อยที่สุด ตอบตรงๆ แบบชาวสวน ถ้ายังไม่ตรงที่สงสัย ทักเราได้เลย</p>
+      </section>
+
+      <div class="mx-auto max-w-190 px-12 pt-10 pb-5 max-lg:px-8 max-md:px-6">
+        <!-- ================= สั่งซื้อ & ชำระเงิน ================= -->
+        <section class="mb-10" data-reveal>
+          <h2 class="faq-group-title">สั่งซื้อ &amp; ชำระเงิน</h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q1-btn" aria-expanded="false" aria-controls="q1" data-faq-toggle>
+                <span>สั่งซื้อยังไง ต้องสมัครสมาชิกก่อนไหม</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q1" role="region" aria-labelledby="q1-btn">
+                <p>ไม่ต้องสมัครสมาชิกก่อนก็สั่งซื้อได้ เลือกสินค้า กดเพิ่มลงตะกร้า แล้วกรอกที่อยู่จัดส่งตอนชำระเงินได้เลย แต่ถ้าสมัครสมาชิกไว้ จะติดตามคำสั่งซื้อและสั่งซ้ำได้ง่ายกว่า</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q2-btn" aria-expanded="false" aria-controls="q2" data-faq-toggle>
+                <span>ชำระเงินได้ช่องทางไหนบ้าง</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q2" role="region" aria-labelledby="q2-btn">
+                <p>รองรับบัตรเครดิต/เดบิต, พร้อมเพย์ (โอนผ่าน QR) และ LINE Pay ผ่านระบบชำระเงินที่ปลอดภัย</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q3-btn" aria-expanded="false" aria-controls="q3" data-faq-toggle>
+                <span>มีขั้นต่ำในการสั่งซื้อไหม</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q3" role="region" aria-labelledby="q3-btn">
+                <p>ไม่มีขั้นต่ำ สั่งกี่บาทก็ได้ แต่ถ้ายอดครบ ฿500 จะได้ส่งฟรีทั่วประเทศ</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q4-btn" aria-expanded="false" aria-controls="q4" data-faq-toggle>
+                <span>ยกเลิกหรือแก้ไขคำสั่งซื้อได้ไหม</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q4" role="region" aria-labelledby="q4-btn">
+                <p>ยกเลิกหรือแก้ไขได้ก่อนที่จะเข้าสู่ขั้นตอนจัดส่ง ทักมาทาง LINE หรืออีเมลแจ้งเลขคำสั่งซื้อ เราจะรีบดำเนินการให้เร็วที่สุด</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= การจัดส่ง ================= -->
+        <section class="mb-10" data-reveal>
+          <h2 class="faq-group-title">การจัดส่ง</h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q5-btn" aria-expanded="false" aria-controls="q5" data-faq-toggle>
+                <span>ใช้เวลาจัดส่งนานแค่ไหน</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q5" role="region" aria-labelledby="q5-btn">
+                <p>โดยทั่วไปจัดส่งภายใน 2-3 วันทำการ หลังยืนยันคำสั่งซื้อ เราเก็บเกี่ยว/แพ็คใหม่ก่อนส่งทุกครั้ง ไม่ใช่สต๊อกค้างไว้</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q6-btn" aria-expanded="false" aria-controls="q6" data-faq-toggle>
+                <span>ส่งต่างจังหวัดได้ไหม</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q6" role="region" aria-labelledby="q6-btn">
+                <p>ส่งได้ทั่วประเทศไทย ผ่านบริษัทขนส่งที่เราคัดเลือกเพื่อให้ผลผลิตถึงมือคุณสดที่สุด</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q7-btn" aria-expanded="false" aria-controls="q7" data-faq-toggle>
+                <span>สินค้าตามฤดูกาล จะรู้ได้ยังไงว่ามาแล้ว</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q7" role="region" aria-labelledby="q7-btn">
+                <p>กดปุ่ม "แจ้งเตือนผ่าน LINE" ที่หน้าสินค้านั้นๆ ได้เลย เราจะแจ้งทันทีที่ผลผลิตพร้อมส่ง</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= ผลผลิต & คุณภาพ ================= -->
+        <section class="mb-10" data-reveal>
+          <h2 class="faq-group-title">ผลผลิต &amp; คุณภาพ</h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q8-btn" aria-expanded="false" aria-controls="q8" data-faq-toggle>
+                <span>ผลผลิตปลอดสารเคมีจริงไหม มีใบรับรองไหม</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q8" role="region" aria-labelledby="q8-btn">
+                <p>
+                  เราไม่ใช้สารเคมีทุกขั้นตอนจริง แต่ปัจจุบันยังไม่มีใบรับรองออร์แกนิกอย่างเป็นทางการ เพราะสวนเราเล็กและเพิ่งเริ่มทำเรื่องขอใบรับรอง ถ้าอยากรู้รายละเอียดวิธีปลูก อ่านเพิ่มได้ที่หน้า
+                  "เรื่องราวของเรา"
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q9-btn" aria-expanded="false" aria-controls="q9" data-faq-toggle>
+                <span>ทำไมบางอย่างถึงมีจำกัด หรือหมดบ่อย</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q9" role="region" aria-labelledby="q9-btn">
+                <p>เราผลิตเท่าที่ดูแลได้ทั่วถึงจริง ไม่เร่งปลูกนอกฤดู หมดแล้วก็คือหมด จนกว่าจะถึงรอบเก็บเกี่ยวหน้า — เป็นความตั้งใจ ไม่ใช่ปัญหาสต๊อก</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q10-btn" aria-expanded="false" aria-controls="q10" data-faq-toggle>
+                <span>เก็บรักษาผลผลิตยังไงให้อยู่ได้นาน</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q10" role="region" aria-labelledby="q10-btn">
+                <p>แต่ละสินค้ามีวิธีเก็บรักษาต่างกัน ดูรายละเอียดได้ที่ส่วน "ข้อมูลจริง" ในหน้าสินค้านั้นๆ โดยทั่วไปแนะนำเก็บที่แห้ง ไม่โดนแดด</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= คืนสินค้า & ปัญหา ================= -->
+        <section data-reveal>
+          <h2 class="faq-group-title">คืนสินค้า &amp; ปัญหา</h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q11-btn" aria-expanded="false" aria-controls="q11" data-faq-toggle>
+                <span>ได้ของไม่ตรงหรือของเสีย ทำยังไง</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q11" role="region" aria-labelledby="q11-btn">
+                <p>ทักหาเราทาง LINE หรืออีเมลพร้อมรูปสินค้าภายใน 3 วันหลังได้รับ เราจะจัดส่งของใหม่หรือคืนเงินให้ตามความเหมาะสม ไม่ต้องกังวล</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-q" id="q12-btn" aria-expanded="false" aria-controls="q12" data-faq-toggle>
+                <span>เปลี่ยน/คืนสินค้าได้ไหมถ้าแค่ไม่ถูกใจ</span>
+                <span class="faq-icon" aria-hidden="true"></span>
+              </button>
+
+              <div class="faq-a" id="q12" role="region" aria-labelledby="q12-btn">
+                <p>เพราะเป็นของสดจากสวน เราไม่รับคืนกรณีเปลี่ยนใจ แต่ถ้าเกี่ยวกับคุณภาพสินค้า ติดต่อเราได้เสมอ</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ================= ยังหาคำตอบไม่เจอ ================= -->
+      <section class="bg-panel-light px-12 py-18 text-center max-lg:px-8 max-md:px-6">
+        <div class="mx-auto max-w-130" data-reveal>
+          <h2 class="mb-3 text-[clamp(22px,3vw,28px)]">ยังหาคำตอบไม่เจอ?</h2>
+          <p class="mb-6 text-sm text-text-secondary">ทักหาเราได้เลย เราตอบเองทุกข้อความ ไม่ใช่บอทตอบอัตโนมัติ</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <a href="#" class="btn btn-line">เพิ่มเพื่อนใน LINE</a>
+            <a href="#" class="btn btn-outline">ส่งอีเมลหาเรา</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer-component></footer-component>
+  </body>
+</html>

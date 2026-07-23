@@ -1,0 +1,72 @@
+/* Styles เฉพาะหน้า articles
+   ใส่ที่นี่เฉพาะของที่เข้าเกณฑ์ใน
+   .claude/skills/static-site-from-prototype/references/css-conventions.md
+   ของที่ใช้ซ้ำข้ามหน้าให้ไป styles/tailwind/input.css แทน */
+
+/* ================= การ์ดบทความ ================= */
+/* hover ยกการ์ด + รูปซูมเข้า — ซ้อน 2 ชั้น (:hover ของการ์ด ควบคุมรูปข้างใน) ต้องเขียน CSS */
+
+* {
+  scroll-padding: 9.375rem;
+}
+.art-featured-card,
+.art-card {
+  transition: transform 0.3s var(--spring);
+}
+
+.art-featured-card:hover,
+.art-card:hover {
+  transform: translateY(-4px);
+}
+
+.art-featured-card:hover {
+  box-shadow: var(--shadow-card);
+}
+
+.art-featured-photo img,
+.art-card-photo img {
+  transition: transform 0.5s var(--spring);
+}
+
+.art-featured-card:hover .art-featured-photo img,
+.art-card:hover .art-card-photo img {
+  transform: scale(1.05);
+}
+
+/* ================= pagination ================= */
+.art-page-arrow {
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    opacity 0.2s;
+}
+
+.art-page-arrow:hover:not(:disabled) {
+  background: var(--panel-green-light);
+  border-color: var(--cr-green);
+}
+
+.art-page-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.art-page-num {
+  background: none;
+  color: var(--text-secondary);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.25s var(--spring);
+}
+
+.art-page-num:hover {
+  background: var(--panel-green-light);
+  color: var(--cr-green);
+}
+
+.art-page-num.is-active {
+  background: var(--cr-green);
+  color: #fff;
+  transform: scale(1.05);
+}

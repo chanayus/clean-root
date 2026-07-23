@@ -29,20 +29,23 @@ class Footer extends HTMLElement {
 
           <div class="footer-col" aria-label="ซื้อของ">
             <div class="footer-col-head">ซื้อของ</div>
-            <a href="">ผลผลิตประจำฤดู</a>
-            <a href="">ข้าวกล้องออร์แกนิก</a>
+            <a href="products.html">ผลผลิตประจำฤดู</a>
+            <a href="product.html">ข้าวกล้องออร์แกนิก</a>
           </div>
-          <div class="footer-col" aria-label="รู้จักสวน">
+
+          <!-- จอเล็กเหลือ 2 คอลัมน์ ถ้าเรียงตามลำดับเดิมคอลัมน์นี้จะไปคู่กับ "ซื้อของ"
+               แล้ว "ติดต่อ" ตกไปอยู่แถวล่างตัวเดียว — ดันไปท้ายแทนให้แถวบนเต็ม -->
+          <div class="footer-col max-lg:order-last" aria-label="รู้จักสวน">
             <div class="footer-col-head">รู้จักสวน</div>
-            <a href="">เรื่องราวของเรา</a>
-            <a href="">บันทึกจากสวน</a>
+            <a href="about.html">เรื่องราวของเรา</a>
+            <a href="articles.html">บันทึกจากสวน</a>
           </div>
+
           <div class="footer-col" aria-label="ติดต่อ & ช่วยเหลือ">
             <div class="footer-col-head">ติดต่อ &amp; ช่วยเหลือ</div>
-            <a href="">คำสั่งซื้อของฉัน</a>
-            <a href="">คำถามที่พบบ่อย</a>
+            <a href="account.html">คำสั่งซื้อของฉัน</a>
+            <a href="faq.html">คำถามที่พบบ่อย</a>
           </div>
-      
         </div>
 
         <!-- แยกทีละตัวเพื่อให้ไล่ขึ้นทีละตัวได้ — ต่อกันไม่มีเว้นวรรค

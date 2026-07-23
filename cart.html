@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ตะกร้าสินค้า — CleanRoots</title>
+    <meta name="description" content="ตรวจรายการผลผลิตในตะกร้า ปรับจำนวน ใส่โค้ดส่วนลด แล้วดำเนินการชำระเงิน" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/cart.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/cart.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ
+       data-cart-page: กันไม่ให้ไอคอนตะกร้าบน nav เปิด drawer ทับรายการที่ดูอยู่ -->
+  <body data-nav-solid data-cart-page>
+    <navbar-component></navbar-component>
+
+    <main class="flex-1 pt-26 max-md:pt-22">
+      <nav class="container flex items-center gap-2 py-4 text-caption text-text-muted" aria-label="เส้นทางหน้า">
+        <a href="index.html" class="hover:text-cr-green">หน้าแรก</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-text-primary" aria-current="page">ตะกร้าสินค้า</span>
+      </nav>
+
+      <section class="container pt-2 pb-25">
+        <div class="mb-8 flex flex-wrap items-baseline justify-between gap-4">
+          <h1 class="text-h2">ตะกร้าสินค้าของคุณ</h1>
+          <a href="products.html" class="cart-continue">← เลือกซื้อต่อ</a>
+        </div>
+
+        <div class="grid grid-cols-[1.6fr_1fr] items-start gap-12 max-xl:grid-cols-1 max-xl:gap-8">
+          <!-- รายการในตะกร้า — mockup hardcode ไว้ตรงนี้
+               scripts/pages/cart.js อ่าน data-price / data-stock / data-unit จาก DOM
+               แล้วคุมจำนวนกับยอดรวมให้ ไม่ได้สร้าง markup เอง -->
+          <ul class="flex list-none flex-col gap-4" data-cart-items aria-label="รายการสินค้าในตะกร้า">
+            <li class="cart-row ml-0 grid list-none grid-cols-[88px_1fr_auto] items-center gap-4.5 rounded-2xl border border-border-soft bg-white p-4 max-sm:grid-cols-[64px_1fr]" data-cart-row data-price="120" data-stock="8" data-unit="กก.">
+              <div class="size-22 overflow-hidden rounded-lg bg-panel-cream max-sm:size-16">
+                <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิก" width="176" height="176" class="size-full object-cover" />
+              </div>
+              <div class="min-w-0">
+                <h2 class="mb-1 font-heading text-h6 font-bold">ข้าวกล้องออร์แกนิก</h2>
+                <p class="mb-2 text-xs text-text-muted">สวนป่าดีบุญ · เก็บเกี่ยว 2568</p>
+                <p class="text-[11.5px] text-cr-green" data-stock-msg></p>
+              </div>
+              <div class="flex flex-col items-end gap-2.5 max-sm:col-span-full max-sm:flex-row max-sm:items-center max-sm:justify-between max-sm:border-t max-sm:border-border-soft max-sm:pt-2.5">
+                <span class="font-heading font-bold whitespace-nowrap" data-line-total></span>
+                <div class="cart-stepper">
+                  <button type="button" data-dec aria-label="ลดจำนวนข้าวกล้องออร์แกนิก">−</button>
+                  <span data-qty aria-live="polite">2</span>
+                  <button type="button" data-inc aria-label="เพิ่มจำนวนข้าวกล้องออร์แกนิก">+</button>
+                </div>
+                <button type="button" class="font-heading text-xs font-bold text-cr-rust hover:underline" data-remove>ลบออก</button>
+              </div>
+            </li>
+
+            <li class="cart-row ml-0 grid list-none grid-cols-[88px_1fr_auto] items-center gap-4.5 rounded-2xl border border-border-soft bg-white p-4 max-sm:grid-cols-[64px_1fr]" data-cart-row data-price="140" data-stock="5" data-unit="250ก.">
+              <div class="size-22 overflow-hidden rounded-lg bg-panel-cream max-sm:size-16">
+                <img src="./images/products/garlic.webp" alt="กระเทียม" width="176" height="176" class="size-full object-cover" />
+              </div>
+              <div class="min-w-0">
+                <h2 class="mb-1 font-heading text-h6 font-bold">กระเทียม</h2>
+                <p class="mb-2 text-xs text-text-muted">สวนป่าดีบุญ · ตามฤดูกาล</p>
+                <p class="text-[11.5px] text-cr-green" data-stock-msg></p>
+              </div>
+              <div class="flex flex-col items-end gap-2.5 max-sm:col-span-full max-sm:flex-row max-sm:items-center max-sm:justify-between max-sm:border-t max-sm:border-border-soft max-sm:pt-2.5">
+                <span class="font-heading font-bold whitespace-nowrap" data-line-total></span>
+                <div class="cart-stepper">
+                  <button type="button" data-dec aria-label="ลดจำนวนกระเทียม">−</button>
+                  <span data-qty aria-live="polite">1</span>
+                  <button type="button" data-inc aria-label="เพิ่มจำนวนกระเทียม">+</button>
+                </div>
+                <button type="button" class="font-heading text-xs font-bold text-cr-rust hover:underline" data-remove>ลบออก</button>
+              </div>
+            </li>
+          </ul>
+
+          <div class="col-span-full rounded-2xl bg-panel-cream px-6 py-20 text-center" data-cart-empty hidden>
+            <span class="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-white text-cr-green">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+            </span>
+            <h2 class="mb-2 text-h5">ตะกร้าของคุณว่างเปล่า</h2>
+            <p class="mb-6 text-sm text-text-muted">ยังไม่มีผลผลิตในตะกร้า ลองดูของประจำฤดูนี้กันเถอะ</p>
+            <a href="products.html" class="btn btn-primary btn-arrow">ดูผลผลิตประจำฤดู <span class="btn-arrow-icon"></span></a>
+          </div>
+
+          <!-- สรุปคำสั่งซื้อ — ค้างไว้ข้างจอตอนเลื่อนอ่านรายการยาวๆ -->
+          <aside class="sticky top-25 max-xl:static" data-cart-summary aria-label="สรุปคำสั่งซื้อ">
+            <div class="rounded-2xl border border-border-soft bg-white p-7 shadow-card">
+              <h2 class="mb-5 text-h5">สรุปคำสั่งซื้อ</h2>
+
+              <div class="cart-ship mb-5 rounded-lg bg-panel-light p-3.5" data-cart-ship>
+                <p class="mb-2 text-caption text-cr-green" data-cart-ship-msg></p>
+                <div class="h-1.5 overflow-hidden rounded-full bg-cr-green/20">
+                  <span class="cart-ship-fill block h-full w-0 rounded-full bg-cr-green" data-cart-ship-fill></span>
+                </div>
+              </div>
+
+              <div class="mb-4 flex flex-col gap-2.5 text-sm text-text-secondary">
+                <div class="flex justify-between"><span>ยอดสินค้า</span><span data-summary-subtotal>฿0</span></div>
+                <div class="flex justify-between" data-summary-discount-row hidden>
+                  <span>ส่วนลด <span data-summary-discount-code></span></span>
+                  <span class="text-cr-rust" data-summary-discount>-฿0</span>
+                </div>
+                <div class="flex justify-between"><span>ค่าจัดส่ง</span><span data-summary-shipping>คำนวณตอนชำระเงิน</span></div>
+              </div>
+
+              <div class="mb-2 flex gap-2">
+                <input
+                  type="text"
+                  class="min-w-0 flex-1 rounded-lg border border-border-soft px-3.5 py-2.5 text-caption text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-cr-green"
+                  placeholder="โค้ดส่วนลด / โค้ดจากครีเอเตอร์"
+                  data-discount-input
+                  aria-label="โค้ดส่วนลด"
+                />
+                <button type="button" class="cart-discount-btn" data-discount-apply>ใช้โค้ด</button>
+              </div>
+              <p class="mb-4 px-0.5 text-xs" data-discount-msg hidden></p>
+
+              <div class="mb-5 flex justify-between border-t border-border-soft pt-3.5 font-heading text-h5 font-bold text-cr-green">
+                <span>ยอดรวม</span><span data-summary-total>฿0</span>
+              </div>
+
+              <p class="mb-4 flex items-start gap-2.5 rounded-lg bg-panel-cream px-3.5 py-3 text-xs leading-relaxed text-text-secondary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-px flex-none text-cr-green" aria-hidden="true"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+                <span>เก็บเกี่ยวสดใหม่ · จัดส่งภายใน 2-3 วันทำการ หลังยืนยันคำสั่งซื้อ</span>
+              </p>
+
+              <button type="button" class="btn btn-primary btn-full btn-arrow mb-3" data-checkout>
+                ดำเนินการชำระเงิน <span class="btn-arrow-icon"></span>
+              </button>
+              <p class="mb-5 text-center text-xs leading-relaxed text-text-muted">
+                ชำระเงินผ่านระบบที่ปลอดภัย · รองรับบัตรเครดิต, พร้อมเพย์ และ LINE Pay
+              </p>
+
+              <ul class="cart-assure flex list-none flex-col gap-2.5 border-t border-border-soft pt-4">
+                <li>เก็บเกี่ยวสดใหม่ ส่งตรงจากสวน</li>
+                <li>ซื้อครบ ฿500 ส่งฟรีทั่วประเทศ</li>
+                <li>ยกเลิก/เปลี่ยนแปลงได้ก่อนจัดส่ง</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <!-- ยืนยันคำสั่งซื้อ — สถานะจำลอง ของจริงจะ redirect ไป checkout ของผู้ให้บริการ -->
+    <div class="order-confirm" data-order-confirm hidden role="dialog" aria-modal="true" aria-labelledby="order-confirm-title">
+      <div class="order-confirm-card w-full max-w-105 rounded-2xl bg-white px-10 py-12 text-center">
+        <span class="mx-auto mb-5 flex size-14 items-center justify-center rounded-full bg-cr-green text-white">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+        </span>
+        <h2 id="order-confirm-title" class="mb-3 text-h4">สั่งซื้อสำเร็จแล้ว</h2>
+        <p class="mb-2 text-sm leading-loose text-text-secondary">
+          ขอบคุณที่ร่วมสนับสนุนสวนป่าดีบุญ เราจะเก็บเกี่ยวและจัดส่งผลผลิตให้คุณโดยเร็วที่สุด
+        </p>
+        <p class="mb-6 font-heading font-semibold">หมายเลขคำสั่งซื้อ #CR-<span data-order-id></span></p>
+        <a href="index.html" class="btn btn-primary btn-arrow">กลับหน้าแรก <span class="btn-arrow-icon"></span></a>
+      </div>
+    </div>
+
+    <footer-component></footer-component>
+  </body>
+</html>

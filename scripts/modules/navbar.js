@@ -19,12 +19,19 @@ mobileNav?.querySelectorAll("a").forEach((link) =>
   link.addEventListener("click", () => mobileNav.classList.remove("active")),
 );
 
-/* ===================== scrolled state ===================== */
+/* ===================== scrolled state =====================
+   หน้าที่ขึ้นต้นด้วย hero รูปเต็มจอ nav เป็นสีขาวทับรูปได้ พอเลย 70vh ค่อยเปลี่ยนเป็นพื้นครีม
+   ส่วนหน้าที่พื้นครีมตั้งแต่บนสุด (cart, faq, ...) ใส่ <body data-nav-solid> ไว้
+   ไม่งั้น nav ขาวบนพื้นครีมจะมองไม่เห็น */
 if (navbar) {
-  const onScroll = () => navbar.classList.toggle("is-scrolled", window.scrollY > window.innerHeight * 0.7);
+  if ("navSolid" in document.body.dataset) {
+    navbar.classList.add("is-scrolled");
+  } else {
+    const onScroll = () => navbar.classList.toggle("is-scrolled", window.scrollY > window.innerHeight * 0.7);
 
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
 }
 
 /* ===================== nav spy ===================== */
@@ -57,6 +64,7 @@ const searchPanel = document.querySelector("[data-search-panel]");
 
 if (searchPanel) {
   const input = searchPanel.querySelector("[data-search-input]");
+  const form = searchPanel.querySelector("[data-search-form]");
 
   const openSearch = () => {
     searchPanel.classList.add("is-open");
@@ -67,6 +75,15 @@ if (searchPanel) {
   document.querySelector("[data-search-toggle]")?.addEventListener("click", openSearch);
   document.querySelector("[data-search-close]")?.addEventListener("click", closeSearch);
   document.addEventListener("keydown", (e) => e.key === "Escape" && closeSearch());
+
+  // input type="search" อยู่ใน <form> แล้ว กด Enter จะยิง submit ให้เอง
+  // ของจริง: ต้องมีหน้า/endpoint ค้นหาจริงรองรับ query ?q= — ตอนนี้พาไปที่ products.html ก่อน
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const query = input?.value.trim();
+    if (!query) return;
+    window.location.href = `products.html?q=${encodeURIComponent(query)}`;
+  });
 
   // กดคำค้นยอดนิยมแล้วเติมลงช่องค้นหาให้เลย
   searchPanel.querySelectorAll(".search-suggest").forEach((btn) =>

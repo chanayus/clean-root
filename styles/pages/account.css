@@ -1,0 +1,60 @@
+/* Styles เฉพาะหน้า account
+   ใส่ที่นี่เฉพาะของที่เข้าเกณฑ์ใน
+   .claude/skills/static-site-from-prototype/references/css-conventions.md
+   ของที่ใช้ซ้ำข้ามหน้าให้ไป styles/tailwind/input.css แทน */
+
+/* แถบแท็บ — ขีดเขียวเลื่อนเข้าใต้แท็บที่ active ด้วย ::after + scaleX
+   ต้องเขียน CSS เพราะมี pseudo-element ซ้อนกับ state 2 ชั้น (:hover, .is-active) */
+.acc-tab {
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.acc-tab::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--cr-green);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s var(--spring);
+}
+
+.acc-tab:hover {
+  color: var(--text-primary);
+}
+
+.acc-tab.is-active {
+  color: var(--cr-green);
+}
+
+.acc-tab.is-active::after {
+  transform: scaleX(1);
+}
+
+/* แผงเนื้อหา — สลับด้วยการ toggle class ไม่ใช่ scroll reveal จึงใช้ CSS ไม่ใช่ Motion
+   ต้องมี @keyframes เพื่อให้ fade เล่นซ้ำได้ทุกครั้งที่สลับแท็บ */
+.acc-panel {
+  display: none;
+}
+
+.acc-panel.is-active {
+  display: block;
+  animation: acc-panel-in 0.4s var(--spring);
+}
+
+@keyframes acc-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

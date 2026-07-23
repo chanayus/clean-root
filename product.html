@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ข้าวกล้องออร์แกนิก — CleanRoots</title>
+    <meta name="description" content="ข้าวกล้องออร์แกนิกจากสวนป่าดีบุญ ไม่ใช้สารเคมี ไม่เผาฟาง เก็บเกี่ยวปีละครั้งตามรอบนาปี" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/product.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/product.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ
+       max-lg:pb-20: เว้นที่ให้แถบซื้อที่ลอยล่างจอตอนจอเล็ก -->
+  <body data-nav-solid class="max-lg:pb-20">
+    <navbar-component></navbar-component>
+
+    <main class="flex-1 pt-26 max-md:pt-22">
+      <nav class="container flex flex-wrap items-center gap-2 py-4 text-caption text-text-muted" aria-label="เส้นทางหน้า">
+        <a href="index.html" class="hover:text-cr-green">หน้าแรก</a>
+        <span aria-hidden="true">/</span>
+        <a href="products.html" class="hover:text-cr-green">ผลผลิตประจำฤดู</a>
+        <span aria-hidden="true">/</span>
+        <span class="text-text-primary" aria-current="page">ข้าวกล้องออร์แกนิก</span>
+      </nav>
+
+      <!-- ================= รูป + กล่องซื้อ ================= -->
+      <section class="container grid grid-cols-[1.3fr_1fr] items-start gap-14 pb-16 max-lg:grid-cols-1 max-lg:gap-8">
+        <!-- แกลเลอรี: ตอนนี้มีรูปจริงใบเดียว
+             พอมีรูปมุมอื่นแล้วเพิ่มแถบ thumb ได้ — scripts/pages/product.js รองรับไว้แล้ว
+             โครง: <button class="pd-thumb" data-thumb="./images/products/xxx.webp"><img …></button> -->
+        <div data-reveal>
+          <div class="aspect-square overflow-hidden rounded-2xl bg-panel-cream">
+            <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิกจากสวนป่าดีบุญ" width="900" height="900" class="pd-gallery-main size-full object-cover" data-gallery-main />
+          </div>
+          <div class="mt-3.5 grid grid-cols-4 gap-3" data-gallery-thumbs></div>
+        </div>
+
+        <div>
+          <div class="sticky top-25 rounded-2xl border border-border-soft bg-white p-7 shadow-card max-lg:static">
+            <span class="mb-2.5 block text-xs font-semibold tracking-wide text-cr-green">สวนป่าดีบุญ · แปลง 3 · เก็บเกี่ยว 2568</span>
+            <h1 class="mb-2.5 text-h2">ข้าวกล้องออร์แกนิก</h1>
+
+            <div class="mb-4 flex items-center gap-2">
+              <span class="tracking-wide text-cr-gold">★★★★★</span>
+              <span class="text-caption text-text-muted">4.9 · 128 รีวิว</span>
+            </div>
+
+            <p class="mb-4 font-heading text-[2rem] font-bold text-cr-green">
+              ฿120 <span class="text-sm font-medium text-text-muted">/ กก.</span>
+            </p>
+
+            <p class="mb-5 flex items-center gap-2 rounded-lg bg-panel-light px-3.5 py-2.5 text-caption text-text-secondary">
+              <span class="pd-stock-dot" aria-hidden="true"></span>
+              มีสินค้า · เหลือ 8 กก. จากรอบเก็บเกี่ยวนี้
+            </p>
+
+            <div class="mb-4 flex items-center justify-between">
+              <span class="font-heading text-caption font-semibold">จำนวน (กก.)</span>
+              <div class="pd-stepper">
+                <button type="button" data-qty-dec aria-label="ลดจำนวน">−</button>
+                <span data-qty-value aria-live="polite">1</span>
+                <button type="button" data-qty-inc aria-label="เพิ่มจำนวน">+</button>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-full mb-5" data-add-to-cart>
+              เพิ่มลงตะกร้า · <span data-buy-total>฿120</span>
+            </button>
+
+            <ul class="pd-assure flex list-none flex-col gap-2.5 border-t border-border-soft pt-4">
+              <li>เก็บเกี่ยวสดใหม่ ส่งตรงจากสวน</li>
+              <li>ปลอดสารเคมีทุกขั้นตอน</li>
+              <li>ซื้อครบ ฿500 ส่งฟรีทั่วประเทศ</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ที่มา ================= -->
+      <section class="container">
+        <div class="rounded-4xl bg-panel-light px-12 py-16 max-lg:px-8 max-md:px-6">
+          <div class="mb-10 max-w-160" data-reveal>
+            <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">01 · ที่มา</span>
+            <h2 class="mb-3 text-[clamp(24px,3vw,32px)] leading-snug">ข้าวที่เริ่มดีตั้งแต่ผืนดิน</h2>
+            <p class="leading-loose text-text-secondary">
+              เราไม่เร่งให้ต้นข้าวโต ไม่ใช้สารเร่ง ไม่เผาฟาง ปล่อยให้ดินฟื้นตัวเองตามรอบธรรมชาติ
+              กว่าจะได้ข้าวหนึ่งถุง คือการดูแลดินมาทั้งฤดู
+            </p>
+          </div>
+
+          <ol class="grid list-none grid-cols-4 gap-6 max-lg:grid-cols-2 max-lg:gap-x-6 max-lg:gap-y-8" data-reveal>
+            <li class="pd-step ml-0 list-none">
+              <span class="pd-step-num">1</span>
+              <h3 class="mb-1.5 font-heading text-h6 font-bold">เตรียมดิน</h3>
+              <p class="text-caption leading-relaxed text-text-secondary">ไถกลบฟาง คืนอินทรีย์วัตถุสู่ดิน ไม่เผา</p>
+            </li>
+            <li class="pd-step ml-0 list-none">
+              <span class="pd-step-num">2</span>
+              <h3 class="mb-1.5 font-heading text-h6 font-bold">ปลูก</h3>
+              <p class="text-caption leading-relaxed text-text-secondary">ดำนาด้วยมือ เว้นระยะให้ต้นข้าวหายใจ</p>
+            </li>
+            <li class="pd-step ml-0 list-none">
+              <span class="pd-step-num">3</span>
+              <h3 class="mb-1.5 font-heading text-h6 font-bold">ดูแล</h3>
+              <p class="text-caption leading-relaxed text-text-secondary">กำจัดวัชพืชด้วยมือ ไม่พึ่งสารเคมี</p>
+            </li>
+            <li class="pd-step ml-0 list-none">
+              <span class="pd-step-num">4</span>
+              <h3 class="mb-1.5 font-heading text-h6 font-bold">เก็บเกี่ยว</h3>
+              <p class="text-caption leading-relaxed text-text-secondary">เกี่ยวตามรอบสุก สีข้าวใหม่ก่อนส่ง</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ================= กินยังไง ================= -->
+      <section class="container py-16">
+        <div class="mb-10 max-w-160" data-reveal>
+          <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">02 · กินยังไงให้อร่อย</span>
+          <h2 class="text-[clamp(24px,3vw,32px)] leading-snug">ข้าวกล้องหนึ่งถุง ทำอะไรได้บ้าง</h2>
+        </div>
+
+        <!-- ยังไม่มีรูปเมนูจริง — ยืมรูปที่มีอยู่แล้วมาใช้ไปก่อน (rice = ข้าวโดยตรง, story-recipe = ธีมสูตรอาหาร)
+             วางไฟล์จริงที่ images/pages/product/ แล้วเปลี่ยน src ได้เลย -->
+        <div class="grid grid-cols-3 gap-6 max-lg:grid-cols-1">
+          <article data-reveal>
+            <div class="mb-3.5 aspect-4/3 overflow-hidden rounded-xl bg-panel-cream">
+              <img src="./images/products/rice.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <h3 class="mb-1.5 font-heading text-h6 font-bold">หุงให้นุ่ม หอม</h3>
+            <p class="text-caption leading-relaxed text-text-secondary">แช่ข้าว 30 นาทีก่อนหุง เพิ่มน้ำกว่าข้าวขาวเล็กน้อย</p>
+          </article>
+          <article data-reveal data-delay="0.1">
+            <div class="mb-3.5 aspect-4/3 overflow-hidden rounded-xl bg-panel-cream">
+              <img src="./images/pages/index/story-recipe.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <h3 class="mb-1.5 font-heading text-h6 font-bold">ข้าวยำสมุนไพร</h3>
+            <p class="text-caption leading-relaxed text-text-secondary">ข้าวกล้องหุงสุก คลุกผักสด สมุนไพร น้ำบูดู</p>
+          </article>
+          <article data-reveal data-delay="0.2">
+            <div class="mb-3.5 aspect-4/3 overflow-hidden rounded-xl bg-panel-cream">
+              <img src="./images/pages/index/story-recipe.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <h3 class="mb-1.5 font-heading text-h6 font-bold">โจ๊กข้าวกล้อง</h3>
+            <p class="text-caption leading-relaxed text-text-secondary">ต้มกับน้ำซุปจนเปื่อย มื้อเช้าอบอุ่นดีต่อใจ</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================= ข้อมูลจริง ================= -->
+      <section class="container">
+        <div class="rounded-4xl bg-panel-cream px-12 py-16 max-lg:px-8 max-md:px-6">
+          <div class="mb-10 max-w-160" data-reveal>
+            <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">03 · ข้อมูลจริง</span>
+            <h2 class="text-[clamp(24px,3vw,32px)] leading-snug">รู้ก่อนซื้อ อย่างโปร่งใส</h2>
+          </div>
+
+          <dl class="grid grid-cols-2 gap-x-12 max-lg:grid-cols-1" data-reveal>
+            <div class="pd-spec"><dt>ปริมาณ</dt><dd>1 กิโลกรัม / ถุง</dd></div>
+            <div class="pd-spec"><dt>แหล่งปลูก</dt><dd>สวนป่าดีบุญ อ.เชียงคาน จ.เลย</dd></div>
+            <div class="pd-spec"><dt>รอบเก็บเกี่ยว</dt><dd>ปีละ 1 ครั้ง (นาปี)</dd></div>
+            <div class="pd-spec"><dt>การเก็บรักษา</dt><dd>ที่แห้ง ไม่โดนแดด ใช้ภายใน 6 เดือน</dd></div>
+            <div class="pd-spec"><dt>การจัดส่ง</dt><dd>ส่งภายใน 2-3 วันทำการ</dd></div>
+            <div class="pd-spec"><dt>สารเคมี</dt><dd>ไม่ใช้ทุกขั้นตอน</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ================= รีวิว ================= -->
+      <section class="container py-16">
+        <div class="mb-10 max-w-160" data-reveal>
+          <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">04 · เสียงจากคนกิน</span>
+          <h2 class="text-[clamp(24px,3vw,32px)] leading-snug">ประสบการณ์จริงจากลูกค้า</h2>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 max-lg:grid-cols-1">
+          <article class="rounded-xl border border-border-soft bg-white p-6" data-reveal>
+            <p class="mb-3 tracking-wide text-cr-gold" aria-label="ให้ 5 จาก 5 ดาว">★★★★★</p>
+            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">
+              หุงแล้วหอมจริง เนื้อข้าวนุ่มกว่าข้าวกล้องที่เคยกิน รู้สึกดีที่รู้ว่ามาจากไหน ใครปลูก
+            </blockquote>
+            <cite class="font-heading text-xs font-semibold text-text-primary not-italic">— คุณนภา, กรุงเทพฯ</cite>
+          </article>
+          <article class="rounded-xl border border-border-soft bg-white p-6" data-reveal data-delay="0.1">
+            <p class="mb-3 tracking-wide text-cr-gold" aria-label="ให้ 5 จาก 5 ดาว">★★★★★</p>
+            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">
+              สั่งมาลองครั้งแรก ประทับใจการแพ็ค สะอาด มีใบบอกวันเก็บเกี่ยวด้วย สั่งซ้ำแน่นอน
+            </blockquote>
+            <cite class="font-heading text-xs font-semibold text-text-primary not-italic">— คุณต่อ, เชียงใหม่</cite>
+          </article>
+          <article class="rounded-xl border border-border-soft bg-white p-6" data-reveal data-delay="0.2">
+            <p class="mb-3 tracking-wide text-cr-gold" aria-label="ให้ 4 จาก 5 ดาว">★★★★☆</p>
+            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">
+              ข้าวดีมาก แต่หมดเร็วไปหน่อย อยากให้มีบ่อยกว่านี้ เข้าใจว่าทำตามฤดู รอได้
+            </blockquote>
+            <cite class="font-heading text-xs font-semibold text-text-primary not-italic">— คุณแอน, ขอนแก่น</cite>
+          </article>
+        </div>
+      </section>
+
+      <!-- ================= จากสวนเดียวกัน ================= -->
+      <section class="container pb-25">
+        <div class="mb-10 max-w-160" data-reveal>
+          <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">จากสวนเดียวกัน</span>
+          <h2 class="text-[clamp(24px,3vw,32px)] leading-snug">ผลผลิตฤดูกาลนี้</h2>
+        </div>
+
+        <div class="grid grid-cols-3 gap-6 max-lg:grid-cols-1">
+          <a href="product.html" class="pd-related" data-reveal>
+            <div class="mb-3 aspect-square overflow-hidden rounded-xl bg-panel-cream">
+              <img src="./images/products/garlic.webp" alt="กระเทียม" width="900" height="900" loading="lazy" class="size-full object-cover" />
+            </div>
+            <h3 class="mb-1 font-heading text-h6 font-bold">กระเทียม</h3>
+            <span class="text-caption text-text-muted">฿140 / 250ก.</span>
+          </a>
+          <a href="product.html" class="pd-related" data-reveal data-delay="0.1">
+            <div class="mb-3 aspect-square overflow-hidden rounded-xl bg-panel-cream">
+              <img src="./images/products/shallot.webp" alt="หอมแดง" width="900" height="900" loading="lazy" class="size-full object-cover" />
+            </div>
+            <h3 class="mb-1 font-heading text-h6 font-bold">หอมแดง</h3>
+            <span class="text-caption text-text-muted">฿90 / 250ก.</span>
+          </a>
+          <a href="product.html" class="pd-related" data-reveal data-delay="0.2">
+            <div class="mb-3 aspect-square overflow-hidden rounded-xl bg-panel-cream">
+              <img src="./images/products/bamboo.webp" alt="หน่อไม้ดอง" width="900" height="900" loading="lazy" class="size-full object-cover" />
+            </div>
+            <h3 class="mb-1 font-heading text-h6 font-bold">หน่อไม้ดอง</h3>
+            <span class="text-caption text-text-muted">฿95 / 300ก.</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- แถบซื้อลอยล่างจอ — เฉพาะจอเล็กที่กล่องซื้อเลื่อนพ้นตาไปแล้ว -->
+    <div class="pd-mobile-bar hidden items-center justify-between gap-4 border-t border-border-soft bg-white px-6 py-3.5 max-lg:flex">
+      <p class="font-heading text-lg font-bold text-cr-green">฿120 <span class="text-xs font-medium text-text-muted">/ กก.</span></p>
+      <button type="button" class="btn btn-primary" data-add-to-cart>เพิ่มลงตะกร้า</button>
+    </div>
+
+    <footer-component></footer-component>
+  </body>
+</html>

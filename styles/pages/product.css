@@ -1,0 +1,221 @@
+/* Styles เฉพาะหน้า product
+   ใส่ที่นี่เฉพาะของที่เข้าเกณฑ์ใน
+   .claude/skills/static-site-from-prototype/references/css-conventions.md
+   ของที่ใช้ซ้ำข้ามหน้าให้ไป styles/tailwind/input.css แทน
+
+   layout ทั้งหมด (grid, flex, gap, padding) อยู่ใน markup เป็น utility */
+
+/* ==========================================================================
+   แกลเลอรี
+   ========================================================================== */
+
+/* fade ตอนสลับรูป — scripts/pages/product.js เซ็ต opacity แล้วค่อยเปลี่ยน src */
+.pd-gallery-main {
+  transition: opacity 0.3s ease;
+}
+
+.pd-thumb {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  background: var(--panel-cream);
+  transition: border-color 0.25s;
+}
+
+.pd-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pd-thumb:hover {
+  border-color: var(--cr-green-dark);
+}
+
+.pd-thumb.is-active {
+  border-color: var(--cr-green);
+}
+
+/* ==========================================================================
+   กล่องซื้อ
+   ========================================================================== */
+
+/* จุดเขียวเต้นเบาๆ สื่อว่ามีของ — ต้องใช้ @keyframes */
+.pd-stock-dot {
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--cr-green);
+  animation: pd-stock-pulse 2s ease infinite;
+}
+
+@keyframes pd-stock-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.pd-stepper {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.pd-stepper button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: background 0.2s;
+}
+
+.pd-stepper button:hover:not(:disabled) {
+  background: var(--panel-green-light);
+}
+
+.pd-stepper button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.pd-stepper span {
+  min-width: 34px;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* ✓ หน้าแต่ละข้อ — ต้องใช้ ::before */
+.pd-assure li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-left: 0;
+  list-style: none;
+  font-size: 0.78125rem;
+  color: var(--text-secondary);
+}
+
+.pd-assure li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--cr-green);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   ขั้นตอนการปลูก — ตัวเลขในวงกลม + เส้นเชื่อมไปขั้นถัดไป
+   ========================================================================== */
+.pd-step {
+  position: relative;
+  padding-top: 2.75rem;
+}
+
+.pd-step-num {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--cr-green);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* เส้นเชื่อมระหว่างขั้น — ::after จึงต้องอยู่ใน CSS */
+.pd-step::after {
+  content: "";
+  position: absolute;
+  top: 17px;
+  left: 44px;
+  right: -1.5rem;
+  height: 1px;
+  background: var(--border);
+}
+
+.pd-step:last-child::after {
+  display: none;
+}
+
+@media (width <= 1024px) {
+  .pd-step::after {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   ตารางข้อมูล
+   ========================================================================== */
+.pd-spec {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.pd-spec dt {
+  flex: none;
+  color: var(--text-muted);
+}
+
+.pd-spec dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   จากสวนเดียวกัน
+   ========================================================================== */
+
+/* ยกการ์ดด้วย `translate` ไม่ใช่ `transform` เพราะ Motion เขียน transform ตอน reveal */
+.pd-related {
+  display: block;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: translate 0.35s var(--spring);
+}
+
+.pd-related:hover {
+  translate: 0 -6px;
+}
+
+.pd-related img {
+  transition: transform 0.6s var(--spring);
+}
+
+.pd-related:hover img {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   แถบซื้อลอยล่างจอ (จอเล็ก)
+   ========================================================================== */
+.pd-mobile-bar {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 50;
+  box-shadow: 0 -8px 24px rgb(43 42 37 / 0.08);
+}
