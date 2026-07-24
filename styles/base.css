@@ -71,10 +71,13 @@ body {
   line-height: 1.7;
   color: var(--text-primary);
   background: var(--cr-cream);
-  animation: fade-in 0.35s forwards;
+
   background-repeat: no-repeat;
   position: relative;
   overflow-x: hidden;
+}
+body:not(#product-page) {
+  animation: fade-in 0.35s forwards;
 }
 
 @keyframes fade-in {
@@ -85,7 +88,6 @@ body {
     opacity: 1;
   }
 }
-
 
 * {
   touch-action: manipulation;
@@ -102,7 +104,6 @@ img {
 }
 
 /* หัวข้อทั้งหมดใช้ Prompt ตาม design system */
-
 
 .disabled {
   pointer-events: none;
@@ -161,4 +162,12 @@ img {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* View Transition (cross-document) — จังหวะ spring เดียวกับที่ใช้ทั้งเว็บ
+   .pd-gallery-frame ใน product.css ประกาศชื่อ product-photo ไว้ ที่นี่แค่คุมจังหวะ
+   ไม่มีผลอะไรถ้าเบราว์เซอร์ไม่รองรับ หรือหน้าไหนไม่มี view-transition-name ชื่อนี้ */
+::view-transition-group(product-photo) {
+  animation-duration: 0.5s;
+  animation-timing-function: var(--spring);
 }

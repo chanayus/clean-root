@@ -395,8 +395,11 @@
     background: linear-gradient(180deg, rgb(20 28 20 / 0) 45%, rgb(20 28 20 / 0.72) 100%);
   }
 
-  /* ปุ่มที่ทับรูปโดยตรง — เพิ่มขอบสว่าง + เงาลึกเฉพาะบริบทนี้ ไม่เปลี่ยนสีของระบบ */
-  .harvest-card-body .btn {
+  /* ปุ่มที่ทับรูปโดยตรง — เพิ่มขอบสว่าง + เงาลึกเฉพาะบริบทนี้ ไม่เปลี่ยนสีของระบบ
+     position/z-index ยกให้อยู่เหนือ stretched link ของ .harvest-card-name-link::after ไม่งั้นกดไม่เข้า */
+  .harvest-card-face .btn {
+    position: relative;
+    z-index: 2;
     border: 1.5px solid rgb(255 255 255 / 0.22);
     box-shadow: 0 6px 18px rgb(0 0 0 / 0.35);
   }
@@ -405,6 +408,21 @@
     color: var(--cr-gold);
     text-decoration: underline;
     text-underline-offset: 3px;
+  }
+
+  /* stretched link — ขยายพื้นที่กดของ .harvest-card-name-link ให้เต็มทั้งใบการ์ด
+     โดยไม่ต้องใช้ JS ดักคลิก (คลิกขวา/middle-click/keyboard ทำงานเป็นลิงก์จริงครบ)
+     containing block คือ .harvest-card-face (position:absolute ใบแรกที่เจอ) ซึ่งมีขนาดเท่า .harvest-card พอดี
+     ปุ่มเพิ่มลงตะกร้าต้องอยู่ z-index สูงกว่า ไม่งั้นจะโดน ::after ทับจนกดไม่ได้ */
+  .harvest-card:has(.harvest-card-name-link) {
+    cursor: pointer;
+  }
+
+  .harvest-card-name-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
   /* เฉดพื้นหลังรออยู่ใต้รูป — ถ้ารูปโหลดไม่ทันการ์ดยังดูจบ

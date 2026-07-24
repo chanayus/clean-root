@@ -34,3 +34,9 @@
 .pl-dot--season {
   background: var(--cr-gold);
 }
+
+/* เปิด view transition ตอนไปหน้า product.html — เฉพาะรูปการ์ดข้าวกล้อง
+   (scripts/pages/products.js เซ็ตชื่อ view-transition-name ให้ตอนคลิก) */
+@view-transition {
+  navigation: auto;
+}

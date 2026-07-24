@@ -14,6 +14,17 @@
   transition: opacity 0.3s ease;
 }
 
+/* View Transition ปลายทาง — ฝั่งการ์ด (index/products) เซ็ตชื่อเดียวกันนี้ให้ .harvest-card-photo
+   ตอนคลิกผ่าน scripts/pages/index.js กับ scripts/pages/products.js
+   ต้องเปิด @view-transition ทั้งฝั่งต้นทางและปลายทางด้วย ไม่งั้นเบราว์เซอร์จะข้ามเฉยๆ */
+.pd-gallery-frame {
+  view-transition-name: product-photo;
+}
+
+@view-transition {
+  navigation: auto;
+}
+
 .pd-thumb {
   aspect-ratio: 1 / 1;
   overflow: hidden;

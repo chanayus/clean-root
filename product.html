@@ -24,7 +24,7 @@
 
   <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ
        max-lg:pb-20: เว้นที่ให้แถบซื้อที่ลอยล่างจอตอนจอเล็ก -->
-  <body data-nav-solid class="max-lg:pb-20">
+  <body data-nav-solid class="max-lg:pb-20" id="product-page">
     <navbar-component></navbar-component>
 
     <main class="flex-1 pt-26 max-md:pt-22">
@@ -41,12 +41,12 @@
         <!-- แกลเลอรี: ตอนนี้มีรูปจริงใบเดียว
              พอมีรูปมุมอื่นแล้วเพิ่มแถบ thumb ได้ — scripts/pages/product.js รองรับไว้แล้ว
              โครง: <button class="pd-thumb" data-thumb="./images/products/xxx.webp"><img …></button> -->
-        <div data-reveal>
-          <div class="aspect-square overflow-hidden rounded-2xl bg-panel-cream">
+        <figure>
+          <div class="pd-gallery-frame aspect-square overflow-hidden rounded-2xl bg-panel-cream">
             <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิกจากสวนป่าดีบุญ" width="900" height="900" class="pd-gallery-main size-full object-cover" data-gallery-main />
           </div>
-          <div class="mt-3.5 grid grid-cols-4 gap-3" data-gallery-thumbs></div>
-        </div>
+       
+        </figure>
 
         <div>
           <div class="sticky top-25 rounded-2xl border border-border-soft bg-white p-7 shadow-card max-lg:static">
@@ -58,9 +58,7 @@
               <span class="text-caption text-text-muted">4.9 · 128 รีวิว</span>
             </div>
 
-            <p class="mb-4 font-heading text-[2rem] font-bold text-cr-green">
-              ฿120 <span class="text-sm font-medium text-text-muted">/ กก.</span>
-            </p>
+            <p class="mb-4 font-heading text-[2rem] font-bold text-cr-green">฿120 <span class="text-sm font-medium text-text-muted">/ กก.</span></p>
 
             <p class="mb-5 flex items-center gap-2 rounded-lg bg-panel-light px-3.5 py-2.5 text-caption text-text-secondary">
               <span class="pd-stock-dot" aria-hidden="true"></span>
@@ -76,9 +74,7 @@
               </div>
             </div>
 
-            <button type="button" class="btn btn-primary btn-full mb-5" data-add-to-cart>
-              เพิ่มลงตะกร้า · <span data-buy-total>฿120</span>
-            </button>
+            <button type="button" class="btn btn-primary btn-full mb-5" data-add-to-cart>เพิ่มลงตะกร้า · <span data-buy-total>฿120</span></button>
 
             <ul class="pd-assure flex list-none flex-col gap-2.5 border-t border-border-soft pt-4">
               <li>เก็บเกี่ยวสดใหม่ ส่งตรงจากสวน</li>
@@ -95,10 +91,7 @@
           <div class="mb-10 max-w-160" data-reveal>
             <span class="mb-3 block font-heading text-xs font-bold tracking-[0.12em] text-cr-green uppercase">01 · ที่มา</span>
             <h2 class="mb-3 text-[clamp(24px,3vw,32px)] leading-snug">ข้าวที่เริ่มดีตั้งแต่ผืนดิน</h2>
-            <p class="leading-loose text-text-secondary">
-              เราไม่เร่งให้ต้นข้าวโต ไม่ใช้สารเร่ง ไม่เผาฟาง ปล่อยให้ดินฟื้นตัวเองตามรอบธรรมชาติ
-              กว่าจะได้ข้าวหนึ่งถุง คือการดูแลดินมาทั้งฤดู
-            </p>
+            <p class="leading-loose text-text-secondary">เราไม่เร่งให้ต้นข้าวโต ไม่ใช้สารเร่ง ไม่เผาฟาง ปล่อยให้ดินฟื้นตัวเองตามรอบธรรมชาติ กว่าจะได้ข้าวหนึ่งถุง คือการดูแลดินมาทั้งฤดู</p>
           </div>
 
           <ol class="grid list-none grid-cols-4 gap-6 max-lg:grid-cols-2 max-lg:gap-x-6 max-lg:gap-y-8" data-reveal>
@@ -169,12 +162,30 @@
           </div>
 
           <dl class="grid grid-cols-2 gap-x-12 max-lg:grid-cols-1" data-reveal>
-            <div class="pd-spec"><dt>ปริมาณ</dt><dd>1 กิโลกรัม / ถุง</dd></div>
-            <div class="pd-spec"><dt>แหล่งปลูก</dt><dd>สวนป่าดีบุญ อ.เชียงคาน จ.เลย</dd></div>
-            <div class="pd-spec"><dt>รอบเก็บเกี่ยว</dt><dd>ปีละ 1 ครั้ง (นาปี)</dd></div>
-            <div class="pd-spec"><dt>การเก็บรักษา</dt><dd>ที่แห้ง ไม่โดนแดด ใช้ภายใน 6 เดือน</dd></div>
-            <div class="pd-spec"><dt>การจัดส่ง</dt><dd>ส่งภายใน 2-3 วันทำการ</dd></div>
-            <div class="pd-spec"><dt>สารเคมี</dt><dd>ไม่ใช้ทุกขั้นตอน</dd></div>
+            <div class="pd-spec">
+              <dt>ปริมาณ</dt>
+              <dd>1 กิโลกรัม / ถุง</dd>
+            </div>
+            <div class="pd-spec">
+              <dt>แหล่งปลูก</dt>
+              <dd>สวนป่าดีบุญ อ.เชียงคาน จ.เลย</dd>
+            </div>
+            <div class="pd-spec">
+              <dt>รอบเก็บเกี่ยว</dt>
+              <dd>ปีละ 1 ครั้ง (นาปี)</dd>
+            </div>
+            <div class="pd-spec">
+              <dt>การเก็บรักษา</dt>
+              <dd>ที่แห้ง ไม่โดนแดด ใช้ภายใน 6 เดือน</dd>
+            </div>
+            <div class="pd-spec">
+              <dt>การจัดส่ง</dt>
+              <dd>ส่งภายใน 2-3 วันทำการ</dd>
+            </div>
+            <div class="pd-spec">
+              <dt>สารเคมี</dt>
+              <dd>ไม่ใช้ทุกขั้นตอน</dd>
+            </div>
           </dl>
         </div>
       </section>
@@ -189,23 +200,17 @@
         <div class="grid grid-cols-3 gap-6 max-lg:grid-cols-1">
           <article class="rounded-xl border border-border-soft bg-white p-6" data-reveal>
             <p class="mb-3 tracking-wide text-cr-gold" aria-label="ให้ 5 จาก 5 ดาว">★★★★★</p>
-            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">
-              หุงแล้วหอมจริง เนื้อข้าวนุ่มกว่าข้าวกล้องที่เคยกิน รู้สึกดีที่รู้ว่ามาจากไหน ใครปลูก
-            </blockquote>
+            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">หุงแล้วหอมจริง เนื้อข้าวนุ่มกว่าข้าวกล้องที่เคยกิน รู้สึกดีที่รู้ว่ามาจากไหน ใครปลูก</blockquote>
             <cite class="font-heading text-xs font-semibold text-text-primary not-italic">— คุณนภา, กรุงเทพฯ</cite>
           </article>
           <article class="rounded-xl border border-border-soft bg-white p-6" data-reveal data-delay="0.1">
             <p class="mb-3 tracking-wide text-cr-gold" aria-label="ให้ 5 จาก 5 ดาว">★★★★★</p>
-            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">
-              สั่งมาลองครั้งแรก ประทับใจการแพ็ค สะอาด มีใบบอกวันเก็บเกี่ยวด้วย สั่งซ้ำแน่นอน
-            </blockquote>
+            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">สั่งมาลองครั้งแรก ประทับใจการแพ็ค สะอาด มีใบบอกวันเก็บเกี่ยวด้วย สั่งซ้ำแน่นอน</blockquote>
             <cite class="font-heading text-xs font-semibold text-text-primary not-italic">— คุณต่อ, เชียงใหม่</cite>
           </article>
           <article class="rounded-xl border border-border-soft bg-white p-6" data-reveal data-delay="0.2">
             <p class="mb-3 tracking-wide text-cr-gold" aria-label="ให้ 4 จาก 5 ดาว">★★★★☆</p>
-            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">
-              ข้าวดีมาก แต่หมดเร็วไปหน่อย อยากให้มีบ่อยกว่านี้ เข้าใจว่าทำตามฤดู รอได้
-            </blockquote>
+            <blockquote class="mb-3.5 text-sm leading-loose text-text-secondary">ข้าวดีมาก แต่หมดเร็วไปหน่อย อยากให้มีบ่อยกว่านี้ เข้าใจว่าทำตามฤดู รอได้</blockquote>
             <cite class="font-heading text-xs font-semibold text-text-primary not-italic">— คุณแอน, ขอนแก่น</cite>
           </article>
         </div>
