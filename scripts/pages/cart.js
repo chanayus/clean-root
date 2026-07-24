@@ -6,6 +6,8 @@
    ของจริงรายการจะมาจาก Cart API ของผู้ให้บริการ checkout
    ตอนนั้นค่อยยกขึ้นไปเป็น module กลางที่ cart drawer ใน navbar ใช้ร่วมได้ */
 
+import { formatBaht } from "../modules/format.js";
+
 const FREE_SHIP_THRESHOLD = 500;
 
 // โค้ดส่วนลดตัวอย่าง — ของจริงมาจากฝั่งระบบร้านค้า
@@ -32,7 +34,6 @@ const el = {
   shipFill: document.querySelector("[data-cart-ship-fill]"),
 };
 
-const baht = (n) => `฿${n.toLocaleString("th-TH")}`;
 const rows = () => Array.from(el.list?.querySelectorAll("[data-cart-row]") ?? []);
 const qtyOf = (row) => Number(row.querySelector("[data-qty]").textContent);
 
@@ -45,7 +46,7 @@ function paintRow(row) {
   const left = stock - qty;
   const isLow = left <= 2;
 
-  row.querySelector("[data-line-total]").textContent = baht(qty * price);
+  row.querySelector("[data-line-total]").textContent = formatBaht(qty * price);
 
   const stockMsg = row.querySelector("[data-stock-msg]");
   stockMsg.textContent = `เหลือ ${left} ${row.dataset.unit}${isLow ? " · ใกล้หมด" : ""}`;
@@ -97,15 +98,15 @@ function updateSummary() {
   const discount = discountAmount(sub);
   const total = sub - discount;
 
-  if (el.subtotal) el.subtotal.textContent = baht(sub);
-  if (el.total) el.total.textContent = baht(total);
+  if (el.subtotal) el.subtotal.textContent = formatBaht(sub);
+  if (el.total) el.total.textContent = formatBaht(total);
 
   if (el.discountRow) {
     const show = Boolean(appliedDiscount) && discount > 0;
     el.discountRow.hidden = !show;
 
     if (show) {
-      el.discountAmount.textContent = `-${baht(discount)}`;
+      el.discountAmount.textContent = `-${formatBaht(discount)}`;
       el.discountCode.textContent = `(${appliedDiscount.code})`;
     }
   }
@@ -121,7 +122,7 @@ function updateSummary() {
     const remain = FREE_SHIP_THRESHOLD - total;
     el.shipFill.style.width = `${Math.min(100, (total / FREE_SHIP_THRESHOLD) * 100)}%`;
     el.ship?.classList.toggle("is-complete", remain <= 0);
-    el.shipMsg.innerHTML = remain > 0 ? `ซื้ออีก <b class="font-heading font-bold">${baht(remain)}</b> รับส่งฟรี` : `คุณได้รับ <b class="font-heading font-bold">ส่งฟรี</b> แล้ว`;
+    el.shipMsg.innerHTML = remain > 0 ? `ซื้ออีก <b class="font-heading font-bold">${formatBaht(remain)}</b> รับส่งฟรี` : `คุณได้รับ <b class="font-heading font-bold">ส่งฟรี</b> แล้ว`;
   }
 }
 

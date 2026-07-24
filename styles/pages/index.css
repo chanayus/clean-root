@@ -26,8 +26,8 @@
 /* ไล่เฉดสองชั้น — บนลงล่างให้ตัวหนังสืออ่านออก + ซ้ายไปขวาเน้นฝั่งข้อความ */
 .hero-overlay {
   background:
-    linear-gradient(180deg, rgb(28 36 28 / 0.5) 0%, rgb(28 36 28 / 0.12) 30%, rgb(28 36 28 / 0.15) 62%, rgb(28 36 28 / 0.78) 100%),
-    linear-gradient(90deg, rgb(28 36 28 / 0.42) 0%, rgb(28 36 28 / 0) 55%);
+    linear-gradient(180deg, rgb(var(--overlay-moss-rgb) / 0.5) 0%, rgb(var(--overlay-moss-rgb) / 0.12) 30%, rgb(var(--overlay-moss-rgb) / 0.15) 62%, rgb(var(--overlay-moss-rgb) / 0.78) 100%),
+    linear-gradient(90deg, rgb(var(--overlay-moss-rgb) / 0.42) 0%, rgb(var(--overlay-moss-rgb) / 0) 55%);
 }
 
 /* จุดเริ่มต้นของ hero entrance — กัน FOUC ก่อน JS ทำงาน
@@ -38,7 +38,7 @@
   font-weight: 700;
   line-height: 1.1;
   color: var(--cr-cream);
-  text-shadow: 0 2px 30px rgb(20 28 20 / 0.4);
+  text-shadow: 0 2px 30px rgb(var(--overlay-ink-rgb) / 0.4);
 }
 
 /* ห้ามใส่ overflow:hidden ที่นี่ — วรรณยุกต์ไทย (ไม้โท ไม้เอก) ลอยสูงเกินกล่องบรรทัด
@@ -68,13 +68,13 @@
 }
 
 .hero-shadow-text {
-  text-shadow: 0 1px 16px rgb(20 28 20 / 0.4);
+  text-shadow: 0 1px 16px rgb(var(--overlay-ink-rgb) / 0.4);
 }
 
 .hero-scroll-line {
   width: 1px;
   height: 40px;
-  background: linear-gradient(rgb(251 246 234 / 0.7), transparent);
+  background: linear-gradient(rgb(var(--cr-cream-rgb) / 0.7), transparent);
   transform-origin: top;
   animation: hero-scroll-pulse 1.8s var(--spring) infinite;
 }
@@ -134,14 +134,14 @@
 }
 
 .story-dot {
-  background: rgb(251 246 234 / 0.4);
+  background: rgb(var(--cr-cream-rgb) / 0.4);
   transition:
     background 0.3s ease,
     transform 0.35s var(--spring-soft);
 }
 
 .story-dot:hover {
-  background: rgb(251 246 234 / 0.7);
+  background: rgb(var(--cr-cream-rgb) / 0.7);
 }
 
 .story-dot.is-active {
@@ -187,16 +187,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(90deg, rgb(28 36 28 / 0.85) 0%, rgb(28 36 28 / 0.58) 42%, rgb(28 36 28 / 0.15) 74%, rgb(28 36 28 / 0) 100%);
-}
-
-.narrative-watermark {
-  writing-mode: vertical-rl;
-  font-size: clamp(64px, 9vw, 128px);
-  line-height: 1;
-  letter-spacing: 0.06em;
-  color: rgb(251 246 234 / 0.05);
-  transition: opacity 0.5s var(--spring);
+  background: linear-gradient(90deg, rgb(var(--overlay-moss-rgb) / 0.85) 0%, rgb(var(--overlay-moss-rgb) / 0.58) 42%, rgb(var(--overlay-moss-rgb) / 0.15) 74%, rgb(var(--overlay-moss-rgb) / 0) 100%);
 }
 
 .narrative-body {
@@ -216,11 +207,11 @@
   font-size: clamp(30px, 4.2vw, 48px);
   font-weight: 700;
   line-height: 1.12;
-  text-shadow: 0 2px 24px rgb(20 28 20 / 0.4);
+  text-shadow: 0 2px 24px rgb(var(--overlay-ink-rgb) / 0.4);
 }
 
 .narrative-card p {
-  text-shadow: 0 1px 14px rgb(20 28 20 / 0.35);
+  text-shadow: 0 1px 14px rgb(var(--overlay-ink-rgb) / 0.35);
 }
 
 /* badge วงกลม — เส้น ring วาดรอบตัวเองตอนการ์ด active */
@@ -311,12 +302,6 @@
 
   /* จอแคบ ข้อความกินเต็มความกว้าง เลยต้องมืดสม่ำเสมอกว่าตอน desktop */
   .narrative-card::after {
-    background: linear-gradient(90deg, rgb(28 36 28 / 0.85) 0%, rgb(28 36 28 / 0.6) 100%);
+    background: linear-gradient(90deg, rgb(var(--overlay-moss-rgb) / 0.85) 0%, rgb(var(--overlay-moss-rgb) / 0.6) 100%);
   }
-}
-
-/* เปิด view transition ตอนไปหน้า product.html — เฉพาะรูปการ์ดข้าวกล้อง
-   (scripts/pages/index.js เซ็ตชื่อ view-transition-name ให้ตอนคลิก) */
-@view-transition {
-  navigation: auto;
 }

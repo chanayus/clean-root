@@ -59,6 +59,18 @@ if (spyLinks.length) {
   }
 }
 
+/* ===================== Escape ปิด overlay ของไฟล์นี้ =====================
+   search panel กับ account menu ปิดตัวเองคนละฟังก์ชัน แต่ผูก Escape ไว้ที่ listener เดียว
+   เพื่อไม่ต้องแยก document.addEventListener("keydown", ...) หลายจุดโดยไม่จำเป็น */
+let closeSearch = () => {};
+let closeAccountMenu = () => {};
+
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  closeSearch();
+  closeAccountMenu();
+});
+
 /* ===================== Search panel ===================== */
 const searchPanel = document.querySelector("[data-search-panel]");
 
@@ -70,11 +82,10 @@ if (searchPanel) {
     searchPanel.classList.add("is-open");
     setTimeout(() => input?.focus(), 300);
   };
-  const closeSearch = () => searchPanel.classList.remove("is-open");
+  closeSearch = () => searchPanel.classList.remove("is-open");
 
   document.querySelector("[data-search-toggle]")?.addEventListener("click", openSearch);
   document.querySelector("[data-search-close]")?.addEventListener("click", closeSearch);
-  document.addEventListener("keydown", (e) => e.key === "Escape" && closeSearch());
 
   // input type="search" อยู่ใน <form> แล้ว กด Enter จะยิง submit ให้เอง
   // ของจริง: ต้องมีหน้า/endpoint ค้นหาจริงรองรับ query ?q= — ตอนนี้พาไปที่ products.html ก่อน
@@ -116,5 +127,5 @@ if (accountWrap) {
     if (!accountWrap.contains(e.target)) setOpen(false);
   });
 
-  document.addEventListener("keydown", (e) => e.key === "Escape" && setOpen(false));
+  closeAccountMenu = () => setOpen(false);
 }

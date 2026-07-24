@@ -1,7 +1,9 @@
 /* หน้า product — สลับรูปในแกลเลอรี, ปรับจำนวน, ยอดรวมบนปุ่มซื้อ
 
    ปุ่ม [data-add-to-cart] เปิด cart drawer ให้แล้วโดย scripts/modules/overlays.js
-   ราคากับสต็อกอ่านจาก DOM ผ่าน data-* เพื่อให้หน้านี้ก๊อปไปทำสินค้าตัวอื่นได้โดยไม่ต้องแก้ JS */
+   ราคากับสต็อกฮาร์ดโค้ดไว้ตรงนี้ — ยังไม่ได้อ่านจาก data-* attribute */
+
+import { formatBaht } from "../modules/format.js";
 
 const PRICE = 120;
 const STOCK = 8;
@@ -40,7 +42,7 @@ function initQty() {
 
   const paint = () => {
     value.textContent = qty;
-    if (total) total.textContent = `฿${(qty * PRICE).toLocaleString("th-TH")}`;
+    if (total) total.textContent = formatBaht(qty * PRICE);
     dec.disabled = qty <= 1;
     inc.disabled = qty >= STOCK;
   };

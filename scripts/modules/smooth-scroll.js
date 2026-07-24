@@ -1,11 +1,6 @@
-// Lenis smooth scroll — opt-in ไม่ได้เปิดโดยค่าเริ่มต้น
-//
-// ใช้เมื่อไหร่:
-//   1. uncomment บรรทัด import ของไฟล์นี้ใน scripts/main.js
-//   2. เติม <script> CDN ของ Lenis ใน <head> ของทุกหน้า (ต้องโหลดก่อน main.js)
-//      <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
-//
-// ถ้าโปรเจกต์ไม่ใช้ smooth scroll ปล่อยไฟล์นี้ไว้เฉยๆ ไม่ต้องลบ
+// Lenis smooth scroll — เปิดใช้เป็นค่าเริ่มต้นในโปรเจกต์นี้
+// main.js import ไฟล์นี้ไม่มีเงื่อนไข และทุกหน้าต้องมี <script> CDN ของ Lenis ใน <head>
+//   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
 
 // export ไว้ให้หน้าอื่น scrollTo() แบบ smooth ตาม physics เดียวกับ Lenis
 // (native scrollIntoView/window.scrollTo จะสู้กับ virtual scroll ของ Lenis แล้วกระตุก)

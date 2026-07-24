@@ -16,13 +16,9 @@
 
 /* View Transition ปลายทาง — ฝั่งการ์ด (index/products) เซ็ตชื่อเดียวกันนี้ให้ .harvest-card-photo
    ตอนคลิกผ่าน scripts/pages/index.js กับ scripts/pages/products.js
-   ต้องเปิด @view-transition ทั้งฝั่งต้นทางและปลายทางด้วย ไม่งั้นเบราว์เซอร์จะข้ามเฉยๆ */
+   @view-transition เปิดไว้ที่ base.css ทุกหน้าแล้ว ที่นี่แค่ประกาศชื่อ */
 .pd-gallery-frame {
   view-transition-name: product-photo;
-}
-
-@view-transition {
-  navigation: auto;
 }
 
 .pd-thumb {
@@ -50,82 +46,9 @@
 }
 
 /* ==========================================================================
-   กล่องซื้อ
+   กล่องซื้อ — จุดกระพริบ (.stock-dot), stepper (.stepper.stepper-lg),
+   assure list (.assure-list.assure-list-lg) ย้ายไป input.css แล้ว
    ========================================================================== */
-
-/* จุดเขียวเต้นเบาๆ สื่อว่ามีของ — ต้องใช้ @keyframes */
-.pd-stock-dot {
-  width: 8px;
-  height: 8px;
-  flex: none;
-  border-radius: 50%;
-  background: var(--cr-green);
-  animation: pd-stock-pulse 2s ease infinite;
-}
-
-@keyframes pd-stock-pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
-
-.pd-stepper {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-}
-
-.pd-stepper button {
-  width: 34px;
-  height: 34px;
-  border: none;
-  background: none;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  transition: background 0.2s;
-}
-
-.pd-stepper button:hover:not(:disabled) {
-  background: var(--panel-green-light);
-}
-
-.pd-stepper button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.pd-stepper span {
-  min-width: 34px;
-  text-align: center;
-  font-family: var(--font-heading);
-  font-size: 0.875rem;
-  font-weight: 700;
-}
-
-/* ✓ หน้าแต่ละข้อ — ต้องใช้ ::before */
-.pd-assure li {
-  position: relative;
-  padding-left: 1.25rem;
-  margin-left: 0;
-  list-style: none;
-  font-size: 0.78125rem;
-  color: var(--text-secondary);
-}
-
-.pd-assure li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--cr-green);
-  font-weight: 700;
-}
 
 /* ==========================================================================
    ขั้นตอนการปลูก — ตัวเลขในวงกลม + เส้นเชื่อมไปขั้นถัดไป
@@ -228,5 +151,5 @@
   inset-inline: 0;
   bottom: 0;
   z-index: 50;
-  box-shadow: 0 -8px 24px rgb(43 42 37 / 0.08);
+  box-shadow: 0 -8px 24px rgb(var(--text-primary-rgb) / 0.08);
 }

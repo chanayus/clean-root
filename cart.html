@@ -56,7 +56,7 @@
               </div>
               <div class="flex flex-col items-end gap-2.5 max-sm:col-span-full max-sm:flex-row max-sm:items-center max-sm:justify-between max-sm:border-t max-sm:border-border-soft max-sm:pt-2.5">
                 <span class="font-heading font-bold whitespace-nowrap" data-line-total></span>
-                <div class="cart-stepper">
+                <div class="stepper">
                   <button type="button" data-dec aria-label="ลดจำนวนข้าวกล้องออร์แกนิก">−</button>
                   <span data-qty aria-live="polite">2</span>
                   <button type="button" data-inc aria-label="เพิ่มจำนวนข้าวกล้องออร์แกนิก">+</button>
@@ -76,7 +76,7 @@
               </div>
               <div class="flex flex-col items-end gap-2.5 max-sm:col-span-full max-sm:flex-row max-sm:items-center max-sm:justify-between max-sm:border-t max-sm:border-border-soft max-sm:pt-2.5">
                 <span class="font-heading font-bold whitespace-nowrap" data-line-total></span>
-                <div class="cart-stepper">
+                <div class="stepper">
                   <button type="button" data-dec aria-label="ลดจำนวนกระเทียม">−</button>
                   <span data-qty aria-live="polite">1</span>
                   <button type="button" data-inc aria-label="เพิ่มจำนวนกระเทียม">+</button>
@@ -96,60 +96,58 @@
           </div>
 
           <!-- สรุปคำสั่งซื้อ — ค้างไว้ข้างจอตอนเลื่อนอ่านรายการยาวๆ -->
-          <aside class="sticky top-25 max-xl:static" data-cart-summary aria-label="สรุปคำสั่งซื้อ">
-            <div class="rounded-2xl border border-border-soft bg-white p-7 shadow-card">
-              <h2 class="mb-5 text-h5">สรุปคำสั่งซื้อ</h2>
+          <aside class="sticky top-25 max-xl:static rounded-2xl border border-border-soft bg-white p-7 shadow-card" data-cart-summary aria-label="สรุปคำสั่งซื้อ">
+            <h2 class="mb-5 text-h5">สรุปคำสั่งซื้อ</h2>
 
-              <div class="cart-ship mb-5 rounded-lg bg-panel-light p-3.5" data-cart-ship>
-                <p class="mb-2 text-caption text-cr-green" data-cart-ship-msg></p>
-                <div class="h-1.5 overflow-hidden rounded-full bg-cr-green/20">
-                  <span class="cart-ship-fill block h-full w-0 rounded-full bg-cr-green" data-cart-ship-fill></span>
-                </div>
+            <div class="cart-ship mb-5 rounded-lg bg-panel-light p-3.5" data-cart-ship>
+              <p class="mb-2 text-caption text-cr-green" data-cart-ship-msg></p>
+              <div class="h-1.5 overflow-hidden rounded-full bg-cr-green/20">
+                <span class="cart-ship-fill block h-full w-0 rounded-full bg-cr-green" data-cart-ship-fill></span>
               </div>
-
-              <div class="mb-4 flex flex-col gap-2.5 text-sm text-text-secondary">
-                <div class="flex justify-between"><span>ยอดสินค้า</span><span data-summary-subtotal>฿0</span></div>
-                <div class="flex justify-between" data-summary-discount-row hidden>
-                  <span>ส่วนลด <span data-summary-discount-code></span></span>
-                  <span class="text-cr-rust" data-summary-discount>-฿0</span>
-                </div>
-                <div class="flex justify-between"><span>ค่าจัดส่ง</span><span data-summary-shipping>คำนวณตอนชำระเงิน</span></div>
-              </div>
-
-              <div class="mb-2 flex gap-2">
-                <input
-                  type="text"
-                  class="min-w-0 flex-1 rounded-lg border border-border-soft px-3.5 py-2.5 text-caption text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-cr-green"
-                  placeholder="โค้ดส่วนลด / โค้ดจากครีเอเตอร์"
-                  data-discount-input
-                  aria-label="โค้ดส่วนลด"
-                />
-                <button type="button" class="cart-discount-btn" data-discount-apply>ใช้โค้ด</button>
-              </div>
-              <p class="mb-4 px-0.5 text-xs" data-discount-msg hidden></p>
-
-              <div class="mb-5 flex justify-between border-t border-border-soft pt-3.5 font-heading text-h5 font-bold text-cr-green">
-                <span>ยอดรวม</span><span data-summary-total>฿0</span>
-              </div>
-
-              <p class="mb-4 flex items-start gap-2.5 rounded-lg bg-panel-cream px-3.5 py-3 text-xs leading-relaxed text-text-secondary">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-px flex-none text-cr-green" aria-hidden="true"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
-                <span>เก็บเกี่ยวสดใหม่ · จัดส่งภายใน 2-3 วันทำการ หลังยืนยันคำสั่งซื้อ</span>
-              </p>
-
-              <button type="button" class="btn btn-primary btn-full btn-arrow mb-3" data-checkout>
-                ดำเนินการชำระเงิน <span class="btn-arrow-icon"></span>
-              </button>
-              <p class="mb-5 text-center text-xs leading-relaxed text-text-muted">
-                ชำระเงินผ่านระบบที่ปลอดภัย · รองรับบัตรเครดิต, พร้อมเพย์ และ LINE Pay
-              </p>
-
-              <ul class="cart-assure flex list-none flex-col gap-2.5 border-t border-border-soft pt-4">
-                <li>เก็บเกี่ยวสดใหม่ ส่งตรงจากสวน</li>
-                <li>ซื้อครบ ฿500 ส่งฟรีทั่วประเทศ</li>
-                <li>ยกเลิก/เปลี่ยนแปลงได้ก่อนจัดส่ง</li>
-              </ul>
             </div>
+
+            <div class="mb-4 flex flex-col gap-2.5 text-sm text-text-secondary">
+              <div class="flex justify-between"><span>ยอดสินค้า</span><span data-summary-subtotal>฿0</span></div>
+              <div class="flex justify-between" data-summary-discount-row hidden>
+                <span>ส่วนลด <span data-summary-discount-code></span></span>
+                <span class="text-cr-rust" data-summary-discount>-฿0</span>
+              </div>
+              <div class="flex justify-between"><span>ค่าจัดส่ง</span><span data-summary-shipping>คำนวณตอนชำระเงิน</span></div>
+            </div>
+
+            <div class="mb-2 flex gap-2">
+              <input
+                type="text"
+                class="min-w-0 flex-1 rounded-lg border border-border-soft px-3.5 py-2.5 text-caption text-text-primary outline-none transition-colors placeholder:text-text-muted focus:border-cr-green"
+                placeholder="โค้ดส่วนลด / โค้ดจากครีเอเตอร์"
+                data-discount-input
+                aria-label="โค้ดส่วนลด"
+              />
+              <button type="button" class="cart-discount-btn" data-discount-apply>ใช้โค้ด</button>
+            </div>
+            <p class="mb-4 px-0.5 text-xs" data-discount-msg hidden></p>
+
+            <div class="mb-5 flex justify-between border-t border-border-soft pt-3.5 font-heading text-h5 font-bold text-cr-green">
+              <span>ยอดรวม</span><span data-summary-total>฿0</span>
+            </div>
+
+            <p class="mb-4 flex items-start gap-2.5 rounded-lg bg-panel-cream px-3.5 py-3 text-xs leading-relaxed text-text-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mt-px flex-none text-cr-green" aria-hidden="true"><path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"></path><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+              <span>เก็บเกี่ยวสดใหม่ · จัดส่งภายใน 2-3 วันทำการ หลังยืนยันคำสั่งซื้อ</span>
+            </p>
+
+            <button type="button" class="btn btn-primary btn-full btn-arrow mb-3" data-checkout>
+              ดำเนินการชำระเงิน <span class="btn-arrow-icon"></span>
+            </button>
+            <p class="mb-5 text-center text-xs leading-relaxed text-text-muted">
+              ชำระเงินผ่านระบบที่ปลอดภัย · รองรับบัตรเครดิต, พร้อมเพย์ และ LINE Pay
+            </p>
+
+            <ul class="assure-list flex list-none flex-col gap-2.5 border-t border-border-soft pt-4">
+              <li>เก็บเกี่ยวสดใหม่ ส่งตรงจากสวน</li>
+              <li>ซื้อครบ ฿500 ส่งฟรีทั่วประเทศ</li>
+              <li>ยกเลิก/เปลี่ยนแปลงได้ก่อนจัดส่ง</li>
+            </ul>
           </aside>
         </div>
       </section>

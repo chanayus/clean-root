@@ -47,43 +47,7 @@
   }
 }
 
-/* ปุ่ม −/+ ปรับจำนวน — state ซ้อนสองชั้น (:hover:not(:disabled)) จึงเขียน CSS
-   ยกไป input.css เมื่อไหร่ที่ cart drawer ใน navbar ได้ stepper ชุดเดียวกัน */
-.cart-stepper {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-}
-
-.cart-stepper button {
-  width: 28px;
-  height: 28px;
-  border: none;
-  background: none;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  transition: background 0.2s;
-}
-
-.cart-stepper button:hover:not(:disabled) {
-  background: var(--panel-green-light);
-}
-
-.cart-stepper button:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.cart-stepper span {
-  min-width: 28px;
-  text-align: center;
-  font-family: var(--font-heading);
-  font-size: 0.8125rem;
-  font-weight: 600;
-}
+/* ปุ่ม −/+ ปรับจำนวน — ย้ายไปเป็น .stepper ที่ input.css แล้ว (ใช้ร่วมกับ product.html) */
 
 /* ==========================================================================
    สรุปคำสั่งซื้อ
@@ -117,23 +81,7 @@
   color: #fff;
 }
 
-/* ✓ หน้าแต่ละข้อ — ต้องใช้ ::before */
-.cart-assure li {
-  position: relative;
-  padding-left: 1.25rem;
-  margin-left: 0;
-  list-style: none;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
-}
-
-.cart-assure li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--cr-green);
-  font-weight: 700;
-}
+/* ✓ หน้าแต่ละข้อ — ย้ายไปเป็น .assure-list ที่ input.css แล้ว (ใช้ร่วมกับ product.html) */
 
 /* ==========================================================================
    ยืนยันคำสั่งซื้อ
@@ -146,7 +94,7 @@
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
-  background: rgb(20 28 20 / 0.5);
+  background: rgb(var(--overlay-ink-rgb) / 0.5);
   opacity: 0;
   transition: opacity 0.4s var(--spring);
 }

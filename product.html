@@ -41,47 +41,42 @@
         <!-- แกลเลอรี: ตอนนี้มีรูปจริงใบเดียว
              พอมีรูปมุมอื่นแล้วเพิ่มแถบ thumb ได้ — scripts/pages/product.js รองรับไว้แล้ว
              โครง: <button class="pd-thumb" data-thumb="./images/products/xxx.webp"><img …></button> -->
-        <figure>
-          <div class="pd-gallery-frame aspect-square overflow-hidden rounded-2xl bg-panel-cream">
-            <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิกจากสวนป่าดีบุญ" width="900" height="900" class="pd-gallery-main size-full object-cover" data-gallery-main />
+        <div class="pd-gallery-frame aspect-square overflow-hidden rounded-2xl bg-panel-cream">
+          <img src="./images/products/rice.webp" alt="ข้าวกล้องออร์แกนิกจากสวนป่าดีบุญ" width="900" height="900" class="pd-gallery-main size-full object-cover" data-gallery-main />
+        </div>
+
+        <div class="sticky top-25 rounded-2xl border border-border-soft bg-white p-7 shadow-card max-lg:static">
+          <span class="mb-2.5 block text-xs font-semibold tracking-wide text-cr-green">สวนป่าดีบุญ · แปลง 3 · เก็บเกี่ยว 2568</span>
+          <h1 class="mb-2.5 text-h2">ข้าวกล้องออร์แกนิก</h1>
+
+          <div class="mb-4 flex items-center gap-2">
+            <span class="tracking-wide text-cr-gold">★★★★★</span>
+            <span class="text-caption text-text-muted">4.9 · 128 รีวิว</span>
           </div>
-       
-        </figure>
 
-        <div>
-          <div class="sticky top-25 rounded-2xl border border-border-soft bg-white p-7 shadow-card max-lg:static">
-            <span class="mb-2.5 block text-xs font-semibold tracking-wide text-cr-green">สวนป่าดีบุญ · แปลง 3 · เก็บเกี่ยว 2568</span>
-            <h1 class="mb-2.5 text-h2">ข้าวกล้องออร์แกนิก</h1>
+          <p class="mb-4 font-heading text-[2rem] font-bold text-cr-green">฿120 <span class="text-sm font-medium text-text-muted">/ กก.</span></p>
 
-            <div class="mb-4 flex items-center gap-2">
-              <span class="tracking-wide text-cr-gold">★★★★★</span>
-              <span class="text-caption text-text-muted">4.9 · 128 รีวิว</span>
+          <p class="mb-5 flex items-center gap-2 rounded-lg bg-panel-light px-3.5 py-2.5 text-caption text-text-secondary">
+            <span class="stock-dot" aria-hidden="true"></span>
+            มีสินค้า · เหลือ 8 กก. จากรอบเก็บเกี่ยวนี้
+          </p>
+
+          <div class="mb-4 flex items-center justify-between">
+            <span class="font-heading text-caption font-semibold">จำนวน (กก.)</span>
+            <div class="stepper stepper-lg">
+              <button type="button" data-qty-dec aria-label="ลดจำนวน">−</button>
+              <span data-qty-value aria-live="polite">1</span>
+              <button type="button" data-qty-inc aria-label="เพิ่มจำนวน">+</button>
             </div>
-
-            <p class="mb-4 font-heading text-[2rem] font-bold text-cr-green">฿120 <span class="text-sm font-medium text-text-muted">/ กก.</span></p>
-
-            <p class="mb-5 flex items-center gap-2 rounded-lg bg-panel-light px-3.5 py-2.5 text-caption text-text-secondary">
-              <span class="pd-stock-dot" aria-hidden="true"></span>
-              มีสินค้า · เหลือ 8 กก. จากรอบเก็บเกี่ยวนี้
-            </p>
-
-            <div class="mb-4 flex items-center justify-between">
-              <span class="font-heading text-caption font-semibold">จำนวน (กก.)</span>
-              <div class="pd-stepper">
-                <button type="button" data-qty-dec aria-label="ลดจำนวน">−</button>
-                <span data-qty-value aria-live="polite">1</span>
-                <button type="button" data-qty-inc aria-label="เพิ่มจำนวน">+</button>
-              </div>
-            </div>
-
-            <button type="button" class="btn btn-primary btn-full mb-5" data-add-to-cart>เพิ่มลงตะกร้า · <span data-buy-total>฿120</span></button>
-
-            <ul class="pd-assure flex list-none flex-col gap-2.5 border-t border-border-soft pt-4">
-              <li>เก็บเกี่ยวสดใหม่ ส่งตรงจากสวน</li>
-              <li>ปลอดสารเคมีทุกขั้นตอน</li>
-              <li>ซื้อครบ ฿500 ส่งฟรีทั่วประเทศ</li>
-            </ul>
           </div>
+
+          <button type="button" class="btn btn-primary btn-full mb-5" data-add-to-cart>เพิ่มลงตะกร้า · <span data-buy-total>฿120</span></button>
+
+          <ul class="assure-list assure-list-lg flex list-none flex-col gap-2.5 border-t border-border-soft pt-4">
+            <li>เก็บเกี่ยวสดใหม่ ส่งตรงจากสวน</li>
+            <li>ปลอดสารเคมีทุกขั้นตอน</li>
+            <li>ซื้อครบ ฿500 ส่งฟรีทั่วประเทศ</li>
+          </ul>
         </div>
       </section>
 

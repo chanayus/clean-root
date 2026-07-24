@@ -4,9 +4,6 @@
 
 import { lenis } from "../modules/smooth-scroll.js";
 
-// เว้นที่ให้ nav แบบ fixed ทับ — ตรงกับ 9.375rem ที่ตั้งไว้ก่อนหน้านี้
-const NAV_SCROLL_OFFSET = -150;
-
 function initPagination() {
   const featured = document.querySelector("[data-art-featured]");
   const cards = Array.from(document.querySelectorAll("[data-art-card]"));
@@ -31,7 +28,7 @@ function initPagination() {
   function goTo(page) {
     current = Math.min(totalPages, Math.max(1, page));
     render();
-    lenis.scrollTo(0);
+    lenis?.scrollTo(0);
   }
 
   pageButtons.forEach((btn) => btn.addEventListener("click", () => goTo(Number(btn.dataset.artPageNum))));

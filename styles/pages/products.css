@@ -6,6 +6,9 @@
    การ์ดสินค้าทั้งชุด (.harvest-card*) อยู่ใน input.css เพราะใช้หลายหน้า
    เหลือที่นี่แค่จุดบอกสถานะของกลุ่ม ซึ่งมีเฉพาะหน้านี้ */
 
+/* ขนาดฐานของจุดสถานะกลุ่ม — ใช้ร่วมกับ .stock-dot (สี+animation ย้ายไป input.css แล้ว)
+   ไฟล์นี้เป็น global CSS ไม่ได้อยู่ใน @layer จึงชนะ width/height ของ .stock-dot เสมอ
+   ผลคือจุด "มีสินค้าตอนนี้" ยังคงกว้าง 10px เท่าเดิมบนหน้านี้ */
 .pl-dot {
   width: 10px;
   height: 10px;
@@ -13,30 +16,6 @@
   flex: none;
 }
 
-/* จุดเขียวเต้นเบาๆ สื่อว่า "มีของตอนนี้" — ต้องใช้ @keyframes */
-.pl-dot--live {
-  background: var(--cr-green);
-  animation: pl-dot-pulse 2s ease infinite;
-}
-
-@keyframes pl-dot-pulse {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 rgb(62 98 80 / 0.4);
-  }
-  50% {
-    opacity: 0.7;
-    box-shadow: 0 0 0 6px rgb(62 98 80 / 0);
-  }
-}
-
 .pl-dot--season {
   background: var(--cr-gold);
-}
-
-/* เปิด view transition ตอนไปหน้า product.html — เฉพาะรูปการ์ดข้าวกล้อง
-   (scripts/pages/products.js เซ็ตชื่อ view-transition-name ให้ตอนคลิก) */
-@view-transition {
-  navigation: auto;
 }
