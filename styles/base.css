@@ -86,6 +86,10 @@ body:not(#product-page) {
   animation: fade-in 0.35s forwards;
 }
 
+body[data-nav-solid] #navbar {
+  background: var(--panel-green-moss);
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
