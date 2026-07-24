@@ -42,7 +42,7 @@
   transition: background 0.2s;
 }
 
-.faq-q:hover {
+.faq-item:not(.is-open) .faq-q:hover {
   background: var(--panel-cream);
 }
 
