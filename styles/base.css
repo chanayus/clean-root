@@ -87,7 +87,7 @@ body:not(#product-page) {
 }
 
 body[data-nav-solid] #navbar {
-  background: var(--panel-green-moss);
+  border-bottom: 1px solid rgba(43, 42, 37, 0.1);
 }
 
 @keyframes fade-in {
