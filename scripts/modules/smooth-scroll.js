@@ -1,9 +1,6 @@
-// Lenis smooth scroll — เปิดใช้เป็นค่าเริ่มต้นในโปรเจกต์นี้
-// main.js import ไฟล์นี้ไม่มีเงื่อนไข และทุกหน้าต้องมี <script> CDN ของ Lenis ใน <head>
-//   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+// Lenis — เปิดใช้ในโปรเจกต์นี้ (main.js import ไม่มีเงื่อนไข, ทุกหน้ามี <script> CDN lenis@1.3.23 ใน <head>)
 
-// export ไว้ให้หน้าอื่น scrollTo() แบบ smooth ตาม physics เดียวกับ Lenis
-// (native scrollIntoView/window.scrollTo จะสู้กับ virtual scroll ของ Lenis แล้วกระตุก)
+// export ให้หน้าอื่นเรียก .scrollTo() ได้ — native scrollIntoView จะสู้กับ virtual scroll ของ Lenis แล้วกระตุก
 export let lenis;
 
 if (typeof Lenis === "undefined") {

@@ -9,16 +9,8 @@ export const spring = [0.16, 1, 0.3, 1];
 export const springSoft = [0.34, 1.4, 0.64, 1];
 
 /* เผยเนื้อหาตอนเลื่อนถึง เล่นครั้งเดียวแล้วเลิกเฝ้า
-
-   target  — CSS selector หรือ element เดี่ยว
-   from/to — keyframe ของ Motion (from เซ็ตทันทีด้วย duration 0)
-   child   — สำหรับลาย masked reveal: หน้าต่าง overflow:hidden + ตัวในเลื่อนขึ้น
-             ต้องเฝ้า "กล่องนอก" เสมอ เพราะ IntersectionObserver วัดจากกล่องหลัง transform
-             ถ้าเฝ้าตัวในที่ถูกดันออกไปแล้ว กล่องมันจะลอยจนไม่เข้าเงื่อนไขสักที
-             ตัวในส่งเข้า animate เป็นชุดเดียว stagger จึงไล่ลำดับให้ได้
-
-   inView คืนฟังก์ชันหยุดเฝ้ามาให้ เรียกใน callback ได้เลย
-   (IntersectionObserver ไม่เคยยิง callback แบบ synchronous ตอน observe จึงไม่ติด TDZ) */
+   child = ลาย masked reveal: เฝ้ากล่องนอกแต่ animate ตัวใน — เพราะ IntersectionObserver
+   วัดตัวในหลัง transform ตัวในที่ถูกดันพ้นจอจะไม่เข้าเงื่อนไขสักที */
 export function revealOnce(target, from, to, { amount = 0.3, child, ...options } = {}) {
   const roots = typeof target === "string" ? document.querySelectorAll(target) : [target];
 
