@@ -3,33 +3,32 @@
    .claude/skills/static-site-from-prototype/references/css-conventions.md
    ของที่ใช้ซ้ำข้ามหน้าให้ไป styles/tailwind/input.css แทน */
 
-/* ================= การ์ดบทความ ================= */
-/* hover ยกการ์ด + รูปซูมเข้า — ซ้อน 2 ชั้น (:hover ของการ์ด ควบคุมรูปข้างใน) ต้องเขียน CSS */
+/* การ์ดบทความทั่วไป (.art-card) ย้ายไป styles/tailwind/input.css แล้ว — หน้า article ใช้ด้วย
+   เหลือที่นี่แค่การ์ด featured กับ pagination ซึ่งมีเฉพาะหน้านี้ */
 
 html {
   scroll-padding: 9.375rem;
 }
-.art-featured-card,
-.art-card {
-  transition: transform 0.3s var(--spring);
-}
 
-.art-featured-card:hover,
-.art-card:hover {
-  transform: translateY(-4px);
+/* ================= การ์ด featured ================= */
+/* hover ยกการ์ด + รูปซูมเข้า — ซ้อน 2 ชั้น (:hover ของการ์ด ควบคุมรูปข้างใน) ต้องเขียน CSS
+   ยกด้วย `translate` เพราะการ์ดมี [data-reveal] ที่ Motion เขียน transform ทับ */
+.art-featured-card {
+  transition:
+    translate 0.3s var(--spring),
+    box-shadow 0.3s var(--spring);
 }
 
 .art-featured-card:hover {
+  translate: 0 -4px;
   box-shadow: var(--shadow-card);
 }
 
-.art-featured-photo img,
-.art-card-photo img {
+.art-featured-photo img {
   transition: transform 0.5s var(--spring);
 }
 
-.art-featured-card:hover .art-featured-photo img,
-.art-card:hover .art-card-photo img {
+.art-featured-card:hover .art-featured-photo img {
   transform: scale(1.05);
 }
 

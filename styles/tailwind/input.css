@@ -107,53 +107,97 @@
   }
 }
 
+/* เนื้อหายาวที่เขียนเป็นข้อความล้วน (บทความ) — ใส่ `prose` ที่กล่องนอก แล้วเขียน
+   <p> <h2> <ul> ข้างในได้เลย ไม่ต้องติด utility ทีละแท็ก
+
+   ตัวอักษร 17px ใหญ่กว่า --fs-body (15px) ตั้งใจ — long-form อ่านต่อเนื่องนานกว่า UI ทั่วไป
+   หัวข้อยังเป็น Prompt ตาม design system (base layer ตั้งให้แล้ว ที่นี่แค่คุมขนาด/ระยะ) */
 @utility prose {
-  /* Typography */
+  font-size: 1rem; /* 17px */
+  line-height: 1.95;
+  color: var(--text-secondary);
+
+  p {
+    @apply mb-6 empty:hidden;
+  }
+
+  /* ย่อหน้านำ — ใหญ่และเข้มกว่าเนื้อหาปกติ เชื่อมจากหัวเรื่องเข้าเนื้อ */
+  .lead {
+    font-size: 1.1875rem; /* 19px */
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  h2,
+  h3,
+  h4 {
+    @apply mt-12 mb-4 font-bold empty:hidden;
+    color: var(--text-primary);
+  }
+
+  h2 {
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.35;
+  }
+
+  h3 {
+    font-size: var(--fs-h4);
+  }
+
+  h4 {
+    font-size: var(--fs-h5);
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  a {
+    color: var(--cr-green);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   del {
     @apply line-through opacity-60;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply mt-8 mb-4 font-bold empty:hidden;
-  }
-
-  p {
-    @apply mb-4 empty:hidden;
-  }
-
-  h1 {
-    @apply text-3xl;
-  }
-  h2 {
-    @apply text-2xl;
-  }
-  h3 {
-    @apply text-xl;
-  }
-  h4 {
-    @apply text-lg;
-  }
-  h5 {
-    @apply text-base;
-  }
-  h6 {
-    @apply text-sm;
+  hr {
+    @apply my-10 border-0;
+    border-top: 1px solid var(--border);
   }
 
   img {
-    @apply w-full rounded-xl bg-black/20 object-cover;
+    @apply my-8 w-full rounded-xl object-cover;
+    background: var(--panel-cream);
   }
 
-  /* Lists */
+  /* คำพูดคั่น — เส้นเขียวซ้ายแทนเครื่องหมายคำพูด (pull quote พื้นเขียวเต็มจอเป็นของหน้า about) */
+  blockquote {
+    @apply my-10 border-l-[3px] py-2 pl-7 font-heading font-semibold max-sm:pl-5;
+    border-color: var(--cr-green);
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.6;
+    color: var(--text-primary);
+  }
 
+  /* Lists — base layer ตั้ง margin-left: 2rem ไว้กับ li ทุกตัว ที่นี่คุมเองด้วย padding แทน */
   ol,
   ul {
-    @apply mb-4 ml-8;
+    @apply mb-6 ml-0 pl-6;
+  }
+
+  li {
+    @apply ml-0 pl-1.5;
+  }
+
+  li + li {
+    @apply mt-3;
+  }
+
+  li::marker {
+    color: var(--cr-green);
   }
 
   ol {
@@ -167,42 +211,51 @@
   /* Tables */
 
   table {
-    @apply my-4 w-full table-auto border-collapse text-left text-sm/6;
+    @apply my-8 w-full table-auto border-collapse text-left text-sm/6;
 
     caption {
       @apply mt-2 caption-bottom text-left text-sm/6;
+      color: var(--text-muted);
     }
 
     thead {
-      @apply border-b border-neutral-200;
+      border-bottom: 1px solid var(--border);
     }
 
     tfoot {
-      @apply border-t border-neutral-200;
+      border-top: 1px solid var(--border);
     }
 
     tr {
-      @apply border-y border-neutral-200 first:border-t-0 last:border-b-0;
+      border-block: 1px solid var(--border);
+      @apply first:border-t-0 last:border-b-0;
     }
 
     th {
-      @apply align-bottom font-semibold;
+      @apply align-bottom font-heading font-semibold;
+      color: var(--text-primary);
     }
 
     td,
     th {
       @apply p-2 first:pl-0 last:pr-0;
 
-      h1,
       h2,
       h3,
       h4,
-      h5,
-      h6,
       p {
         @apply my-2 first:mt-0 last:mb-0;
       }
     }
+  }
+
+  /* แท็กแรก/สุดท้ายไม่ต้องมีระยะเกิน กล่องนอกคุมเอง */
+  > :first-child {
+    @apply mt-0;
+  }
+
+  > :last-child {
+    @apply mb-0;
   }
 }
 
@@ -568,6 +621,47 @@
 
   .harvest-card-photo--chili {
     background: linear-gradient(160deg, #d08b73, #a33f2c);
+  }
+}
+
+/* ==========================================================================
+   การ์ดบทความ — ใช้ที่ articles.html (กริดหลัก) และ article.html (ส่วน "อ่านต่อ")
+   ตัวการ์ด featured กับ pagination อยู่หน้า articles อย่างเดียว จึงยังอยู่ใน pages/articles.css
+   ========================================================================== */
+@layer components {
+  /* ยกการ์ดใช้ `translate` ไม่ใช่ `transform` เพราะการ์ดมี [data-reveal]
+     ซึ่ง Motion เขียน transform เป็น inline style ทับ CSS เสมอ (กฎเดียวกับ .harvest-card) */
+  .art-card {
+    transition: translate 0.3s var(--spring);
+  }
+
+  .art-card:hover {
+    translate: 0 -4px;
+  }
+
+  .art-card-photo {
+    transition: box-shadow 0.35s var(--spring);
+  }
+
+  .art-card:hover .art-card-photo {
+    box-shadow: var(--shadow-card);
+  }
+
+  .art-card-photo img {
+    transition: transform 0.5s var(--spring);
+  }
+
+  .art-card:hover .art-card-photo img {
+    transform: scale(1.05);
+  }
+
+  /* หัวข้อเปลี่ยนเป็นเขียวตอน hover — บอกว่าทั้งใบเป็นลิงก์ ไม่ใช่แค่รูปขยับ */
+  .art-card h3 {
+    transition: color 0.25s ease;
+  }
+
+  .art-card:hover h3 {
+    color: var(--cr-green);
   }
 }
 

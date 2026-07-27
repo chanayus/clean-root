@@ -48,7 +48,16 @@ repo ต้นทางคือ `boilerplate-static-web` — เจอของ
 ## สถานะ
 
 ครบทั้ง 8 หน้าตาม `prototype/` แล้ว — `index` `cart` `products` `product` `faq` `about` `account` `articles`
-บวก `404.html` (ไม่มีใน prototype ทำเพิ่มเอง — ใช้ธีมเดียวกับหน้าอื่น เลขใหญ่ Fraunces ตามแบบตัวเลขหน้า about)
+
+**หน้าที่ทำเพิ่มเอง ไม่มีใน prototype** — ใช้ธีมเดียวกับหน้าอื่นทั้งหมด
+
+| หน้า | อะไร |
+|---|---|
+| `404.html` | เลขใหญ่ Fraunces ตามแบบตัวเลขหน้า about |
+| `article.html` | หน้าอ่านบทความ (ปลายทางของการ์ดใน `articles`) — แถบความคืบหน้าการอ่าน, เนื้อหา `.ar-body`, การ์ด "อ่านต่อ" |
+
+`article.html` มีบทความเดียว การ์ดทุกใบใน `articles` เลยชี้มาที่นี่หมด
+ของจริงต้องเป็นหน้าต่อ slug (`article.html?slug=` หรือไฟล์แยก) แล้วค่อยจับรูปให้ตรงบทความ
 
 **หน้าใหม่ต้องมีอะไรบ้าง** (เผื่อมีหน้าเพิ่มในอนาคต)
 
@@ -74,6 +83,7 @@ repo ต้นทางคือ `boilerplate-static-web` — เจอของ
 | `about` | รูป "จุดเริ่มต้น" (story-soil) + "ทำไมมีจำกัด" (story-harvest) |
 | `product` | การ์ดเมนู 3 ใบใน "กินยังไงให้อร่อย" (rice, story-recipe ×2) |
 | `articles` | featured + การ์ดทั้ง 14 ใบ |
+| `article` | รูปเปิดเรื่อง (story-harvest ให้ตรงกับการ์ด featured) + การ์ด "อ่านต่อ" 3 ใบ |
 
 ## Tailwind ก่อน ค่อยสร้าง token
 
@@ -158,11 +168,26 @@ Hero ใช้ `--fs-hero` = `clamp(2.5rem, 6vw, 4.5rem)` ตาม prototype (7
 **ข้อควรระวังตอนใช้ทั้งคู่กับ element เดียวกัน** Motion เขียน `transform` เป็น inline style
 ซึ่งชนะ CSS เสมอ ถ้า element นั้นมี reveal ด้วย Motion แล้วยังต้อง hover ด้วย CSS
 ให้ hover ใช้ property `translate` / `scale` แยก (เบราว์เซอร์ประกอบกับ `transform` ให้เอง)
-ตัวอย่างอยู่ที่ `.harvest-card:hover` ใน `pages/index.css`
+ตัวอย่างอยู่ที่ `.harvest-card:hover` กับ `.art-card:hover` ใน `tailwind/input.css`
+— **การ์ดทุกใบที่มี `data-reveal` ต้องใช้กฎนี้** ไม่งั้น hover จะเงียบไปเฉยๆ หลัง reveal จบ
 
 **masked reveal** (หน้าต่าง `overflow:hidden` + ตัวในเลื่อนขึ้น) ให้ใช้ `revealOnce(..., { child })`
 จาก `modules/animation.js` — มันเฝ้ากล่องนอกให้และส่งตัวในเข้า `animate` เป็นชุดเดียวเพื่อให้ `stagger` ทำงาน
 รายละเอียดอยู่ใน `references/animation.md`
+
+## View Transition ข้ามหน้า (รูปการ์ด → รูปหน้ารายละเอียด)
+
+ของเบราว์เซอร์ล้วน ไม่ใช่ Motion — ต้องครบ 3 จุดถึงจะทำงาน แก้จุดเดียวแล้วเงียบ
+
+| จุด | ที่ไหน | ทำอะไร |
+|---|---|---|
+| เปิดใช้ + จังหวะ | `base.css` | `@view-transition { navigation: auto }` + `::view-transition-group(<ชื่อ>)` |
+| ฝั่งปลายทาง | `pages/<หน้า>.css` | ประกาศ `view-transition-name` ค้างไว้ (`.pd-gallery-frame`, `.ar-hero-photo`) |
+| ฝั่งต้นทาง | `pages/<หน้า>.js` | เซ็ต `view-transition-name` **ตอนคลิกเท่านั้น** |
+
+ที่ต้นทางเซ็ตค้างไว้ทุกการ์ดไม่ได้ เพราะชื่อต้อง unique ต่อหน้า — ซ้ำเมื่อไหร่เบราว์เซอร์ยกเลิก transition ทั้งหมด
+
+ชื่อที่ใช้อยู่: `product-photo` (การ์ดสินค้า → `product`) · `article-photo` (การ์ดบทความ → `article`)
 
 ## ผังรูป
 

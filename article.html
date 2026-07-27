@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ทำไมเราถึงไม่เร่งเก็บเกี่ยว แม้ต้องรอนานกว่า — CleanRoots</title>
+    <meta name="description" content="เบื้องหลังการตัดสินใจที่ดูเหมือนไม่คุ้มทางธุรกิจ แต่คือหัวใจของทุกอย่างที่สวนป่าดีบุญทำ" />
+
+    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <link rel="stylesheet" href="./styles/base.css" />
+    <link rel="stylesheet" href="./styles/pages/article.css" />
+
+    <!-- Lenis smooth scroll — ต้องโหลดก่อน main.js -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.23/dist/lenis.min.js"></script>
+
+    <!-- Components: <script> ธรรมดา ไม่ใช่ module — ต้อง define ก่อน parser เจอ tag -->
+    <script src="./components/navbar.js"></script>
+    <script src="./components/footer.js"></script>
+
+    <!-- Behaviour: ES modules -->
+    <script type="module" src="./scripts/pages/article.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
+  </head>
+
+  <!-- data-nav-solid: หน้านี้พื้นครีมตั้งแต่บนสุด ไม่มี hero มืดให้ nav ทับ -->
+  <body data-nav-solid>
+    <!-- แถบความคืบหน้าการอ่าน — scripts/pages/article.js ขยายด้วย scroll() ของ Motion -->
+    <div class="ar-progress fixed inset-x-0 top-0 z-51 h-1 bg-cr-gold" data-ar-progress aria-hidden="true"></div>
+
+    <navbar-component></navbar-component>
+
+    <!-- .container ในหน้านี้แคบกว่าหน้าอื่น (60rem) เพื่อความยาวบรรทัดที่อ่านสบาย
+         pages/article.css บีบให้ทุกตัว ยกเว้น #read-more ที่ตั้งใจให้กว้างเต็มเหมือนหน้าอื่น -->
+    <main class="flex-1 pt-26 max-md:pt-22">
+      <nav class="container py-4" aria-label="เส้นทางหน้า">
+        <div class="flex flex-wrap items-center gap-2 text-caption text-text-muted">
+          <a href="index.html" class="hover:text-cr-green">หน้าแรก</a>
+          <span aria-hidden="true">/</span>
+          <a href="articles.html" class="hover:text-cr-green">บทความ</a>
+          <span aria-hidden="true">/</span>
+          <span class="text-text-primary" aria-current="page">ทำไมเราถึงไม่เร่งเก็บเกี่ยว</span>
+        </div>
+      </nav>
+
+      <article class="container prose">
+        <!-- ================= หัวบทความ ================= -->
+        <header class="pt-8 pb-4">
+          <span class="mb-4 inline-block rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">เรื่องราวสวน</span>
+          <h1 class="mb-4 text-4xl leading-tight text-text-primary">ทำไมเราถึงไม่เร่งเก็บเกี่ยว แม้ต้องรอนานกว่า</h1>
+          <p class="mb-6 leading-relaxed text-text-secondary">เบื้องหลังการตัดสินใจที่ดูเหมือนไม่คุ้มทางธุรกิจ แต่คือหัวใจของทุกอย่างที่สวนป่าดีบุญทำ</p>
+
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption text-text-muted">
+            <span class="font-heading font-semibold text-text-primary">สวนป่าดีบุญ</span>
+            <span aria-hidden="true">·</span>
+            <time datetime="2026-07-06">6 ก.ค. 2569</time>
+            <span aria-hidden="true">·</span>
+            <span>อ่าน 5 นาที</span>
+          </div>
+        </header>
+
+        <!-- ================= รูปเปิดเรื่อง =================
+             .ar-hero-photo = ปลายทางของ view transition (ชื่อ article-photo ประกาศไว้ใน pages/article.css)
+             ต้นทางคือรูปการ์ดในหน้า articles ที่ scripts/pages/articles.js เซ็ตชื่อเดียวกันให้ตอนคลิก
+             ถอด class นี้ออกเมื่อไหร่ transition จะเงียบไปเฉยๆ ไม่มี error
+             ยังไม่มีรูปเฉพาะบทความจริง ยืม story-harvest มาใช้ตามการ์ดต้นทาง -->
+        <img src="./images/pages/index/story-harvest.webp" alt="" width="1200" height="675" class="ar-hero-photo size-full object-cover" />
+
+        <!-- ================= เนื้อหา ================= -->
+
+        <p class="lead">ทุกปีจะมีคนถามคำถามเดิม — ทำไมข้าวถึงหมดเร็ว ทำไมไม่ปลูกเพิ่ม ทำไมต้องรอถึงปีหน้า คำตอบสั้นที่สุดคือเราไม่ได้เลือกวันเก็บเกี่ยวเอง ต้นข้าวเป็นคนเลือก</p>
+
+        <p>
+          ในระบบที่เร่งได้ การเก็บเกี่ยวคือเรื่องของตารางเวลา วางแผนล่วงหน้าได้ว่าสัปดาห์ไหนจะได้ผลผลิตเท่าไหร่ แต่ในแปลงที่ไม่ใช้สารเร่ง ตารางนั้นไม่มีอยู่จริง มีแค่การเดินดูแปลงทุกเช้า
+          แล้วรอจนกว่ารวงจะบอกเองว่าพร้อม
+        </p>
+
+        <h2>ข้าวไม่ได้สุกพร้อมกันทั้งแปลง</h2>
+
+        <p>
+          แปลงเดียวกันแต่ดินไม่เท่ากัน มุมที่ได้แดดเช้ากับมุมที่โดนเงาไม้ตอนบ่ายสุกห่างกันได้เป็นสัปดาห์ เราเลยเก็บเป็นรอบ ไม่ใช่เก็บทีเดียวจบ ซึ่งแปลว่าใช้แรงคนมากกว่า ใช้เวลามากกว่า
+          และได้ผลผลิตต่อรอบน้อยกว่า
+        </p>
+
+        <p>ถ้าเร่งให้สุกพร้อมกันก็ทำได้ มีวิธีอยู่ แต่ทุกวิธีที่เรารู้จักล้วนแลกมาด้วยอย่างใดอย่างหนึ่ง</p>
+
+        <h2>สิ่งที่เกิดขึ้นถ้าเร่ง</h2>
+
+        <ul>
+          <li>เมล็ดที่ยังไม่สะสมแป้งเต็มที่จะแตกหักตอนสี ได้ข้าวหักมากกว่าข้าวเต็มเมล็ด</li>
+          <li>ความหอมของข้าวใหม่มาจากช่วงท้ายของการสุกคาต้น ตัดตอนนั้นออกไป กลิ่นก็หายไปด้วย</li>
+          <li>ดินที่ถูกเร่งซ้ำๆ ต้องพึ่งการเติมจากข้างนอกมากขึ้นทุกปี จนวันหนึ่งหยุดเติมไม่ได้</li>
+        </ul>
+
+        <p>ข้อสุดท้ายคือข้อที่เราให้น้ำหนักมากที่สุด เพราะมันไม่ได้กระทบแค่ฤดูนี้ ดินที่เราใช้เวลาหกปีฟื้นขึ้นมา เสียได้ในเวลาสั้นกว่านั้นมาก</p>
+
+        <blockquote>
+          เราไม่ได้รอเพราะอยากให้ของดูหายาก<br />
+          เรารอเพราะยังไม่ถึงเวลาที่มันจะดีจริง
+        </blockquote>
+
+        <h2>ต้นทุนของการรอ</h2>
+
+        <p>การรอไม่ได้ฟรี ทุกสัปดาห์ที่ยังไม่เก็บคือความเสี่ยงที่ฝนจะมา นกจะลง หรือลมจะพัดรวงล้ม ปีที่แล้วเราเสียข้าวไปส่วนหนึ่งเพราะฝนมาก่อนกำหนดสามวัน — นี่คือราคาที่ต้องจ่ายจริง ไม่ใช่คำพูดสวยๆ</p>
+
+        <p>แต่ถ้าเทียบกับการได้ข้าวที่ไม่ต้องอธิบายว่าทำไมถึงไม่หอม เราเลือกจ่ายราคานี้ และเลือกบอกคุณตรงๆ ว่าปีไหนได้น้อย แทนที่จะไปหาของจากที่อื่นมาเติมให้ครบ</p>
+
+        <h2>แล้วคนกินได้อะไร</h2>
+
+        <p>ได้ข้าวที่สีใหม่ก่อนส่งทุกครั้ง ได้รู้ว่ามาจากแปลงไหน เก็บรอบไหน และได้ระบบที่ยังยืนอยู่ได้ในปีถัดไป โดยไม่ต้องเบียดเบียนอะไรเพิ่ม</p>
+
+        <p>ความจำกัดที่คุณเห็นบนหน้าเว็บ ไม่ใช่กลยุทธ์ มันคือจำนวนที่เราดูแลได้จริงเท่านั้น</p>
+      </article>
+
+      <!-- ================= ผู้เขียน ================= -->
+      <section class="my-16 container">
+        <div class="flex items-center gap-4 rounded-2xl bg-panel-light p-6 max-md:flex-col max-md:items-start">
+          <span class="flex size-12 flex-none items-center justify-center rounded-full bg-cr-green font-heading text-lg font-bold text-white" aria-hidden="true">ป</span>
+          <div class="flex-1">
+            <p class="font-heading font-bold">สวนป่าดีบุญ</p>
+            <p class="text-caption leading-relaxed text-text-secondary">เชียงคาน จ.เลย — ปลูกไม้ป่า ทำอาหารไว้กินเอง แล้วแบ่งส่วนที่เหลือให้คนที่กินแบบเดียวกัน</p>
+          </div>
+          <!-- w-auto ทับ .btn-sm ที่เป็น w-full — ในการ์ดสินค้าปุ่มเต็มความกว้างถูกแล้ว แต่ในแถวนี้ต้องพอดีตัว -->
+          <a href="#" class="btn btn-line btn-sm w-auto flex-none max-md:w-full">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M12 2C6.48 2 2 5.64 2 10.13c0 4.02 3.55 7.39 8.35 8.03.32.07.77.21.88.49.1.25.06.64.03.9l-.14.85c-.04.25-.2.98.86.53s5.7-3.36 7.78-5.75C21.13 13.36 22 11.85 22 10.13 22 5.64 17.52 2 12 2Z"
+              ></path>
+            </svg>
+            ติดตามผ่าน LINE
+          </a>
+        </div>
+      </section>
+
+      <!-- ================= อ่านต่อ ================= -->
+      <section class="container pb-25 max-lg:pb-16" id="read-more" aria-labelledby="more-articles">
+        <div class="mb-8 flex items-baseline justify-between gap-4" data-reveal>
+          <h2 id="more-articles" class="text-[clamp(22px,2.6vw,28px)] leading-snug">อ่านต่อ</h2>
+          <a href="articles.html" class="font-heading text-caption font-semibold text-cr-green hover:underline">ดูทั้งหมด</a>
+        </div>
+
+        <div class="grid grid-cols-3 gap-7 max-lg:grid-cols-1">
+          <a href="article.html" class="art-card flex flex-col gap-2.5 no-underline" data-reveal>
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream" data-art-photo>
+              <img src="./images/pages/index/story-soil.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">วิธีปลูก</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ดินดีเริ่มจากอะไร ก่อนจะถึงเมล็ดแรก</h3>
+            <span class="text-xs text-text-muted">28 มิ.ย. 2569 · อ่าน 4 นาที</span>
+          </a>
+          <a href="article.html" class="art-card flex flex-col gap-2.5 no-underline" data-reveal data-delay="0.1">
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream" data-art-photo>
+              <img src="./images/pages/index/hero-field.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">แนวคิด</span>
+            <h3 class="font-heading text-base leading-snug font-bold">ทำไมผลผลิตของเราถึงมีจำกัดเสมอ</h3>
+            <span class="text-xs text-text-muted">12 มิ.ย. 2569 · อ่าน 4 นาที</span>
+          </a>
+          <a href="article.html" class="art-card flex flex-col gap-2.5 no-underline" data-reveal data-delay="0.2">
+            <div class="art-card-photo aspect-4/3 overflow-hidden rounded-[14px] bg-panel-cream" data-art-photo>
+              <img src="./images/pages/index/story-recipe.webp" alt="" width="480" height="360" loading="lazy" class="size-full object-cover" />
+            </div>
+            <span class="mt-1 inline-block w-fit rounded-full bg-panel-light px-3 py-1.5 font-heading text-[11px] font-bold text-cr-green">สูตรอาหาร</span>
+            <h3 class="font-heading text-base leading-snug font-bold">โจ๊กข้าวกล้องมื้อเช้า ทำง่ายใน 20 นาที</h3>
+            <span class="text-xs text-text-muted">18 พ.ค. 2569 · อ่าน 3 นาที</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer-component></footer-component>
+  </body>
+</html>

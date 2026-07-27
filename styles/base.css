@@ -171,7 +171,8 @@ img {
 }
 
 /* View Transition (cross-document) — จังหวะ spring เดียวกับที่ใช้ทั้งเว็บ
-   .pd-gallery-frame ใน product.css ประกาศชื่อ product-photo ไว้ ที่นี่แค่คุมจังหวะ
+   ชื่อกลุ่มประกาศไว้ที่หน้าปลายทาง: product-photo → .pd-gallery-frame (product.css)
+   article-photo → .ar-hero-photo (article.css) ที่นี่แค่คุมจังหวะ
    ไม่มีผลอะไรถ้าเบราว์เซอร์ไม่รองรับ หรือหน้าไหนไม่มี view-transition-name ชื่อนี้
 
    base.css โหลดทุกหน้า จึงเปิด @view-transition ไว้ที่เดียวแทนที่จะประกาศซ้ำในแต่ละ
@@ -180,7 +181,8 @@ img {
   navigation: auto;
 }
 
-::view-transition-group(product-photo) {
+::view-transition-group(product-photo),
+::view-transition-group(article-photo) {
   animation-duration: 0.5s;
   animation-timing-function: var(--spring);
 }

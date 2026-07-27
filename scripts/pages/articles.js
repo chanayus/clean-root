@@ -38,4 +38,21 @@ function initPagination() {
   render();
 }
 
+/* ===================== View Transition ไปหน้า article =====================
+   รูป thumbnail ของการ์ดที่กด มอร์ฟไปเป็นรูปเปิดเรื่องของหน้า article
+   (.ar-hero-photo ใน styles/pages/article.css ถือชื่อ article-photo ฝั่งปลายทาง)
+
+   ตอนนี้ article.html มีบทความเดียว ทุกการ์ดเลยชี้ไปที่เดียวกัน — รูปที่ไม่ตรงกับปลายทาง
+   จะมอร์ฟไปเป็นรูปของบทความนั้น ยอมรับ mismatch แบบเดียวกับการ์ดสินค้า→product.html ไปก่อน
+   ต้องเซ็ตตอนคลิกเท่านั้น เพราะ view-transition-name ต้อง unique ต่อหน้า */
+function initArticlePhotoTransition() {
+  document.querySelectorAll(".art-featured-card, .art-card").forEach((link) => {
+    link.addEventListener("click", () => {
+      const photo = link.querySelector("[data-art-photo]");
+      if (photo) photo.style.viewTransitionName = "article-photo";
+    });
+  });
+}
+
 initPagination();
+initArticlePhotoTransition();
